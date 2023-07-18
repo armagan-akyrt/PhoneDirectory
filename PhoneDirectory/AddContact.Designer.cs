@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             btnAddContact = new Button();
-            cbRole = new ComboBox();
-            rtxAdress = new RichTextBox();
+            RoleComboBox = new ComboBox();
+            AddressPrompt = new RichTextBox();
             label6 = new Label();
             label5 = new Label();
-            txtGSM = new TextBox();
+            GsmPrompt = new TextBox();
             label4 = new Label();
-            txtMail = new TextBox();
+            EmailPrompt = new TextBox();
             label3 = new Label();
-            txtLastName = new TextBox();
+            SurnamePrompt = new TextBox();
             label2 = new Label();
-            txtName = new TextBox();
+            NamePrompt = new TextBox();
             label1 = new Label();
             label7 = new Label();
-            txtUser = new TextBox();
+            CurrentUserPrompt = new TextBox();
             SuspendLayout();
             // 
             // btnAddContact
@@ -53,23 +53,24 @@
             btnAddContact.TabIndex = 27;
             btnAddContact.Text = "Oluştur";
             btnAddContact.UseVisualStyleBackColor = true;
+            btnAddContact.Click += btnAddContact_Click;
             // 
-            // cbRole
+            // RoleComboBox
             // 
-            cbRole.FormattingEnabled = true;
-            cbRole.Items.AddRange(new object[] { "ADMIN", "USER" });
-            cbRole.Location = new Point(319, 182);
-            cbRole.Name = "cbRole";
-            cbRole.Size = new Size(222, 23);
-            cbRole.TabIndex = 26;
+            RoleComboBox.FormattingEnabled = true;
+            RoleComboBox.Items.AddRange(new object[] { "ADMIN", "USER" });
+            RoleComboBox.Location = new Point(319, 182);
+            RoleComboBox.Name = "RoleComboBox";
+            RoleComboBox.Size = new Size(222, 23);
+            RoleComboBox.TabIndex = 26;
             // 
-            // rtxAdress
+            // AddressPrompt
             // 
-            rtxAdress.Location = new Point(319, 270);
-            rtxAdress.Name = "rtxAdress";
-            rtxAdress.Size = new Size(222, 111);
-            rtxAdress.TabIndex = 25;
-            rtxAdress.Text = "";
+            AddressPrompt.Location = new Point(319, 270);
+            AddressPrompt.Name = "AddressPrompt";
+            AddressPrompt.Size = new Size(222, 111);
+            AddressPrompt.TabIndex = 25;
+            AddressPrompt.Text = "";
             // 
             // label6
             // 
@@ -89,12 +90,12 @@
             label5.TabIndex = 23;
             label5.Text = "Rol";
             // 
-            // txtGSM
+            // GsmPrompt
             // 
-            txtGSM.Location = new Point(12, 358);
-            txtGSM.Name = "txtGSM";
-            txtGSM.Size = new Size(222, 23);
-            txtGSM.TabIndex = 22;
+            GsmPrompt.Location = new Point(12, 358);
+            GsmPrompt.Name = "GsmPrompt";
+            GsmPrompt.Size = new Size(222, 23);
+            GsmPrompt.TabIndex = 22;
             // 
             // label4
             // 
@@ -105,12 +106,12 @@
             label4.TabIndex = 21;
             label4.Text = "Telefon No.";
             // 
-            // txtMail
+            // EmailPrompt
             // 
-            txtMail.Location = new Point(12, 270);
-            txtMail.Name = "txtMail";
-            txtMail.Size = new Size(222, 23);
-            txtMail.TabIndex = 20;
+            EmailPrompt.Location = new Point(12, 270);
+            EmailPrompt.Name = "EmailPrompt";
+            EmailPrompt.Size = new Size(222, 23);
+            EmailPrompt.TabIndex = 20;
             // 
             // label3
             // 
@@ -121,12 +122,12 @@
             label3.TabIndex = 19;
             label3.Text = "Email";
             // 
-            // txtLastName
+            // SurnamePrompt
             // 
-            txtLastName.Location = new Point(12, 182);
-            txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(222, 23);
-            txtLastName.TabIndex = 18;
+            SurnamePrompt.Location = new Point(12, 182);
+            SurnamePrompt.Name = "SurnamePrompt";
+            SurnamePrompt.Size = new Size(222, 23);
+            SurnamePrompt.TabIndex = 18;
             // 
             // label2
             // 
@@ -137,12 +138,12 @@
             label2.TabIndex = 17;
             label2.Text = "Soyad";
             // 
-            // txtName
+            // NamePrompt
             // 
-            txtName.Location = new Point(12, 94);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(222, 23);
-            txtName.TabIndex = 16;
+            NamePrompt.Location = new Point(12, 94);
+            NamePrompt.Name = "NamePrompt";
+            NamePrompt.Size = new Size(222, 23);
+            NamePrompt.TabIndex = 16;
             // 
             // label1
             // 
@@ -162,36 +163,37 @@
             label7.TabIndex = 28;
             label7.Text = "Kişi:";
             // 
-            // txtUser
+            // CurrentUserPrompt
             // 
-            txtUser.Location = new Point(12, 27);
-            txtUser.Name = "txtUser";
-            txtUser.ReadOnly = true;
-            txtUser.Size = new Size(222, 23);
-            txtUser.TabIndex = 29;
+            CurrentUserPrompt.Location = new Point(12, 27);
+            CurrentUserPrompt.Name = "CurrentUserPrompt";
+            CurrentUserPrompt.ReadOnly = true;
+            CurrentUserPrompt.Size = new Size(222, 23);
+            CurrentUserPrompt.TabIndex = 29;
             // 
             // AddContact
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(txtUser);
+            Controls.Add(CurrentUserPrompt);
             Controls.Add(label7);
             Controls.Add(btnAddContact);
-            Controls.Add(cbRole);
-            Controls.Add(rtxAdress);
+            Controls.Add(RoleComboBox);
+            Controls.Add(AddressPrompt);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(txtGSM);
+            Controls.Add(GsmPrompt);
             Controls.Add(label4);
-            Controls.Add(txtMail);
+            Controls.Add(EmailPrompt);
             Controls.Add(label3);
-            Controls.Add(txtLastName);
+            Controls.Add(SurnamePrompt);
             Controls.Add(label2);
-            Controls.Add(txtName);
+            Controls.Add(NamePrompt);
             Controls.Add(label1);
             Name = "AddContact";
             Text = "AddContact";
+            Load += AddContact_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -199,19 +201,19 @@
         #endregion
 
         private Button btnAddContact;
-        private ComboBox cbRole;
-        private RichTextBox rtxAdress;
+        private ComboBox RoleComboBox;
+        private RichTextBox AddressPrompt;
         private Label label6;
         private Label label5;
-        private TextBox txtGSM;
+        private TextBox GsmPrompt;
         private Label label4;
-        private TextBox txtMail;
+        private TextBox EmailPrompt;
         private Label label3;
-        private TextBox txtLastName;
+        private TextBox SurnamePrompt;
         private Label label2;
-        private TextBox txtName;
+        private TextBox NamePrompt;
         private Label label1;
         private Label label7;
-        private TextBox txtUser;
+        private TextBox CurrentUserPrompt;
     }
 }

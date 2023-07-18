@@ -47,7 +47,7 @@ namespace PhoneDirectory.Scripts
             {
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("prCreateContact", conn);
+                SqlCommand command = new SqlCommand("CreateContact", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@name", this._name);
@@ -62,7 +62,7 @@ namespace PhoneDirectory.Scripts
             }
             catch (Exception)
             {
-
+                return false;
                 throw;
             }
 
@@ -85,7 +85,7 @@ namespace PhoneDirectory.Scripts
             {
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("prRetrieveData", conn);
+                SqlCommand command = new SqlCommand("RetrieveData", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@contactSearch", checkName);
@@ -121,7 +121,43 @@ namespace PhoneDirectory.Scripts
             return contacts;
         }
 
+        /// <summary>
+        /// updates current contact with new information
+        /// </summary>
+        /// <param name="oldUserName"> previously used username</param>
+        /// <returns>true if successful</returns>
+        public bool UpdateContact(string oldUserName)
+        {
+            SqlConnection conn = connection.GetConnection();
 
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("UpdateContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@name", this._name);
+                command.Parameters.AddWithValue("@surname", this._surname);
+                command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
+                command.Parameters.AddWithValue("@email", this._email);
+                command.Parameters.AddWithValue("@address", this._address);
+                command.Parameters.AddWithValue("@oldUsername", oldUserName);
+
+                command.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+            return true;
+        }
     }
 
     

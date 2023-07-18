@@ -30,7 +30,6 @@
         {
             ContactsListBox = new ListBox();
             label1 = new Label();
-            AddPersonButton = new Button();
             label2 = new Label();
             NamePrompt = new TextBox();
             SurnamePromp = new TextBox();
@@ -43,35 +42,30 @@
             AddresPrompt = new RichTextBox();
             UpdateContactButton = new Button();
             SearchBar = new TextBox();
+            menuStrip1 = new MenuStrip();
+            PersonToolStrip = new ToolStripMenuItem();
+            AddPersonToolStrip = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // ContactsListBox
             // 
             ContactsListBox.FormattingEnabled = true;
             ContactsListBox.ItemHeight = 15;
-            ContactsListBox.Location = new Point(12, 71);
+            ContactsListBox.Location = new Point(12, 86);
             ContactsListBox.Name = "ContactsListBox";
-            ContactsListBox.Size = new Size(268, 364);
+            ContactsListBox.Size = new Size(268, 349);
             ContactsListBox.TabIndex = 0;
             ContactsListBox.SelectedIndexChanged += ContactsListBox_SelectedIndexChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 28);
             label1.Name = "label1";
             label1.Size = new Size(41, 15);
             label1.TabIndex = 1;
             label1.Text = "Kişiler:";
-            // 
-            // AddPersonButton
-            // 
-            AddPersonButton.Location = new Point(205, 9);
-            AddPersonButton.Name = "AddPersonButton";
-            AddPersonButton.Size = new Size(75, 23);
-            AddPersonButton.TabIndex = 2;
-            AddPersonButton.Text = "Kişi Ekle";
-            AddPersonButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -166,11 +160,34 @@
             // 
             // SearchBar
             // 
-            SearchBar.Location = new Point(12, 41);
+            SearchBar.Location = new Point(12, 57);
             SearchBar.Name = "SearchBar";
             SearchBar.Size = new Size(268, 23);
             SearchBar.TabIndex = 15;
             SearchBar.TextChanged += SearchBar_TextChanged;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.TabIndex = 16;
+            menuStrip1.Text = "MenuStrip";
+            // 
+            // PersonToolStrip
+            // 
+            PersonToolStrip.DropDownItems.AddRange(new ToolStripItem[] { AddPersonToolStrip });
+            PersonToolStrip.Name = "PersonToolStrip";
+            PersonToolStrip.Size = new Size(37, 20);
+            PersonToolStrip.Text = "Kişi";
+            // 
+            // AddPersonToolStrip
+            // 
+            AddPersonToolStrip.Name = "AddPersonToolStrip";
+            AddPersonToolStrip.Size = new Size(180, 22);
+            AddPersonToolStrip.Text = "Kişi Ekle";
+            AddPersonToolStrip.Click += AddPersonToolStrip_Click;
             // 
             // UserPage
             // 
@@ -189,12 +206,14 @@
             Controls.Add(label3);
             Controls.Add(NamePrompt);
             Controls.Add(label2);
-            Controls.Add(AddPersonButton);
             Controls.Add(label1);
             Controls.Add(ContactsListBox);
+            Controls.Add(menuStrip1);
             Name = "UserPage";
             Text = "UserPage";
             Load += UserPage_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -203,7 +222,6 @@
 
         private ListBox ContactsListBox;
         private Label label1;
-        private Button AddPersonButton;
         private Label label2;
         private TextBox NamePrompt;
         private TextBox SurnamePromp;
@@ -216,5 +234,8 @@
         private RichTextBox AddresPrompt;
         private Button UpdateContactButton;
         private TextBox SearchBar;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem PersonToolStrip;
+        private ToolStripMenuItem AddPersonToolStrip;
     }
 }

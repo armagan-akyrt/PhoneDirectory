@@ -41,7 +41,7 @@ namespace PhoneDirectory
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("prVerifyUnamePwd", conn);
+                SqlCommand command = new SqlCommand("VerifyUnamePwd", conn);
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@email", EmailPrompt.Text);

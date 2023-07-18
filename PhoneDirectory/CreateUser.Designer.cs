@@ -173,6 +173,7 @@
             Controls.Add(label1);
             Name = "CreateUser";
             Text = "CreateUser";
+            Load += CreateUser_Load;
             ResumeLayout(false);
             PerformLayout();
         }

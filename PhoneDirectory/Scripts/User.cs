@@ -40,7 +40,7 @@ namespace PhoneDirectory.Scripts
             SqlConnection conn = connection.GetConnection();
 
             conn.Open();
-            SqlCommand command = new SqlCommand("prCreateUser", conn);
+            SqlCommand command = new SqlCommand("CreateUser", conn);
             command.CommandType = System.Data.CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@name", this._name);

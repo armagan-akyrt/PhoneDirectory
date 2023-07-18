@@ -16,7 +16,7 @@ namespace PhoneDirectory
     public partial class UserPage : Form
     {
         private List<Contact> contacts = new List<Contact>();
-        private string oldGsm = "";
+        private string oldUsername = "";
 
         public string username;
         public UserPage(string username)
@@ -88,7 +88,7 @@ namespace PhoneDirectory
 
 
             Contact contactToShow = contacts.Find(x => x._username == uname);
-            oldGsm = contactToShow._phoneNumber;
+            oldUsername = contactToShow._username;
 
             NamePrompt.Text = contactToShow._name;
             SurnamePromp.Text = contactToShow._surname;
@@ -122,37 +122,23 @@ namespace PhoneDirectory
             }
 
             Connection connection = new Connection();
-            SqlConnection conn = connection.GetConnection();
+            int i = ContactsListBox.SelectedIndex;
 
-            try
-            {
-                conn.Open();
-                SqlCommand command = new SqlCommand("prUpdateContact", conn);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+            contacts[i]._name = NamePrompt.Text;
+            contacts[i]._surname = SurnamePromp.Text;
+            contacts[i]._email = EmailPrompt.Text;
+            contacts[i]._phoneNumber = GsmPrompt.Text;
+            contacts[i]._address = AddresPrompt.Text;
 
-                command.Parameters.AddWithValue("@name", NamePrompt.Text);
-                command.Parameters.AddWithValue("@surname", SurnamePromp.Text);
-                command.Parameters.AddWithValue("@gsmNum", GsmPrompt.Text);
-                command.Parameters.AddWithValue("@email", EmailPrompt.Text);
-                command.Parameters.AddWithValue("@address", AddresPrompt.Text);
-                command.Parameters.AddWithValue("@oldGsmNum", oldGsm);
-
-                command.ExecuteNonQuery();
+            contacts[i].UpdateContact(oldUsername);
+        }
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
-            Contact contact = new Contact();
-            contacts = contact.RetrieveContact("", username);
-
-
+        private void AddPersonToolStrip_Click(object sender, EventArgs e)
+        {
+            Form FormAddContact = new AddContact(username);
+            FormAddContact.Show();
+            this.Hide();
         }
     }
 }

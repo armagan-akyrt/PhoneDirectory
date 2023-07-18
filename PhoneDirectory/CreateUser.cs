@@ -12,9 +12,11 @@ namespace PhoneDirectory
 {
     public partial class CreateUser : Form
     {
-        public CreateUser()
+        string username;
+        public CreateUser(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -23,6 +25,11 @@ namespace PhoneDirectory
         }
 
         private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateUser_Load(object sender, EventArgs e)
         {
 
         }
