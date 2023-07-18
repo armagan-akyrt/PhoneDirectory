@@ -29,8 +29,8 @@ namespace PhoneDirectory
 
         private void UserPage_Load(object sender, EventArgs e)
         {
-            Contact contact = new Contact();
-            contacts = contact.RetrieveContact(" ", username);
+            PrintList("");
+
         }
         /// <summary>
         /// converts turkish string into ascii string
@@ -62,14 +62,14 @@ namespace PhoneDirectory
             Contact contact = new Contact();
             string input = SearchBar.Text.ToLower().Replace(" ", "");
             input = ConvertInputToAscii(input);
-
-            contacts = contact.RetrieveContact(input, username);
-            ContactsListBox.Items.Clear();
-            foreach (Contact res in contacts)
-            {
-                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
-                ContactsListBox.Items.Add(tagToWrite);
-            }
+            PrintList(input);
+            //contacts = contact.RetrieveContact(input, username);
+            //ContactsListBox.Items.Clear();
+            //foreach (Contact res in contacts)
+            //{
+            //    string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
+            //    ContactsListBox.Items.Add(tagToWrite);
+            //}
         }
 
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,6 +96,18 @@ namespace PhoneDirectory
             GsmPrompt.Text = contactToShow._phoneNumber;
             AddresPrompt.Text = contactToShow._address;
 
+        }
+
+        private void PrintList(string search)
+        {
+            Contact contact = new Contact();
+            contacts = contact.RetrieveContact(search, username);
+            ContactsListBox.Items.Clear();
+            foreach (Contact res in contacts)
+            {
+                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
+                ContactsListBox.Items.Add(tagToWrite);
+            }
         }
 
         private void UpdatePerson_Click(object sender, EventArgs e)
@@ -131,11 +143,14 @@ namespace PhoneDirectory
             contacts[i]._address = AddresPrompt.Text;
 
             contacts[i].UpdateContact(oldUsername);
+
+            PrintList("");
         }
 
 private void DeleteButton_Click(object sender, EventArgs e)
         {
             contacts[ContactsListBox.SelectedIndex].DeleteContact(username);
+            PrintList("");
         }
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)

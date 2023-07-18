@@ -35,7 +35,10 @@
             btnBringContacts = new Button();
             txtSearchUsers = new TextBox();
             txtSearchContacts = new TextBox();
-            button1 = new Button();
+            menuStrip1 = new MenuStrip();
+            userToolStrip = new ToolStripMenuItem();
+            UserViewStripMenuItem = new ToolStripMenuItem();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // lsUsersList
@@ -51,7 +54,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 24);
             label1.Name = "label1";
             label1.Size = new Size(68, 15);
             label1.TabIndex = 1;
@@ -60,7 +63,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(413, 8);
+            label2.Location = new Point(413, 24);
             label2.Name = "label2";
             label2.Size = new Size(47, 15);
             label2.TabIndex = 3;
@@ -102,22 +105,34 @@
             txtSearchContacts.TabIndex = 6;
             txtSearchContacts.TextChanged += txtSearchContacts_TextChanged;
             // 
-            // button1
+            // menuStrip1
             // 
-            button1.Location = new Point(777, 565);
-            button1.Name = "button1";
-            button1.Size = new Size(92, 50);
-            button1.TabIndex = 7;
-            button1.Text = "Kullanıcı Görünümü";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(1151, 24);
+            menuStrip1.TabIndex = 8;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // userToolStrip
+            // 
+            userToolStrip.DropDownItems.AddRange(new ToolStripItem[] { UserViewStripMenuItem });
+            userToolStrip.Name = "userToolStrip";
+            userToolStrip.Size = new Size(64, 20);
+            userToolStrip.Text = "Kullanıcı";
+            // 
+            // UserViewStripMenuItem
+            // 
+            UserViewStripMenuItem.Name = "UserViewStripMenuItem";
+            UserViewStripMenuItem.Size = new Size(180, 22);
+            UserViewStripMenuItem.Text = "Kullanıcı Görünümü";
+            UserViewStripMenuItem.Click += UserViewStripMenuItem_Click;
             // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1151, 634);
-            Controls.Add(button1);
             Controls.Add(txtSearchContacts);
             Controls.Add(txtSearchUsers);
             Controls.Add(btnBringContacts);
@@ -125,10 +140,14 @@
             Controls.Add(lstContacts);
             Controls.Add(label1);
             Controls.Add(lsUsersList);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             MinimizeBox = false;
             Name = "AdminPage";
             Text = "AdminPage";
             Load += AdminPage_Load;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,6 +161,8 @@
         private Button btnBringContacts;
         private TextBox txtSearchUsers;
         private TextBox txtSearchContacts;
-        private Button button1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem userToolStrip;
+        private ToolStripMenuItem UserViewStripMenuItem;
     }
 }

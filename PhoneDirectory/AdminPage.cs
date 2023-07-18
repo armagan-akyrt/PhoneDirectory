@@ -41,5 +41,12 @@ namespace PhoneDirectory
             userPage.Show();
             this.Hide();
         }
+
+        private void UserViewStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UserPage userPage = new UserPage(username);
+            userPage.Show();
+            this.Hide();
+        }
     }
 }
