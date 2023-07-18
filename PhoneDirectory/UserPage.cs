@@ -1,5 +1,6 @@
 ﻿using PhoneDirectory.Scripts;
 using System;
+using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace PhoneDirectory
 {
@@ -61,6 +63,54 @@ namespace PhoneDirectory
             }
         }
 
-        
+        private void lbContacts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string uname = lbContacts.Items[lbContacts.SelectedIndex].ToString();
+
+            string pattern = @"(\w+),";
+
+            Regex rgx = new Regex(pattern);
+            Match match = rgx.Match(uname);
+            uname = match.Groups[1].Value;
+
+            Contact contactToShow = contacts.Find(x => x._username == uname);
+
+            txtName.Text = contactToShow._name;
+            txtSurname.Text = contactToShow._surname;
+            txtEmail.Text = contactToShow._email;
+            txtGsm.Text = contactToShow._phoneNumber;
+            rtAdress.Text = contactToShow._address;
+
+        }
+
+        private void txtUpdatePerson_Click(object sender, EventArgs e)
+        {
+            Connection connection = new Connection();
+            SqlConnection conn = connection.GetConnection();
+
+            try 
+            { 
+                conn.Open();
+                SqlCommand command = new SqlCommand("prUpdateContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@name", txtName.Text);
+                command.Parameters.AddWithValue("@surname", txtSurname.Text);
+                command.Parameters.AddWithValue("@gsmNum", txtGsm.Text);
+                command.Parameters.AddWithValue("@email", txtEmail.Text);
+                command.Parameters.AddWithValue("@address", rtAdress.Text);
+
+                command.ExecuteNonQuery();
+            
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
+        }
     }
 }

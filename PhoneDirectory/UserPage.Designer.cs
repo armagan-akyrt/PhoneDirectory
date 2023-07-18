@@ -32,15 +32,15 @@
             label1 = new Label();
             btnAddPerson = new Button();
             label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtName = new TextBox();
+            txtSurname = new TextBox();
             label3 = new Label();
-            textBox3 = new TextBox();
+            txtEmail = new TextBox();
             label4 = new Label();
-            textBox4 = new TextBox();
+            txtGsm = new TextBox();
             label5 = new Label();
             label6 = new Label();
-            richTextBox1 = new RichTextBox();
+            rtAdress = new RichTextBox();
             txtUpdatePerson = new Button();
             txtSearchBar = new TextBox();
             SuspendLayout();
@@ -53,6 +53,7 @@
             lbContacts.Name = "lbContacts";
             lbContacts.Size = new Size(268, 364);
             lbContacts.TabIndex = 0;
+            lbContacts.SelectedIndexChanged += lbContacts_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -82,19 +83,19 @@
             label2.Text = "Ad";
             label2.Click += label2_Click;
             // 
-            // textBox1
+            // txtName
             // 
-            textBox1.Location = new Point(301, 59);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(239, 23);
-            textBox1.TabIndex = 4;
+            txtName.Location = new Point(301, 59);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(239, 23);
+            txtName.TabIndex = 4;
             // 
-            // textBox2
+            // txtSurname
             // 
-            textBox2.Location = new Point(301, 116);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(239, 23);
-            textBox2.TabIndex = 6;
+            txtSurname.Location = new Point(301, 116);
+            txtSurname.Name = "txtSurname";
+            txtSurname.Size = new Size(239, 23);
+            txtSurname.TabIndex = 6;
             // 
             // label3
             // 
@@ -105,13 +106,13 @@
             label3.TabIndex = 5;
             label3.Text = "Soyad";
             // 
-            // textBox3
+            // txtEmail
             // 
-            textBox3.Location = new Point(301, 172);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(239, 23);
-            textBox3.TabIndex = 8;
-            textBox3.TextChanged += textBox3_TextChanged;
+            txtEmail.Location = new Point(301, 172);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(239, 23);
+            txtEmail.TabIndex = 8;
+            txtEmail.TextChanged += textBox3_TextChanged;
             // 
             // label4
             // 
@@ -123,13 +124,13 @@
             label4.Text = "Email";
             label4.Click += label4_Click;
             // 
-            // textBox4
+            // txtGsm
             // 
-            textBox4.Location = new Point(301, 240);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(239, 23);
-            textBox4.TabIndex = 10;
-            textBox4.TextChanged += textBox4_TextChanged;
+            txtGsm.Location = new Point(301, 240);
+            txtGsm.Name = "txtGsm";
+            txtGsm.Size = new Size(239, 23);
+            txtGsm.TabIndex = 10;
+            txtGsm.TextChanged += textBox4_TextChanged;
             // 
             // label5
             // 
@@ -150,13 +151,13 @@
             label6.TabIndex = 11;
             label6.Text = "Adres";
             // 
-            // richTextBox1
+            // rtAdress
             // 
-            richTextBox1.Location = new Point(301, 303);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(239, 96);
-            richTextBox1.TabIndex = 13;
-            richTextBox1.Text = "";
+            rtAdress.Location = new Point(301, 303);
+            rtAdress.Name = "rtAdress";
+            rtAdress.Size = new Size(239, 96);
+            rtAdress.TabIndex = 13;
+            rtAdress.Text = "";
             // 
             // txtUpdatePerson
             // 
@@ -166,6 +167,7 @@
             txtUpdatePerson.TabIndex = 14;
             txtUpdatePerson.Text = "Güncelle";
             txtUpdatePerson.UseVisualStyleBackColor = true;
+            txtUpdatePerson.Click += txtUpdatePerson_Click;
             // 
             // txtSearchBar
             // 
@@ -182,15 +184,15 @@
             ClientSize = new Size(800, 450);
             Controls.Add(txtSearchBar);
             Controls.Add(txtUpdatePerson);
-            Controls.Add(richTextBox1);
+            Controls.Add(rtAdress);
             Controls.Add(label6);
-            Controls.Add(textBox4);
+            Controls.Add(txtGsm);
             Controls.Add(label5);
-            Controls.Add(textBox3);
+            Controls.Add(txtEmail);
             Controls.Add(label4);
-            Controls.Add(textBox2);
+            Controls.Add(txtSurname);
             Controls.Add(label3);
-            Controls.Add(textBox1);
+            Controls.Add(txtName);
             Controls.Add(label2);
             Controls.Add(btnAddPerson);
             Controls.Add(label1);
@@ -208,15 +210,15 @@
         private Label label1;
         private Button btnAddPerson;
         private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtName;
+        private TextBox txtSurname;
         private Label label3;
-        private TextBox textBox3;
+        private TextBox txtEmail;
         private Label label4;
-        private TextBox textBox4;
+        private TextBox txtGsm;
         private Label label5;
         private Label label6;
-        private RichTextBox richTextBox1;
+        private RichTextBox rtAdress;
         private Button txtUpdatePerson;
         private TextBox txtSearchBar;
     }
