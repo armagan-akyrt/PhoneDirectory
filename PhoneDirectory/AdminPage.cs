@@ -7,12 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PhoneDirectory.Scripts;
 
 namespace PhoneDirectory
 {
+
     public partial class AdminPage : Form
     {
-        public string username;
+        public string username; // current user's username
+        private List<User> users = new List<User>();
+        private List<Contact> contacts = new List<Contact>();
+
+        private string selectedUser = ""; // selected user's username from the list
+
+
         public AdminPage(string username)
         {
             InitializeComponent();
@@ -27,19 +35,31 @@ namespace PhoneDirectory
 
         private void txtSearchUsers_TextChanged(object sender, EventArgs e)
         {
+            // user searcbar string, converted to lowercase and without spaces
+            string search = (UsersSearchBar.Text).ToLower().Replace(" ", "");
+            search = ConvertInputToAscii(search);
 
+            // retrieve users list
+            User user = new User();
+            users = user.RetrieveUsersList(search);
+
+            // print users list
+            UsersList.Items.Clear();
+            foreach (User u in users)
+            {
+                UsersList.Items.Add(u._name + " " + u._surname);
+
+            }
         }
+
+
 
         private void txtSearchContacts_TextChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            UserPage userPage = new UserPage(username);
-            userPage.Show();
-            this.Hide();
+            // contact searchbar string, converted to lowercase and without spaces
+            string search = (ContactsSearchBar.Text).ToLower().Replace(" ", "");
+            search = ConvertInputToAscii(search);
+            PrintList(search, ContactsList);
         }
 
         private void UserViewStripMenuItem_Click(object sender, EventArgs e)
@@ -47,6 +67,76 @@ namespace PhoneDirectory
             UserPage userPage = new UserPage(username);
             userPage.Show();
             this.Hide();
+        }
+
+        private void lsUsersList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBringContacts_Click(object sender, EventArgs e)
+        {
+
+            Contact contact = new Contact();
+            selectedUser = UsersList.SelectedItem.ToString().Replace(" ", "").ToLower();
+            selectedUser = ConvertInputToAscii(selectedUser);
+            ContactsList.Items.Clear();
+
+            // retrieve contacts list
+            string contactSearch = ContactsSearchBar.Text.ToLower().Replace(" ", "");
+            contactSearch = ConvertInputToAscii(contactSearch);
+            List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser);
+            PrintList(contactSearch, ContactsList);
+        }
+
+        private void PrintList(string search, ListBox listBox)
+        {
+            Contact contact = new Contact();
+            contacts = contact.RetrieveContact(search, selectedUser);
+            listBox.Items.Clear();
+            foreach (Contact res in contacts)
+            {
+                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
+                listBox.Items.Add(tagToWrite);
+            }
+        }
+
+        /// <summary>
+        /// converts turkish string into ascii string
+        /// </summary>
+        /// <param name="input"> input string of any size.</param>
+        /// <returns>converted string</returns>
+        private string ConvertInputToAscii(string input)
+        {
+            // contains lowercase turkish characters
+            var charMap = new Dictionary<char, char>()
+            {
+                {'ç', 'c'},
+                {'ğ', 'g'},
+                {'ı', 'i'},
+                {'ö', 'o'},
+                {'ş', 's'},
+                {'ü', 'u'}
+            };
+
+            foreach (KeyValuePair<char, char> entry in charMap)
+            {
+                input = input.Replace(entry.Key, entry.Value);
+            }
+
+            return input;
+        }
+
+        private void NewUserMenuStrip_Click(object sender, EventArgs e)
+        {
+            Form createUser = new CreateUser(username);
+            createUser.Show();
+            this.Hide();
+        }
+
+        private void DeleteUserButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

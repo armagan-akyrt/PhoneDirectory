@@ -43,11 +43,12 @@
             label1 = new Label();
             label7 = new Label();
             CurrentUserPrompt = new TextBox();
+            ReturnToUserPageButton = new Button();
             SuspendLayout();
             // 
             // btnAddContact
             // 
-            btnAddContact.Location = new Point(466, 419);
+            btnAddContact.Location = new Point(319, 410);
             btnAddContact.Name = "btnAddContact";
             btnAddContact.Size = new Size(75, 23);
             btnAddContact.TabIndex = 27;
@@ -92,7 +93,7 @@
             // 
             // GsmPrompt
             // 
-            GsmPrompt.Location = new Point(12, 358);
+            GsmPrompt.Location = new Point(12, 411);
             GsmPrompt.Name = "GsmPrompt";
             GsmPrompt.Size = new Size(222, 23);
             GsmPrompt.TabIndex = 22;
@@ -100,7 +101,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 340);
+            label4.Location = new Point(12, 393);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 21;
@@ -108,7 +109,7 @@
             // 
             // EmailPrompt
             // 
-            EmailPrompt.Location = new Point(12, 270);
+            EmailPrompt.Location = new Point(12, 331);
             EmailPrompt.Name = "EmailPrompt";
             EmailPrompt.Size = new Size(222, 23);
             EmailPrompt.TabIndex = 20;
@@ -116,7 +117,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 252);
+            label3.Location = new Point(12, 313);
             label3.Name = "label3";
             label3.Size = new Size(36, 15);
             label3.TabIndex = 19;
@@ -124,7 +125,7 @@
             // 
             // SurnamePrompt
             // 
-            SurnamePrompt.Location = new Point(12, 182);
+            SurnamePrompt.Location = new Point(12, 251);
             SurnamePrompt.Name = "SurnamePrompt";
             SurnamePrompt.Size = new Size(222, 23);
             SurnamePrompt.TabIndex = 18;
@@ -132,7 +133,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 164);
+            label2.Location = new Point(12, 233);
             label2.Name = "label2";
             label2.Size = new Size(39, 15);
             label2.TabIndex = 17;
@@ -140,7 +141,7 @@
             // 
             // NamePrompt
             // 
-            NamePrompt.Location = new Point(12, 94);
+            NamePrompt.Location = new Point(12, 171);
             NamePrompt.Name = "NamePrompt";
             NamePrompt.Size = new Size(222, 23);
             NamePrompt.TabIndex = 16;
@@ -148,7 +149,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 76);
+            label1.Location = new Point(12, 153);
             label1.Name = "label1";
             label1.Size = new Size(22, 15);
             label1.TabIndex = 15;
@@ -157,25 +158,36 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 9);
+            label7.Location = new Point(12, 73);
             label7.Name = "label7";
-            label7.Size = new Size(28, 15);
+            label7.Size = new Size(98, 15);
             label7.TabIndex = 28;
-            label7.Text = "Kişi:";
+            label7.Text = "Mevcut Kullanıcı:";
             // 
             // CurrentUserPrompt
             // 
-            CurrentUserPrompt.Location = new Point(12, 27);
+            CurrentUserPrompt.Location = new Point(12, 91);
             CurrentUserPrompt.Name = "CurrentUserPrompt";
             CurrentUserPrompt.ReadOnly = true;
             CurrentUserPrompt.Size = new Size(222, 23);
             CurrentUserPrompt.TabIndex = 29;
+            // 
+            // ReturnToUserPageButton
+            // 
+            ReturnToUserPageButton.Location = new Point(466, 415);
+            ReturnToUserPageButton.Name = "ReturnToUserPageButton";
+            ReturnToUserPageButton.Size = new Size(75, 23);
+            ReturnToUserPageButton.TabIndex = 30;
+            ReturnToUserPageButton.Text = "Geri Dön";
+            ReturnToUserPageButton.UseVisualStyleBackColor = true;
+            ReturnToUserPageButton.Click += ReturnToUserPageButton_Click;
             // 
             // AddContact
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(ReturnToUserPageButton);
             Controls.Add(CurrentUserPrompt);
             Controls.Add(label7);
             Controls.Add(btnAddContact);
@@ -215,5 +227,6 @@
         private Label label1;
         private Label label7;
         private TextBox CurrentUserPrompt;
+        private Button ReturnToUserPageButton;
     }
 }

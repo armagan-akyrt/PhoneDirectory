@@ -28,28 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lsUsersList = new ListBox();
+            UsersList = new ListBox();
             label1 = new Label();
             label2 = new Label();
-            lstContacts = new ListBox();
+            ContactsList = new ListBox();
             btnBringContacts = new Button();
-            txtSearchUsers = new TextBox();
-            txtSearchContacts = new TextBox();
+            UsersSearchBar = new TextBox();
+            ContactsSearchBar = new TextBox();
             menuStrip1 = new MenuStrip();
             userToolStrip = new ToolStripMenuItem();
             UserViewStripMenuItem = new ToolStripMenuItem();
+            NewUserMenuStrip = new ToolStripMenuItem();
+            DeleteUserButton = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
-            // lsUsersList
+            // UsersList
             // 
-            lsUsersList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            lsUsersList.FormattingEnabled = true;
-            lsUsersList.ItemHeight = 15;
-            lsUsersList.Location = new Point(12, 72);
-            lsUsersList.Name = "lsUsersList";
-            lsUsersList.Size = new Size(336, 514);
-            lsUsersList.TabIndex = 0;
+            UsersList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            UsersList.FormattingEnabled = true;
+            UsersList.ItemHeight = 15;
+            UsersList.Location = new Point(12, 72);
+            UsersList.Name = "UsersList";
+            UsersList.Size = new Size(336, 514);
+            UsersList.TabIndex = 0;
+            UsersList.SelectedIndexChanged += lsUsersList_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -69,15 +72,15 @@
             label2.TabIndex = 3;
             label2.Text = "Rehber:";
             // 
-            // lstContacts
+            // ContactsList
             // 
-            lstContacts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
-            lstContacts.FormattingEnabled = true;
-            lstContacts.ItemHeight = 15;
-            lstContacts.Location = new Point(413, 71);
-            lstContacts.Name = "lstContacts";
-            lstContacts.Size = new Size(336, 544);
-            lstContacts.TabIndex = 2;
+            ContactsList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            ContactsList.FormattingEnabled = true;
+            ContactsList.ItemHeight = 15;
+            ContactsList.Location = new Point(413, 71);
+            ContactsList.Name = "ContactsList";
+            ContactsList.Size = new Size(336, 544);
+            ContactsList.TabIndex = 2;
             // 
             // btnBringContacts
             // 
@@ -88,22 +91,23 @@
             btnBringContacts.TabIndex = 4;
             btnBringContacts.Text = "Getir";
             btnBringContacts.UseVisualStyleBackColor = true;
+            btnBringContacts.Click += btnBringContacts_Click;
             // 
-            // txtSearchUsers
+            // UsersSearchBar
             // 
-            txtSearchUsers.Location = new Point(12, 42);
-            txtSearchUsers.Name = "txtSearchUsers";
-            txtSearchUsers.Size = new Size(336, 23);
-            txtSearchUsers.TabIndex = 5;
-            txtSearchUsers.TextChanged += txtSearchUsers_TextChanged;
+            UsersSearchBar.Location = new Point(12, 42);
+            UsersSearchBar.Name = "UsersSearchBar";
+            UsersSearchBar.Size = new Size(336, 23);
+            UsersSearchBar.TabIndex = 5;
+            UsersSearchBar.TextChanged += txtSearchUsers_TextChanged;
             // 
-            // txtSearchContacts
+            // ContactsSearchBar
             // 
-            txtSearchContacts.Location = new Point(413, 42);
-            txtSearchContacts.Name = "txtSearchContacts";
-            txtSearchContacts.Size = new Size(336, 23);
-            txtSearchContacts.TabIndex = 6;
-            txtSearchContacts.TextChanged += txtSearchContacts_TextChanged;
+            ContactsSearchBar.Location = new Point(413, 42);
+            ContactsSearchBar.Name = "ContactsSearchBar";
+            ContactsSearchBar.Size = new Size(336, 23);
+            ContactsSearchBar.TabIndex = 6;
+            ContactsSearchBar.TextChanged += txtSearchContacts_TextChanged;
             // 
             // menuStrip1
             // 
@@ -116,7 +120,7 @@
             // 
             // userToolStrip
             // 
-            userToolStrip.DropDownItems.AddRange(new ToolStripItem[] { UserViewStripMenuItem });
+            userToolStrip.DropDownItems.AddRange(new ToolStripItem[] { UserViewStripMenuItem, NewUserMenuStrip });
             userToolStrip.Name = "userToolStrip";
             userToolStrip.Size = new Size(64, 20);
             userToolStrip.Text = "Kullanıcı";
@@ -124,22 +128,41 @@
             // UserViewStripMenuItem
             // 
             UserViewStripMenuItem.Name = "UserViewStripMenuItem";
-            UserViewStripMenuItem.Size = new Size(180, 22);
+            UserViewStripMenuItem.Size = new Size(186, 22);
             UserViewStripMenuItem.Text = "Kullanıcı Görünümü";
             UserViewStripMenuItem.Click += UserViewStripMenuItem_Click;
+            // 
+            // NewUserMenuStrip
+            // 
+            NewUserMenuStrip.Name = "NewUserMenuStrip";
+            NewUserMenuStrip.Size = new Size(186, 22);
+            NewUserMenuStrip.Text = "Yeni Kullanıcı Oluştur";
+            NewUserMenuStrip.Click += NewUserMenuStrip_Click;
+            // 
+            // DeleteUserButton
+            // 
+            DeleteUserButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            DeleteUserButton.Location = new Point(12, 593);
+            DeleteUserButton.Name = "DeleteUserButton";
+            DeleteUserButton.Size = new Size(75, 23);
+            DeleteUserButton.TabIndex = 9;
+            DeleteUserButton.Text = "Sil";
+            DeleteUserButton.UseVisualStyleBackColor = true;
+            DeleteUserButton.Click += DeleteUserButton_Click;
             // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1151, 634);
-            Controls.Add(txtSearchContacts);
-            Controls.Add(txtSearchUsers);
+            Controls.Add(DeleteUserButton);
+            Controls.Add(ContactsSearchBar);
+            Controls.Add(UsersSearchBar);
             Controls.Add(btnBringContacts);
             Controls.Add(label2);
-            Controls.Add(lstContacts);
+            Controls.Add(ContactsList);
             Controls.Add(label1);
-            Controls.Add(lsUsersList);
+            Controls.Add(UsersList);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             MinimizeBox = false;
@@ -154,15 +177,17 @@
 
         #endregion
 
-        private ListBox lsUsersList;
+        private ListBox UsersList;
         private Label label1;
         private Label label2;
-        private ListBox lstContacts;
+        private ListBox ContactsList;
         private Button btnBringContacts;
-        private TextBox txtSearchUsers;
-        private TextBox txtSearchContacts;
+        private TextBox UsersSearchBar;
+        private TextBox ContactsSearchBar;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem userToolStrip;
         private ToolStripMenuItem UserViewStripMenuItem;
+        private ToolStripMenuItem NewUserMenuStrip;
+        private Button DeleteUserButton;
     }
 }

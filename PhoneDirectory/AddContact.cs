@@ -80,5 +80,12 @@ namespace PhoneDirectory
             contact.CreateContact(username);
 
         }
+
+        private void ReturnToUserPageButton_Click(object sender, EventArgs e)
+        {
+            Form userPage = new UserPage(username);
+            userPage.Show();
+            this.Hide();
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace PhoneDirectory
 {
     public partial class CreateUser : Form
     {
-        string username;
+        public string username;
         public CreateUser(string username)
         {
             InitializeComponent();

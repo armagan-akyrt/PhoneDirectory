@@ -63,7 +63,7 @@ namespace PhoneDirectory
                 if (!string.IsNullOrEmpty(role))
                 {
                     // if verified, open admin page.
-                    MessageBox.Show("Login successful.");
+                    MessageBox.Show("Giriş Başarılı.");
 
                     this.Hide();
 
@@ -83,7 +83,7 @@ namespace PhoneDirectory
                 }
                 else
                 {
-                    MessageBox.Show("Invalid username or password.");
+                    MessageBox.Show("Kullanıcı adı veya şifre yanlış.");
                 }
 
             }
