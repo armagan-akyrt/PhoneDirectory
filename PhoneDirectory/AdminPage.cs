@@ -12,10 +12,12 @@ namespace PhoneDirectory
 {
     public partial class AdminPage : Form
     {
-        public AdminPage()
+        public string username;
+        public AdminPage(string username)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
+            this.username = username;
         }
 
         private void AdminPage_Load(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace PhoneDirectory
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UserPage userPage = new UserPage();
+            UserPage userPage = new UserPage(username);
             userPage.Show();
             this.Hide();
         }

@@ -16,93 +16,132 @@ namespace PhoneDirectory
     public partial class UserPage : Form
     {
         private List<Contact> contacts = new List<Contact>();
+        private string oldGsm = "";
 
-        public UserPage()
+        public string username;
+        public UserPage(string username)
         {
             InitializeComponent();
+            this.username = username;
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-        }
 
         private void UserPage_Load(object sender, EventArgs e)
         {
+            Contact contact = new Contact();
+            contacts = contact.RetrieveContact("", username);
         }
+        /// <summary>
+        /// converts turkish string into ascii string
+        /// </summary>
+        /// <param name="input"> input string of any size.</param>
+        /// <returns>converted string</returns>
+        private string ConvertInputToAscii(string input)
+        {
+            // contains lowercase turkish characters
+            var charMap = new Dictionary<char, char>()
+            {
+                {'ç', 'c'},
+                {'ğ', 'g'},
+                {'ı', 'i'},
+                {'ö', 'o'},
+                {'ş', 's'},
+                {'ü', 'u'}
+            };
 
-        private void txtSearchBar_TextChanged(object sender, EventArgs e)
+            foreach (KeyValuePair<char, char> entry in charMap)
+            {
+                input = input.Replace(entry.Key, entry.Value);
+            }
+
+            return input;
+        }
+        private void SearchBar_TextChanged(object sender, EventArgs e)
         {
             Contact contact = new Contact();
-            string input = txtSearchBar.Text.ToLower();
-            contacts = contact.RetrieveContact(txtSearchBar.Text);
-            lbContacts.Items.Clear();
+            string input = SearchBar.Text.ToLower().Replace(" ", "");
+            input = ConvertInputToAscii(input);
+
+            contacts = contact.RetrieveContact(input, username);
+            ContactsListBox.Items.Clear();
             foreach (Contact res in contacts)
             {
-                string tagToWrite = "USERNAME, FIRST LAST".Replace("USERNAME", res._username).Replace("FIRST", res._name).Replace("LAST", res._surname);
-                lbContacts.Items.Add(tagToWrite);
+                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
+                ContactsListBox.Items.Add(tagToWrite);
             }
         }
 
-        private void lbContacts_SelectedIndexChanged(object sender, EventArgs e)
+        private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string uname = lbContacts.Items[lbContacts.SelectedIndex].ToString();
+            string uname = "";
+            try
+            {
+                uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString().Replace(" ", "").ToLower();
+                uname = ConvertInputToAscii(uname);
+            }
+            catch (Exception)
+            {
 
-            string pattern = @"(\w+),";
+                return;
+            }
 
-            Regex rgx = new Regex(pattern);
-            Match match = rgx.Match(uname);
-            uname = match.Groups[1].Value;
 
             Contact contactToShow = contacts.Find(x => x._username == uname);
+            oldGsm = contactToShow._phoneNumber;
 
-            txtName.Text = contactToShow._name;
-            txtSurname.Text = contactToShow._surname;
-            txtEmail.Text = contactToShow._email;
-            txtGsm.Text = contactToShow._phoneNumber;
-            rtAdress.Text = contactToShow._address;
+            NamePrompt.Text = contactToShow._name;
+            SurnamePromp.Text = contactToShow._surname;
+            EmailPrompt.Text = contactToShow._email;
+            GsmPrompt.Text = contactToShow._phoneNumber;
+            AddresPrompt.Text = contactToShow._address;
 
         }
 
-        private void txtUpdatePerson_Click(object sender, EventArgs e)
+        private void UpdatePerson_Click(object sender, EventArgs e)
         {
+            GsmPrompt.Text = GsmPrompt.Text.Replace(" ", "");
+
+            string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
+            string gsmPattern = @"^(\+90|0)?(5\d{2})(\d{7})$";
+            Regex rgx = new Regex(emailPattern);
+            bool isEmailValid = rgx.IsMatch(EmailPrompt.Text);
+
+            rgx = new Regex(gsmPattern);
+            bool isGsmValid = rgx.IsMatch(GsmPrompt.Text);
+
+            if (!isEmailValid)
+            {
+                MessageBox.Show("E-posta geçerli değil!");
+                return;
+            }
+            if (!isGsmValid)
+            {
+                MessageBox.Show("GSM numarası geçerli değil!");
+                return;
+            }
+
             Connection connection = new Connection();
             SqlConnection conn = connection.GetConnection();
 
-            try 
-            { 
+            try
+            {
                 conn.Open();
                 SqlCommand command = new SqlCommand("prUpdateContact", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@name", txtName.Text);
-                command.Parameters.AddWithValue("@surname", txtSurname.Text);
-                command.Parameters.AddWithValue("@gsmNum", txtGsm.Text);
-                command.Parameters.AddWithValue("@email", txtEmail.Text);
-                command.Parameters.AddWithValue("@address", rtAdress.Text);
+                command.Parameters.AddWithValue("@name", NamePrompt.Text);
+                command.Parameters.AddWithValue("@surname", SurnamePromp.Text);
+                command.Parameters.AddWithValue("@gsmNum", GsmPrompt.Text);
+                command.Parameters.AddWithValue("@email", EmailPrompt.Text);
+                command.Parameters.AddWithValue("@address", AddresPrompt.Text);
+                command.Parameters.AddWithValue("@oldGsmNum", oldGsm);
 
                 command.ExecuteNonQuery();
-            
-            } catch (Exception ex)
+
+
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -110,7 +149,10 @@ namespace PhoneDirectory
             {
                 conn.Close();
             }
-            
+            Contact contact = new Contact();
+            contacts = contact.RetrieveContact("", username);
+
+
         }
     }
 }

@@ -15,6 +15,7 @@ namespace PhoneDirectory
 {
     public partial class LoginScreen : Form
     {
+        private string username;
         public LoginScreen()
         {
             InitializeComponent();
@@ -25,15 +26,7 @@ namespace PhoneDirectory
 
         }
 
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void txtPwd_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// validates username and password and opens next page accordingly.
@@ -50,20 +43,25 @@ namespace PhoneDirectory
                 conn.Open();
                 SqlCommand command = new SqlCommand("prVerifyUnamePwd", conn);
                 command.CommandType = CommandType.StoredProcedure;
-                
-                command.Parameters.AddWithValue("@username", txtUsername.Text);
-                command.Parameters.AddWithValue("@password", txtPwd.Text);
+
+                command.Parameters.AddWithValue("@email", EmailPrompt.Text);
+                command.Parameters.AddWithValue("@password", PasswordPrompt.Text);
 
                 SqlParameter roleParam = new SqlParameter("@role", SqlDbType.VarChar, 50);
                 roleParam.Direction = ParameterDirection.Output;
                 command.Parameters.Add(roleParam);
 
+                SqlParameter usernameParam = new SqlParameter("@username", SqlDbType.VarChar, 50);
+                usernameParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(usernameParam);
+
                 command.ExecuteNonQuery();
 
                 string role = command.Parameters["@role"].Value.ToString();
+                username = command.Parameters["@username"].Value.ToString();
 
-                if (!string.IsNullOrEmpty(role)) 
-                { 
+                if (!string.IsNullOrEmpty(role))
+                {
                     // if verified, open admin page.
                     MessageBox.Show("Login successful.");
 
@@ -72,13 +70,13 @@ namespace PhoneDirectory
                     if (role == "USER")
                     {
                         // open user page
-                        UserPage userPage = new UserPage();
+                        UserPage userPage = new UserPage(username);
                         userPage.Show();
                     }
                     else
                     {
                         // opens admin page
-                        AdminPage adminPage = new AdminPage();
+                        AdminPage adminPage = new AdminPage(username);
                         adminPage.Show();
                     }
 
@@ -87,7 +85,7 @@ namespace PhoneDirectory
                 {
                     MessageBox.Show("Invalid username or password.");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -97,7 +95,7 @@ namespace PhoneDirectory
             {
                 conn.Close();
             }
-            
+
         }
 
         private bool VerifyPassword(string passwordInput, string passwordFromDB)

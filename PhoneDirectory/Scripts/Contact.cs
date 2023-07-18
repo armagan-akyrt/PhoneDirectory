@@ -37,34 +37,45 @@ namespace PhoneDirectory.Scripts
         }
 
 
+
         // TODO : check if user exists
         // TODO : remove any special characters from username
-        // TODO : create procedure to insert conact
         public bool CreateContact(User associatedUser)
         {
             SqlConnection conn = connection.GetConnection();
-            conn.Open();
+            try
+            {
+                conn.Open();
 
-            SqlCommand command = new SqlCommand("prCreateContact", conn);
-            command.CommandType = System.Data.CommandType.StoredProcedure;
+                SqlCommand command = new SqlCommand("prCreateContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
 
-            command.Parameters.AddWithValue("@name", this._name);
-            command.Parameters.AddWithValue("@surname", this._surname);
-            command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
-            command.Parameters.AddWithValue("@email", this._email);
-            command.Parameters.AddWithValue("@address", this._address);
-            //command.Parameters.AddWithValue("@username", this._username);
-            command.Parameters.AddWithValue("@userUserName", associatedUser._username);
+                command.Parameters.AddWithValue("@name", this._name);
+                command.Parameters.AddWithValue("@surname", this._surname);
+                command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
+                command.Parameters.AddWithValue("@email", this._email);
+                command.Parameters.AddWithValue("@address", this._address);
+                //command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@userUserName", associatedUser._username);
 
-            command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
 
-            conn.Close();
+                throw;
+            }
+
+            finally
+            {
+                conn.Close();
+            }
 
             return true;
         }
 
         // TODO : check if retrieve is successful
-        public List<Contact> RetrieveContact(string checkName)
+        public List<Contact> RetrieveContact(string checkName, string userUsername)
         {
 
             List<Contact> contacts = new List<Contact>();
@@ -74,8 +85,11 @@ namespace PhoneDirectory.Scripts
             {
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("SELECT * FROM contacts WHERE username LIKE '%' + @username + '%'", conn);
-                command.Parameters.AddWithValue("@username", checkName);
+                SqlCommand command = new SqlCommand("prRetrieveData", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@contactSearch", checkName);
+                command.Parameters.AddWithValue("@userUsername", userUsername);
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())

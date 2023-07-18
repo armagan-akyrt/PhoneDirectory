@@ -28,32 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbContacts = new ListBox();
+            ContactsListBox = new ListBox();
             label1 = new Label();
-            btnAddPerson = new Button();
+            AddPersonButton = new Button();
             label2 = new Label();
-            txtName = new TextBox();
-            txtSurname = new TextBox();
+            NamePrompt = new TextBox();
+            SurnamePromp = new TextBox();
             label3 = new Label();
-            txtEmail = new TextBox();
+            EmailPrompt = new TextBox();
             label4 = new Label();
-            txtGsm = new TextBox();
+            GsmPrompt = new TextBox();
             label5 = new Label();
             label6 = new Label();
-            rtAdress = new RichTextBox();
-            txtUpdatePerson = new Button();
-            txtSearchBar = new TextBox();
+            AddresPrompt = new RichTextBox();
+            UpdateContactButton = new Button();
+            SearchBar = new TextBox();
             SuspendLayout();
             // 
-            // lbContacts
+            // ContactsListBox
             // 
-            lbContacts.FormattingEnabled = true;
-            lbContacts.ItemHeight = 15;
-            lbContacts.Location = new Point(12, 71);
-            lbContacts.Name = "lbContacts";
-            lbContacts.Size = new Size(268, 364);
-            lbContacts.TabIndex = 0;
-            lbContacts.SelectedIndexChanged += lbContacts_SelectedIndexChanged;
+            ContactsListBox.FormattingEnabled = true;
+            ContactsListBox.ItemHeight = 15;
+            ContactsListBox.Location = new Point(12, 71);
+            ContactsListBox.Name = "ContactsListBox";
+            ContactsListBox.Size = new Size(268, 364);
+            ContactsListBox.TabIndex = 0;
+            ContactsListBox.SelectedIndexChanged += ContactsListBox_SelectedIndexChanged;
             // 
             // label1
             // 
@@ -64,14 +64,14 @@
             label1.TabIndex = 1;
             label1.Text = "Kişiler:";
             // 
-            // btnAddPerson
+            // AddPersonButton
             // 
-            btnAddPerson.Location = new Point(205, 9);
-            btnAddPerson.Name = "btnAddPerson";
-            btnAddPerson.Size = new Size(75, 23);
-            btnAddPerson.TabIndex = 2;
-            btnAddPerson.Text = "Kişi Ekle";
-            btnAddPerson.UseVisualStyleBackColor = true;
+            AddPersonButton.Location = new Point(205, 9);
+            AddPersonButton.Name = "AddPersonButton";
+            AddPersonButton.Size = new Size(75, 23);
+            AddPersonButton.TabIndex = 2;
+            AddPersonButton.Text = "Kişi Ekle";
+            AddPersonButton.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -81,21 +81,20 @@
             label2.Size = new Size(22, 15);
             label2.TabIndex = 3;
             label2.Text = "Ad";
-            label2.Click += label2_Click;
             // 
-            // txtName
+            // NamePrompt
             // 
-            txtName.Location = new Point(301, 59);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(239, 23);
-            txtName.TabIndex = 4;
+            NamePrompt.Location = new Point(301, 59);
+            NamePrompt.Name = "NamePrompt";
+            NamePrompt.Size = new Size(239, 23);
+            NamePrompt.TabIndex = 4;
             // 
-            // txtSurname
+            // SurnamePromp
             // 
-            txtSurname.Location = new Point(301, 116);
-            txtSurname.Name = "txtSurname";
-            txtSurname.Size = new Size(239, 23);
-            txtSurname.TabIndex = 6;
+            SurnamePromp.Location = new Point(301, 116);
+            SurnamePromp.Name = "SurnamePromp";
+            SurnamePromp.Size = new Size(239, 23);
+            SurnamePromp.TabIndex = 6;
             // 
             // label3
             // 
@@ -106,13 +105,12 @@
             label3.TabIndex = 5;
             label3.Text = "Soyad";
             // 
-            // txtEmail
+            // EmailPrompt
             // 
-            txtEmail.Location = new Point(301, 172);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(239, 23);
-            txtEmail.TabIndex = 8;
-            txtEmail.TextChanged += textBox3_TextChanged;
+            EmailPrompt.Location = new Point(301, 172);
+            EmailPrompt.Name = "EmailPrompt";
+            EmailPrompt.Size = new Size(239, 23);
+            EmailPrompt.TabIndex = 8;
             // 
             // label4
             // 
@@ -122,15 +120,13 @@
             label4.Size = new Size(36, 15);
             label4.TabIndex = 7;
             label4.Text = "Email";
-            label4.Click += label4_Click;
             // 
-            // txtGsm
+            // GsmPrompt
             // 
-            txtGsm.Location = new Point(301, 240);
-            txtGsm.Name = "txtGsm";
-            txtGsm.Size = new Size(239, 23);
-            txtGsm.TabIndex = 10;
-            txtGsm.TextChanged += textBox4_TextChanged;
+            GsmPrompt.Location = new Point(301, 240);
+            GsmPrompt.Name = "GsmPrompt";
+            GsmPrompt.Size = new Size(239, 23);
+            GsmPrompt.TabIndex = 10;
             // 
             // label5
             // 
@@ -140,7 +136,6 @@
             label5.Size = new Size(50, 15);
             label5.TabIndex = 9;
             label5.Text = "Numara";
-            label5.Click += label5_Click;
             // 
             // label6
             // 
@@ -151,52 +146,52 @@
             label6.TabIndex = 11;
             label6.Text = "Adres";
             // 
-            // rtAdress
+            // AddresPrompt
             // 
-            rtAdress.Location = new Point(301, 303);
-            rtAdress.Name = "rtAdress";
-            rtAdress.Size = new Size(239, 96);
-            rtAdress.TabIndex = 13;
-            rtAdress.Text = "";
+            AddresPrompt.Location = new Point(301, 303);
+            AddresPrompt.Name = "AddresPrompt";
+            AddresPrompt.Size = new Size(239, 96);
+            AddresPrompt.TabIndex = 13;
+            AddresPrompt.Text = "";
             // 
-            // txtUpdatePerson
+            // UpdateContactButton
             // 
-            txtUpdatePerson.Location = new Point(465, 412);
-            txtUpdatePerson.Name = "txtUpdatePerson";
-            txtUpdatePerson.Size = new Size(75, 23);
-            txtUpdatePerson.TabIndex = 14;
-            txtUpdatePerson.Text = "Güncelle";
-            txtUpdatePerson.UseVisualStyleBackColor = true;
-            txtUpdatePerson.Click += txtUpdatePerson_Click;
+            UpdateContactButton.Location = new Point(465, 412);
+            UpdateContactButton.Name = "UpdateContactButton";
+            UpdateContactButton.Size = new Size(75, 23);
+            UpdateContactButton.TabIndex = 14;
+            UpdateContactButton.Text = "Güncelle";
+            UpdateContactButton.UseVisualStyleBackColor = true;
+            UpdateContactButton.Click += UpdatePerson_Click;
             // 
-            // txtSearchBar
+            // SearchBar
             // 
-            txtSearchBar.Location = new Point(12, 41);
-            txtSearchBar.Name = "txtSearchBar";
-            txtSearchBar.Size = new Size(268, 23);
-            txtSearchBar.TabIndex = 15;
-            txtSearchBar.TextChanged += txtSearchBar_TextChanged;
+            SearchBar.Location = new Point(12, 41);
+            SearchBar.Name = "SearchBar";
+            SearchBar.Size = new Size(268, 23);
+            SearchBar.TabIndex = 15;
+            SearchBar.TextChanged += SearchBar_TextChanged;
             // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(txtSearchBar);
-            Controls.Add(txtUpdatePerson);
-            Controls.Add(rtAdress);
+            Controls.Add(SearchBar);
+            Controls.Add(UpdateContactButton);
+            Controls.Add(AddresPrompt);
             Controls.Add(label6);
-            Controls.Add(txtGsm);
+            Controls.Add(GsmPrompt);
             Controls.Add(label5);
-            Controls.Add(txtEmail);
+            Controls.Add(EmailPrompt);
             Controls.Add(label4);
-            Controls.Add(txtSurname);
+            Controls.Add(SurnamePromp);
             Controls.Add(label3);
-            Controls.Add(txtName);
+            Controls.Add(NamePrompt);
             Controls.Add(label2);
-            Controls.Add(btnAddPerson);
+            Controls.Add(AddPersonButton);
             Controls.Add(label1);
-            Controls.Add(lbContacts);
+            Controls.Add(ContactsListBox);
             Name = "UserPage";
             Text = "UserPage";
             Load += UserPage_Load;
@@ -206,20 +201,20 @@
 
         #endregion
 
-        private ListBox lbContacts;
+        private ListBox ContactsListBox;
         private Label label1;
-        private Button btnAddPerson;
+        private Button AddPersonButton;
         private Label label2;
-        private TextBox txtName;
-        private TextBox txtSurname;
+        private TextBox NamePrompt;
+        private TextBox SurnamePromp;
         private Label label3;
-        private TextBox txtEmail;
+        private TextBox EmailPrompt;
         private Label label4;
-        private TextBox txtGsm;
+        private TextBox GsmPrompt;
         private Label label5;
         private Label label6;
-        private RichTextBox rtAdress;
-        private Button txtUpdatePerson;
-        private TextBox txtSearchBar;
+        private RichTextBox AddresPrompt;
+        private Button UpdateContactButton;
+        private TextBox SearchBar;
     }
 }

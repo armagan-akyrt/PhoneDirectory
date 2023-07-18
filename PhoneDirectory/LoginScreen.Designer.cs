@@ -31,8 +31,8 @@
             btnLogin = new Button();
             label1 = new Label();
             label2 = new Label();
-            txtUsername = new TextBox();
-            txtPwd = new TextBox();
+            EmailPrompt = new TextBox();
+            PasswordPrompt = new TextBox();
             SuspendLayout();
             // 
             // btnLogin
@@ -63,30 +63,28 @@
             label2.TabIndex = 2;
             label2.Text = "Şifre:";
             // 
-            // txtUsername
+            // EmailPrompt
             // 
-            txtUsername.Location = new Point(12, 75);
-            txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(196, 23);
-            txtUsername.TabIndex = 3;
-            txtUsername.TextChanged += txtUsername_TextChanged;
+            EmailPrompt.Location = new Point(12, 75);
+            EmailPrompt.Name = "EmailPrompt";
+            EmailPrompt.Size = new Size(196, 23);
+            EmailPrompt.TabIndex = 3;
             // 
-            // txtPwd
+            // PasswordPrompt
             // 
-            txtPwd.Location = new Point(12, 176);
-            txtPwd.Name = "txtPwd";
-            txtPwd.PasswordChar = '*';
-            txtPwd.Size = new Size(196, 23);
-            txtPwd.TabIndex = 4;
-            txtPwd.TextChanged += txtPwd_TextChanged;
+            PasswordPrompt.Location = new Point(12, 176);
+            PasswordPrompt.Name = "PasswordPrompt";
+            PasswordPrompt.PasswordChar = '*';
+            PasswordPrompt.Size = new Size(196, 23);
+            PasswordPrompt.TabIndex = 4;
             // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(409, 334);
-            Controls.Add(txtPwd);
-            Controls.Add(txtUsername);
+            Controls.Add(PasswordPrompt);
+            Controls.Add(EmailPrompt);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnLogin);
@@ -102,7 +100,7 @@
         private Button btnLogin;
         private Label label1;
         private Label label2;
-        private TextBox txtUsername;
-        private TextBox txtPwd;
+        private TextBox EmailPrompt;
+        private TextBox PasswordPrompt;
     }
 }
