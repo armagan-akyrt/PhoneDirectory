@@ -30,7 +30,7 @@ namespace PhoneDirectory
         private void UserPage_Load(object sender, EventArgs e)
         {
             Contact contact = new Contact();
-            contacts = contact.RetrieveContact("", username);
+            contacts = contact.RetrieveContact(" ", username);
         }
         /// <summary>
         /// converts turkish string into ascii string
@@ -74,7 +74,7 @@ namespace PhoneDirectory
 
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string uname = "";
+            string uname = " ";
             try
             {
                 uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString().Replace(" ", "").ToLower();
@@ -133,6 +133,10 @@ namespace PhoneDirectory
             contacts[i].UpdateContact(oldUsername);
         }
 
+private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            contacts[ContactsListBox.SelectedIndex].DeleteContact(username);
+        }
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)
         {
@@ -140,5 +144,7 @@ namespace PhoneDirectory
             FormAddContact.Show();
             this.Hide();
         }
+
+        
     }
 }

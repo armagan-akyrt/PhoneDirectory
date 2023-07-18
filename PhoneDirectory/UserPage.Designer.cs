@@ -45,6 +45,7 @@
             menuStrip1 = new MenuStrip();
             PersonToolStrip = new ToolStripMenuItem();
             AddPersonToolStrip = new ToolStripMenuItem();
+            DeleteButton = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -185,15 +186,26 @@
             // AddPersonToolStrip
             // 
             AddPersonToolStrip.Name = "AddPersonToolStrip";
-            AddPersonToolStrip.Size = new Size(180, 22);
+            AddPersonToolStrip.Size = new Size(116, 22);
             AddPersonToolStrip.Text = "Kişi Ekle";
             AddPersonToolStrip.Click += AddPersonToolStrip_Click;
+            // 
+            // DeleteButton
+            // 
+            DeleteButton.Location = new Point(301, 412);
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(75, 23);
+            DeleteButton.TabIndex = 18;
+            DeleteButton.Text = "Sil";
+            DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DeleteButton);
             Controls.Add(SearchBar);
             Controls.Add(UpdateContactButton);
             Controls.Add(AddresPrompt);
@@ -237,5 +249,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem PersonToolStrip;
         private ToolStripMenuItem AddPersonToolStrip;
+        private Button DeleteButton;
     }
 }

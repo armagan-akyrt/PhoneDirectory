@@ -75,31 +75,10 @@ namespace PhoneDirectory
 
             SqlConnection conn = connection.GetConnection();
 
-            try
-            {
-                conn.Open();
-                SqlCommand command = new SqlCommand("CreateContact", conn);
-                command.CommandType = System.Data.CommandType.StoredProcedure;
+            Contact contact = new Contact(NamePrompt.Text, SurnamePrompt.Text, GsmPrompt.Text, EmailPrompt.Text, AddressPrompt.Text, contactUsername);
 
-                command.Parameters.AddWithValue("@name", NamePrompt.Text);
-                command.Parameters.AddWithValue("@surname", SurnamePrompt.Text);
-                command.Parameters.AddWithValue("@gsmNum", GsmPrompt.Text);
-                command.Parameters.AddWithValue("@email", EmailPrompt.Text);
-                command.Parameters.AddWithValue("@address", AddressPrompt.Text);
-                command.Parameters.AddWithValue("@userUserName", username);
-                command.Parameters.AddWithValue("@contactUsername", contactUsername);
+            contact.CreateContact(username);
 
-                command.ExecuteNonQuery();
-
-            }
-            catch   (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
-            }
         }
     }
 }

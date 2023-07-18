@@ -36,11 +36,16 @@ namespace PhoneDirectory.Scripts
             this._username = username;
         }
 
-
+        
 
         // TODO : check if user exists
         // TODO : remove any special characters from username
-        public bool CreateContact(User associatedUser)
+        /// <summary>
+        /// creates a new contact with the associated user
+        /// </summary>
+        /// <param name="associatedUser"></param>
+        /// <returns></returns>
+        public bool CreateContact(string associatedUser)
         {
             SqlConnection conn = connection.GetConnection();
             try
@@ -55,8 +60,8 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
                 command.Parameters.AddWithValue("@email", this._email);
                 command.Parameters.AddWithValue("@address", this._address);
-                //command.Parameters.AddWithValue("@username", this._username);
-                command.Parameters.AddWithValue("@userUserName", associatedUser._username);
+                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@userUserName", associatedUser);
 
                 command.ExecuteNonQuery();
             }
@@ -75,6 +80,12 @@ namespace PhoneDirectory.Scripts
         }
 
         // TODO : check if retrieve is successful
+        /// <summary>
+        /// retrieves contact information from database
+        /// </summary>
+        /// <param name="checkName"></param>
+        /// <param name="userUsername"></param>
+        /// <returns></returns>
         public List<Contact> RetrieveContact(string checkName, string userUsername)
         {
 
@@ -96,12 +107,12 @@ namespace PhoneDirectory.Scripts
                 {
                     Contact contact = new Contact();
 
-                    contact._phoneNumber = (reader["phone_number"].ToString() is null) ? " " : reader["phone_number"].ToString();
+                    contact._phoneNumber = (reader["gsmNumber"].ToString() is null) ? " " : reader["gsmNumber"].ToString();
                     contact._email = (reader["email"].ToString() is null) ? " " : reader["email"].ToString();
                     contact._address = (reader["address"].ToString() is null) ? " " : reader["address"].ToString();
                     contact._username = (reader["username"].ToString() is null) ? " " : reader["username"].ToString();
-                    contact._name = (reader["name"].ToString() is null) ? " " : reader["name"].ToString();
-                    contact._surname = (reader["surname"].ToString() is null) ? " " : reader["surname"].ToString();
+                    contact._name = (reader["firstName"].ToString() is null) ? " " : reader["firstName"].ToString();
+                    contact._surname = (reader["lastName"].ToString() is null) ? " " : reader["lastName"].ToString();
 
                     contacts.Add(contact);
                 }
@@ -156,6 +167,35 @@ namespace PhoneDirectory.Scripts
             {
                 conn.Close();
             }
+            return true;
+        }
+    
+        public bool DeleteContact(string deletedBy)
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("RemoveContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@deletedBy", deletedBy);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
             return true;
         }
     }
