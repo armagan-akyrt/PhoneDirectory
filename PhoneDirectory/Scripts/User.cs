@@ -74,7 +74,38 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
-        public List<User> RetrieveUsersList(string searchWord)
+        public bool UpdateUser()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("UpdateUser", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@name", this._name);
+                command.Parameters.AddWithValue("@surname", this._surname);
+                command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
+                command.Parameters.AddWithValue("@email", this._email);
+                command.Parameters.AddWithValue("@address", this._address);
+                command.Parameters.AddWithValue("@password", this._password);
+                command.Parameters.AddWithValue("@role", this._role);
+                command.Parameters.AddWithValue("@username", this._username);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+            return true;
+        }
+
+        public List<User> RetrieveUsersList(string searchWord, bool activeState)
         {
             SqlConnection conn = connection.GetConnection();
             List<User> users = new List<User>();
@@ -86,6 +117,7 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@userSearch", searchWord);
+                command.Parameters.AddWithValue("@activeState", activeState);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -99,6 +131,7 @@ namespace PhoneDirectory.Scripts
                     user._address = reader["address"].ToString();
                     user._username = reader["username"].ToString();
                     user._role = reader["role"].ToString();
+                    user._password = reader["password"].ToString();
                     users.Add(user);
                 }
 
@@ -117,7 +150,7 @@ namespace PhoneDirectory.Scripts
         }
 
         // TODO : deleting user causes permenant loss in data instead of soft delete
-        public bool DeleteUser(string deletedBy)
+        public bool DeleteUser()
         {
             SqlConnection conn = connection.GetConnection();
 
@@ -128,7 +161,6 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@username", this._username);
-                command.Parameters.AddWithValue("@deletedBy", deletedBy);
 
                 command.ExecuteNonQuery();
 
@@ -164,6 +196,32 @@ namespace PhoneDirectory.Scripts
             catch (Exception)
             {
                 
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
+
+        public bool BringBackDeletedUser()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("RetrieveDeletedUser", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
                 return false;
                 throw;
             }

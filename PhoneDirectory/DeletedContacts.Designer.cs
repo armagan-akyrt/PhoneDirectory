@@ -203,6 +203,7 @@
             Controls.Add(DeletedContactsList);
             Name = "DeletedContacts";
             Text = "DeletedContacts";
+            Load += DeletedContacts_Load;
             ResumeLayout(false);
             PerformLayout();
         }

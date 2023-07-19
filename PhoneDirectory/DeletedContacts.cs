@@ -16,5 +16,10 @@ namespace PhoneDirectory
         {
             InitializeComponent();
         }
+
+        private void DeletedContacts_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

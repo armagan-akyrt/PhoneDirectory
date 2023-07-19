@@ -86,7 +86,7 @@ namespace PhoneDirectory.Scripts
         /// <param name="checkName"></param>
         /// <param name="userUsername"></param>
         /// <returns></returns>
-        public List<Contact> RetrieveContact(string checkName, string userUsername)
+        public List<Contact> RetrieveContact(string checkName, string userUsername, bool isActive)
         {
 
             List<Contact> contacts = new List<Contact>();
@@ -101,6 +101,7 @@ namespace PhoneDirectory.Scripts
 
                 command.Parameters.AddWithValue("@contactSearch", checkName);
                 command.Parameters.AddWithValue("@userUsername", userUsername);
+                command.Parameters.AddWithValue("@activeState", isActive);
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())

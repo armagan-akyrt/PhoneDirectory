@@ -33,6 +33,7 @@ namespace PhoneDirectory
 
         private void AdminPage_Load(object sender, EventArgs e)
         {
+            users = util.PrintUsersList("", UsersList, users, true);
             
         }
 
@@ -44,9 +45,9 @@ namespace PhoneDirectory
 
             // retrieve users list
             User user = new User();
-            users = user.RetrieveUsersList(search);
+            users = user.RetrieveUsersList(search, false);
 
-            util.PrintUsersList(search, UsersList, users);
+            users = util.PrintUsersList(search, UsersList, users, true);
 
         }
 
@@ -57,7 +58,7 @@ namespace PhoneDirectory
             // contact searchbar string, converted to lowercase and without spaces
             string search = (ContactsSearchBar.Text).ToLower().Replace(" ", "");
             search = util.ConvertInputToAscii(search);
-            util.PrintContactsList(search, ContactsList, contacts, selectedUser);
+            contacts = util.PrintContactsList(search, ContactsList, contacts, selectedUser, true);
 
         }
 
@@ -85,8 +86,8 @@ namespace PhoneDirectory
             string contactSearch = ContactsSearchBar.Text.ToLower().Replace(" ", "");
             contactSearch = util.ConvertInputToAscii(contactSearch);
 
-            List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser);
-            util.PrintContactsList(contactSearch, ContactsList, contacts, selectedUser);
+            List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser, true);
+            contacts = util.PrintContactsList(contactSearch, ContactsList, contacts, selectedUser, true);
         }
 
         private void NewUserMenuStrip_Click(object sender, EventArgs e)
@@ -104,7 +105,8 @@ namespace PhoneDirectory
 
         private void DeletedUsersToolStrip_Click(object sender, EventArgs e)
         {
-
+            Form deletedUsers = new DeletedUsersPanel(username);
+            deletedUsers.ShowDialog();
         }
     }
 }

@@ -1,12 +1,11 @@
-﻿using PhoneDirectory.Scripts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
-namespace PhoneDirectory
+namespace PhoneDirectory.Scripts
 {
     internal class UsefulUtilities
     {
@@ -17,16 +16,18 @@ namespace PhoneDirectory
         /// <param name="listBox"></param>
         /// <param name="contacts"></param>
         /// <param name="username"></param>
-        public void PrintContactsList(string search, ListBox listBox, List<Contact> contacts, string username)
+        public List<Contact> PrintContactsList(string search, ListBox listBox, List<Contact> contacts, string username, bool activeState)
         {
             Contact contact = new Contact();
-            contacts = contact.RetrieveContact(search, username);
+            contacts = contact.RetrieveContact(search, username, activeState);
             listBox.Items.Clear();
             foreach (Contact res in contacts)
             {
                 string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
                 listBox.Items.Add(tagToWrite);
             }
+
+            return contacts;
         }
 
         /// <summary>
@@ -35,10 +36,10 @@ namespace PhoneDirectory
         /// <param name="search"></param>
         /// <param name="listBox"></param>
         /// <param name="users"></param>
-        public void PrintUsersList(string search, ListBox listBox, List<User> users)
+        public List<User> PrintUsersList(string search, ListBox listBox, List<User> users, bool activeState)
         {
             User user = new User();
-            users = user.RetrieveUsersList(search);
+            users = user.RetrieveUsersList(search, activeState);
             listBox.Items.Clear();
 
             foreach (User res in users)
@@ -46,6 +47,8 @@ namespace PhoneDirectory
                 string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
                 listBox.Items.Add(tagToWrite);
             }
+
+            return users;
         }
 
         /// <summary>

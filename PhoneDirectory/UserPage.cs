@@ -25,13 +25,15 @@ namespace PhoneDirectory
         {
             InitializeComponent();
             this.username = username;
+            // make this page not changable to other open forms
+            
         }
 
 
 
         private void UserPage_Load(object sender, EventArgs e)
         {
-            util.PrintContactsList("", ContactsListBox, contacts, username);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
 
         }
 
@@ -41,7 +43,7 @@ namespace PhoneDirectory
             string input = SearchBar.Text.ToLower().Replace(" ", "");
             input = util.ConvertInputToAscii(input);
 
-            util.PrintContactsList(input, ContactsListBox, contacts, username);
+            contacts = util.PrintContactsList(input, ContactsListBox, contacts, username, true);
 
 
         }
@@ -71,7 +73,7 @@ namespace PhoneDirectory
             AddresPrompt.Text = contactToShow._address;
 
         }
-
+        
         private void UpdatePerson_Click(object sender, EventArgs e)
         {
             GsmPrompt.Text = GsmPrompt.Text.Replace(" ", "");
@@ -106,13 +108,13 @@ namespace PhoneDirectory
 
             contacts[i].UpdateContact(oldUsername);
 
-            util.PrintContactsList("", ContactsListBox, contacts, username);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             contacts[ContactsListBox.SelectedIndex].SoftDeleteContact();
-            util.PrintContactsList("", ContactsListBox, contacts, username);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
         }
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)
