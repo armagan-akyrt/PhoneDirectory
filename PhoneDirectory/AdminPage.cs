@@ -34,13 +34,13 @@ namespace PhoneDirectory
         private void AdminPage_Load(object sender, EventArgs e)
         {
             users = util.PrintUsersList("", UsersList, users, true);
-            
+
         }
 
         private void txtSearchUsers_TextChanged(object sender, EventArgs e)
         {
             // user searcbar string, converted to lowercase and without spaces
-            string search = (UsersSearchBar.Text).ToLower().Replace(" ", "");
+            string search = UsersSearchBar.Text;
             search = util.ConvertInputToAscii(search);
 
             // retrieve users list
@@ -56,7 +56,7 @@ namespace PhoneDirectory
         private void txtSearchContacts_TextChanged(object sender, EventArgs e)
         {
             // contact searchbar string, converted to lowercase and without spaces
-            string search = (ContactsSearchBar.Text).ToLower().Replace(" ", "");
+            string search = (ContactsSearchBar.Text);
             search = util.ConvertInputToAscii(search);
             contacts = util.PrintContactsList(search, ContactsList, contacts, selectedUser, true);
 
@@ -78,12 +78,12 @@ namespace PhoneDirectory
         {
 
             Contact contact = new Contact();
-            selectedUser = UsersList.SelectedItem.ToString().Replace(" ", "").ToLower();
+            selectedUser = UsersList.SelectedItem.ToString();
             selectedUser = util.ConvertInputToAscii(selectedUser);
             ContactsList.Items.Clear();
 
             // retrieve contacts list
-            string contactSearch = ContactsSearchBar.Text.ToLower().Replace(" ", "");
+            string contactSearch = ContactsSearchBar.Text;
             contactSearch = util.ConvertInputToAscii(contactSearch);
 
             List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser, true);
@@ -93,8 +93,7 @@ namespace PhoneDirectory
         private void NewUserMenuStrip_Click(object sender, EventArgs e)
         {
             Form createUser = new CreateUser(username);
-            createUser.Show();
-            this.Hide();
+            createUser.ShowDialog();
         }
 
         private void DeleteUserButton_Click(object sender, EventArgs e)
@@ -107,6 +106,18 @@ namespace PhoneDirectory
         {
             Form deletedUsers = new DeletedUsersPanel(username);
             deletedUsers.ShowDialog();
+        }
+
+        private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
+        {
+            Form deletedContacts = new DeletedContacts(username);
+            deletedContacts.ShowDialog();
+        }
+
+        private void NewContactToolstrip_Click(object sender, EventArgs e)
+        {
+            Form addContact = new AddContact(username);
+            addContact.ShowDialog();
         }
     }
 }

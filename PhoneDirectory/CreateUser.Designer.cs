@@ -29,18 +29,21 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            txtName = new TextBox();
-            txtLastName = new TextBox();
+            FirstNamePrompt = new TextBox();
+            LastNamePrompt = new TextBox();
             label2 = new Label();
-            txtMail = new TextBox();
+            EmailPrompt = new TextBox();
             label3 = new Label();
-            txtGSM = new TextBox();
+            GsmPrompt = new TextBox();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            rtxAdress = new RichTextBox();
-            cbRole = new ComboBox();
-            btnCreateUser = new Button();
+            AddressPrompt = new RichTextBox();
+            RoleComboBox = new ComboBox();
+            CreateUserButton = new Button();
+            RegeneratePassword = new Button();
+            PasswordPrompt = new TextBox();
+            label8 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -52,20 +55,19 @@
             label1.TabIndex = 0;
             label1.Text = "Ad";
             // 
-            // txtName
+            // FirstNamePrompt
             // 
-            txtName.Location = new Point(12, 68);
-            txtName.Name = "txtName";
-            txtName.Size = new Size(222, 23);
-            txtName.TabIndex = 1;
-            txtName.TextChanged += textBox1_TextChanged;
+            FirstNamePrompt.Location = new Point(12, 68);
+            FirstNamePrompt.Name = "FirstNamePrompt";
+            FirstNamePrompt.Size = new Size(222, 23);
+            FirstNamePrompt.TabIndex = 1;
             // 
-            // txtLastName
+            // LastNamePrompt
             // 
-            txtLastName.Location = new Point(12, 156);
-            txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(222, 23);
-            txtLastName.TabIndex = 3;
+            LastNamePrompt.Location = new Point(12, 156);
+            LastNamePrompt.Name = "LastNamePrompt";
+            LastNamePrompt.Size = new Size(222, 23);
+            LastNamePrompt.TabIndex = 3;
             // 
             // label2
             // 
@@ -76,12 +78,12 @@
             label2.TabIndex = 2;
             label2.Text = "Soyad";
             // 
-            // txtMail
+            // EmailPrompt
             // 
-            txtMail.Location = new Point(12, 244);
-            txtMail.Name = "txtMail";
-            txtMail.Size = new Size(222, 23);
-            txtMail.TabIndex = 5;
+            EmailPrompt.Location = new Point(12, 244);
+            EmailPrompt.Name = "EmailPrompt";
+            EmailPrompt.Size = new Size(222, 23);
+            EmailPrompt.TabIndex = 5;
             // 
             // label3
             // 
@@ -91,14 +93,13 @@
             label3.Size = new Size(36, 15);
             label3.TabIndex = 4;
             label3.Text = "Email";
-            label3.Click += label3_Click;
             // 
-            // txtGSM
+            // GsmPrompt
             // 
-            txtGSM.Location = new Point(12, 332);
-            txtGSM.Name = "txtGSM";
-            txtGSM.Size = new Size(222, 23);
-            txtGSM.TabIndex = 7;
+            GsmPrompt.Location = new Point(12, 332);
+            GsmPrompt.Name = "GsmPrompt";
+            GsmPrompt.Size = new Size(222, 23);
+            GsmPrompt.TabIndex = 7;
             // 
             // label4
             // 
@@ -112,7 +113,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(319, 138);
+            label5.Location = new Point(319, 182);
             label5.Name = "label5";
             label5.Size = new Size(24, 15);
             label5.TabIndex = 8;
@@ -127,49 +128,80 @@
             label6.TabIndex = 10;
             label6.Text = "Adres";
             // 
-            // rtxAdress
+            // AddressPrompt
             // 
-            rtxAdress.Location = new Point(319, 244);
-            rtxAdress.Name = "rtxAdress";
-            rtxAdress.Size = new Size(222, 111);
-            rtxAdress.TabIndex = 12;
-            rtxAdress.Text = "";
+            AddressPrompt.Location = new Point(319, 244);
+            AddressPrompt.Name = "AddressPrompt";
+            AddressPrompt.Size = new Size(222, 111);
+            AddressPrompt.TabIndex = 12;
+            AddressPrompt.Text = "";
             // 
-            // cbRole
+            // RoleComboBox
             // 
-            cbRole.FormattingEnabled = true;
-            cbRole.Items.AddRange(new object[] { "ADMIN", "USER" });
-            cbRole.Location = new Point(319, 156);
-            cbRole.Name = "cbRole";
-            cbRole.Size = new Size(222, 23);
-            cbRole.TabIndex = 13;
+            RoleComboBox.FormattingEnabled = true;
+            RoleComboBox.Items.AddRange(new object[] { "ADMIN", "USER" });
+            RoleComboBox.Location = new Point(319, 200);
+            RoleComboBox.Name = "RoleComboBox";
+            RoleComboBox.Size = new Size(222, 23);
+            RoleComboBox.TabIndex = 13;
             // 
-            // btnCreateUser
+            // CreateUserButton
             // 
-            btnCreateUser.Location = new Point(466, 393);
-            btnCreateUser.Name = "btnCreateUser";
-            btnCreateUser.Size = new Size(75, 23);
-            btnCreateUser.TabIndex = 14;
-            btnCreateUser.Text = "Oluştur";
-            btnCreateUser.UseVisualStyleBackColor = true;
+            CreateUserButton.Location = new Point(466, 393);
+            CreateUserButton.Name = "CreateUserButton";
+            CreateUserButton.Size = new Size(75, 23);
+            CreateUserButton.TabIndex = 14;
+            CreateUserButton.Text = "Oluştur";
+            CreateUserButton.UseVisualStyleBackColor = true;
+            CreateUserButton.Click += CreateUserButton_Click;
+            // 
+            // RegeneratePassword
+            // 
+            RegeneratePassword.Location = new Point(432, 156);
+            RegeneratePassword.Name = "RegeneratePassword";
+            RegeneratePassword.Size = new Size(111, 23);
+            RegeneratePassword.TabIndex = 36;
+            RegeneratePassword.Text = "Yeniden Oluştur";
+            RegeneratePassword.UseVisualStyleBackColor = true;
+            RegeneratePassword.Click += RegeneratePassword_Click;
+            // 
+            // PasswordPrompt
+            // 
+            PasswordPrompt.Location = new Point(319, 156);
+            PasswordPrompt.Name = "PasswordPrompt";
+            PasswordPrompt.ReadOnly = true;
+            PasswordPrompt.Size = new Size(107, 23);
+            PasswordPrompt.TabIndex = 35;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(319, 138);
+            label8.Name = "label8";
+            label8.Size = new Size(30, 15);
+            label8.TabIndex = 34;
+            label8.Text = "Şifte";
             // 
             // CreateUser
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnCreateUser);
-            Controls.Add(cbRole);
-            Controls.Add(rtxAdress);
+            Controls.Add(RegeneratePassword);
+            Controls.Add(PasswordPrompt);
+            Controls.Add(label8);
+            Controls.Add(CreateUserButton);
+            Controls.Add(RoleComboBox);
+            Controls.Add(AddressPrompt);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(txtGSM);
+            Controls.Add(GsmPrompt);
             Controls.Add(label4);
-            Controls.Add(txtMail);
+            Controls.Add(EmailPrompt);
             Controls.Add(label3);
-            Controls.Add(txtLastName);
+            Controls.Add(LastNamePrompt);
             Controls.Add(label2);
-            Controls.Add(txtName);
+            Controls.Add(FirstNamePrompt);
             Controls.Add(label1);
             Name = "CreateUser";
             Text = "CreateUser";
@@ -181,17 +213,20 @@
         #endregion
 
         private Label label1;
-        private TextBox txtName;
-        private TextBox txtLastName;
+        private TextBox FirstNamePrompt;
+        private TextBox LastNamePrompt;
         private Label label2;
-        private TextBox txtMail;
+        private TextBox EmailPrompt;
         private Label label3;
-        private TextBox txtGSM;
+        private TextBox GsmPrompt;
         private Label label4;
         private Label label5;
         private Label label6;
-        private RichTextBox rtxAdress;
-        private ComboBox cbRole;
-        private Button btnCreateUser;
+        private RichTextBox AddressPrompt;
+        private ComboBox RoleComboBox;
+        private Button CreateUserButton;
+        private Button RegeneratePassword;
+        private TextBox PasswordPrompt;
+        private Label label8;
     }
 }

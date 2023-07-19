@@ -37,11 +37,11 @@
             label4 = new Label();
             label3 = new Label();
             label1 = new Label();
-            AddressText = new RichTextBox();
-            EmailText = new TextBox();
-            GsmText = new TextBox();
-            LastNameText = new TextBox();
-            FirstNameText = new TextBox();
+            AddressPrompt = new RichTextBox();
+            EmailPrompt = new TextBox();
+            GsmPrompt = new TextBox();
+            LastNamePrompt = new TextBox();
+            FirstNamePrompt = new TextBox();
             DeletePermenantlyButton = new Button();
             SuspendLayout();
             // 
@@ -60,6 +60,7 @@
             ContactsSearchBar.Name = "ContactsSearchBar";
             ContactsSearchBar.Size = new Size(265, 23);
             ContactsSearchBar.TabIndex = 7;
+            ContactsSearchBar.TextChanged += ContactsSearchBar_TextChanged;
             // 
             // DeletedContactsList
             // 
@@ -69,6 +70,7 @@
             DeletedContactsList.Name = "DeletedContactsList";
             DeletedContactsList.Size = new Size(265, 349);
             DeletedContactsList.TabIndex = 6;
+            DeletedContactsList.SelectedIndexChanged += DeletedContactsList_SelectedIndexChanged;
             // 
             // UpdateAndBringButton
             // 
@@ -80,6 +82,7 @@
             UpdateAndBringButton.TabIndex = 38;
             UpdateAndBringButton.Text = "Güncelle ve Geri Getir";
             UpdateAndBringButton.UseVisualStyleBackColor = true;
+            UpdateAndBringButton.Click += UpdateAndBringButton_Click;
             // 
             // label6
             // 
@@ -131,46 +134,46 @@
             label1.TabIndex = 33;
             label1.Text = "Ad:";
             // 
-            // AddressText
+            // AddressPrompt
             // 
-            AddressText.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            AddressText.Location = new Point(375, 252);
-            AddressText.Name = "AddressText";
-            AddressText.Size = new Size(216, 132);
-            AddressText.TabIndex = 32;
-            AddressText.Text = "";
+            AddressPrompt.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            AddressPrompt.Location = new Point(375, 252);
+            AddressPrompt.Name = "AddressPrompt";
+            AddressPrompt.Size = new Size(216, 132);
+            AddressPrompt.TabIndex = 32;
+            AddressPrompt.Text = "";
             // 
-            // EmailText
+            // EmailPrompt
             // 
-            EmailText.Anchor = AnchorStyles.Right;
-            EmailText.Location = new Point(375, 198);
-            EmailText.Name = "EmailText";
-            EmailText.Size = new Size(216, 23);
-            EmailText.TabIndex = 31;
+            EmailPrompt.Anchor = AnchorStyles.Right;
+            EmailPrompt.Location = new Point(375, 198);
+            EmailPrompt.Name = "EmailPrompt";
+            EmailPrompt.Size = new Size(216, 23);
+            EmailPrompt.TabIndex = 31;
             // 
-            // GsmText
+            // GsmPrompt
             // 
-            GsmText.Anchor = AnchorStyles.Right;
-            GsmText.Location = new Point(375, 149);
-            GsmText.Name = "GsmText";
-            GsmText.Size = new Size(216, 23);
-            GsmText.TabIndex = 30;
+            GsmPrompt.Anchor = AnchorStyles.Right;
+            GsmPrompt.Location = new Point(375, 149);
+            GsmPrompt.Name = "GsmPrompt";
+            GsmPrompt.Size = new Size(216, 23);
+            GsmPrompt.TabIndex = 30;
             // 
-            // LastNameText
+            // LastNamePrompt
             // 
-            LastNameText.Anchor = AnchorStyles.Right;
-            LastNameText.Location = new Point(375, 99);
-            LastNameText.Name = "LastNameText";
-            LastNameText.Size = new Size(216, 23);
-            LastNameText.TabIndex = 29;
+            LastNamePrompt.Anchor = AnchorStyles.Right;
+            LastNamePrompt.Location = new Point(375, 99);
+            LastNamePrompt.Name = "LastNamePrompt";
+            LastNamePrompt.Size = new Size(216, 23);
+            LastNamePrompt.TabIndex = 29;
             // 
-            // FirstNameText
+            // FirstNamePrompt
             // 
-            FirstNameText.Anchor = AnchorStyles.Right;
-            FirstNameText.Location = new Point(375, 50);
-            FirstNameText.Name = "FirstNameText";
-            FirstNameText.Size = new Size(216, 23);
-            FirstNameText.TabIndex = 28;
+            FirstNamePrompt.Anchor = AnchorStyles.Right;
+            FirstNamePrompt.Location = new Point(375, 50);
+            FirstNamePrompt.Name = "FirstNamePrompt";
+            FirstNamePrompt.Size = new Size(216, 23);
+            FirstNamePrompt.TabIndex = 28;
             // 
             // DeletePermenantlyButton
             // 
@@ -180,6 +183,7 @@
             DeletePermenantlyButton.TabIndex = 27;
             DeletePermenantlyButton.Text = "Sil";
             DeletePermenantlyButton.UseVisualStyleBackColor = true;
+            DeletePermenantlyButton.Click += DeletePermenantlyButton_Click;
             // 
             // DeletedContacts
             // 
@@ -192,11 +196,11 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label1);
-            Controls.Add(AddressText);
-            Controls.Add(EmailText);
-            Controls.Add(GsmText);
-            Controls.Add(LastNameText);
-            Controls.Add(FirstNameText);
+            Controls.Add(AddressPrompt);
+            Controls.Add(EmailPrompt);
+            Controls.Add(GsmPrompt);
+            Controls.Add(LastNamePrompt);
+            Controls.Add(FirstNamePrompt);
             Controls.Add(DeletePermenantlyButton);
             Controls.Add(label2);
             Controls.Add(ContactsSearchBar);
@@ -219,11 +223,11 @@
         private Label label4;
         private Label label3;
         private Label label1;
-        private RichTextBox AddressText;
-        private TextBox EmailText;
-        private TextBox GsmText;
-        private TextBox LastNameText;
-        private TextBox FirstNameText;
+        private RichTextBox AddressPrompt;
+        private TextBox EmailPrompt;
+        private TextBox GsmPrompt;
+        private TextBox LastNamePrompt;
+        private TextBox FirstNamePrompt;
         private Button DeletePermenantlyButton;
     }
 }

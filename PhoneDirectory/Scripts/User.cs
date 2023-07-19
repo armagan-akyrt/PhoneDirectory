@@ -74,7 +74,7 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
-        public bool UpdateUser()
+        public bool UpdateUser(string oldUsername)
         {
             SqlConnection conn = connection.GetConnection();
 
@@ -92,6 +92,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@password", this._password);
                 command.Parameters.AddWithValue("@role", this._role);
                 command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@oldUsername", oldUsername);
 
                 command.ExecuteNonQuery();
 
@@ -231,6 +232,43 @@ namespace PhoneDirectory.Scripts
             }
 
             return true;
+        }
+
+
+        /// <summary>
+        /// generates a random password for the user. Includes upper case, lower case and numbers.
+        /// </summary>
+        /// <returns>password</returns>
+        public string GenerateRandomPassword()
+        {
+            Random random = new Random();
+            string password = "";
+            for (int i = 0; i < 8; i++)
+            {
+                int chance = random.Next(0, 100);
+                if (chance < 20) // for upper case characters.
+                {
+                    int randomChar = random.Next(65, 91);
+                    char character = (char)randomChar;
+                    password += character.ToString();
+                }
+                else if (chance < 80) // for lower case characters.
+                {
+                    int randomChar = random.Next(97, 123);
+                    char character = (char)randomChar;
+                    password += character.ToString();
+                }
+ 
+                else // for numbers.
+                {
+                    int randomInt = random.Next(0, 9);
+                    password += randomInt.ToString();
+                }
+
+            }
+
+            this._password = password;
+            return password;
         }
 
     }

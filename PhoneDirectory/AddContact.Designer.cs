@@ -48,7 +48,7 @@
             // 
             // btnAddContact
             // 
-            btnAddContact.Location = new Point(319, 410);
+            btnAddContact.Location = new Point(325, 418);
             btnAddContact.Name = "btnAddContact";
             btnAddContact.Size = new Size(75, 23);
             btnAddContact.TabIndex = 27;
@@ -60,14 +60,14 @@
             // 
             RoleComboBox.FormattingEnabled = true;
             RoleComboBox.Items.AddRange(new object[] { "ADMIN", "USER" });
-            RoleComboBox.Location = new Point(319, 182);
+            RoleComboBox.Location = new Point(325, 185);
             RoleComboBox.Name = "RoleComboBox";
             RoleComboBox.Size = new Size(222, 23);
             RoleComboBox.TabIndex = 26;
             // 
             // AddressPrompt
             // 
-            AddressPrompt.Location = new Point(319, 270);
+            AddressPrompt.Location = new Point(325, 273);
             AddressPrompt.Name = "AddressPrompt";
             AddressPrompt.Size = new Size(222, 111);
             AddressPrompt.TabIndex = 25;
@@ -76,7 +76,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(319, 252);
+            label6.Location = new Point(325, 255);
             label6.Name = "label6";
             label6.Size = new Size(37, 15);
             label6.TabIndex = 24;
@@ -85,7 +85,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(319, 164);
+            label5.Location = new Point(325, 167);
             label5.Name = "label5";
             label5.Size = new Size(24, 15);
             label5.TabIndex = 23;
@@ -93,7 +93,7 @@
             // 
             // GsmPrompt
             // 
-            GsmPrompt.Location = new Point(12, 411);
+            GsmPrompt.Location = new Point(12, 363);
             GsmPrompt.Name = "GsmPrompt";
             GsmPrompt.Size = new Size(222, 23);
             GsmPrompt.TabIndex = 22;
@@ -101,7 +101,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(12, 393);
+            label4.Location = new Point(12, 345);
             label4.Name = "label4";
             label4.Size = new Size(67, 15);
             label4.TabIndex = 21;
@@ -109,7 +109,7 @@
             // 
             // EmailPrompt
             // 
-            EmailPrompt.Location = new Point(12, 331);
+            EmailPrompt.Location = new Point(12, 283);
             EmailPrompt.Name = "EmailPrompt";
             EmailPrompt.Size = new Size(222, 23);
             EmailPrompt.TabIndex = 20;
@@ -117,7 +117,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 313);
+            label3.Location = new Point(12, 265);
             label3.Name = "label3";
             label3.Size = new Size(36, 15);
             label3.TabIndex = 19;
@@ -125,7 +125,7 @@
             // 
             // SurnamePrompt
             // 
-            SurnamePrompt.Location = new Point(12, 251);
+            SurnamePrompt.Location = new Point(12, 203);
             SurnamePrompt.Name = "SurnamePrompt";
             SurnamePrompt.Size = new Size(222, 23);
             SurnamePrompt.TabIndex = 18;
@@ -133,7 +133,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 233);
+            label2.Location = new Point(12, 185);
             label2.Name = "label2";
             label2.Size = new Size(39, 15);
             label2.TabIndex = 17;
@@ -141,7 +141,7 @@
             // 
             // NamePrompt
             // 
-            NamePrompt.Location = new Point(12, 171);
+            NamePrompt.Location = new Point(12, 123);
             NamePrompt.Name = "NamePrompt";
             NamePrompt.Size = new Size(222, 23);
             NamePrompt.TabIndex = 16;
@@ -149,7 +149,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 153);
+            label1.Location = new Point(12, 105);
             label1.Name = "label1";
             label1.Size = new Size(22, 15);
             label1.TabIndex = 15;
@@ -158,7 +158,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 73);
+            label7.Location = new Point(12, 50);
             label7.Name = "label7";
             label7.Size = new Size(98, 15);
             label7.TabIndex = 28;
@@ -166,7 +166,7 @@
             // 
             // CurrentUserPrompt
             // 
-            CurrentUserPrompt.Location = new Point(12, 91);
+            CurrentUserPrompt.Location = new Point(12, 68);
             CurrentUserPrompt.Name = "CurrentUserPrompt";
             CurrentUserPrompt.ReadOnly = true;
             CurrentUserPrompt.Size = new Size(222, 23);
@@ -174,7 +174,7 @@
             // 
             // ReturnToUserPageButton
             // 
-            ReturnToUserPageButton.Location = new Point(466, 415);
+            ReturnToUserPageButton.Location = new Point(472, 418);
             ReturnToUserPageButton.Name = "ReturnToUserPageButton";
             ReturnToUserPageButton.Size = new Size(75, 23);
             ReturnToUserPageButton.TabIndex = 30;

@@ -19,6 +19,7 @@ namespace PhoneDirectory.Scripts
         public List<Contact> PrintContactsList(string search, ListBox listBox, List<Contact> contacts, string username, bool activeState)
         {
             Contact contact = new Contact();
+            contacts.Clear();
             contacts = contact.RetrieveContact(search, username, activeState);
             listBox.Items.Clear();
             foreach (Contact res in contacts)
@@ -58,6 +59,8 @@ namespace PhoneDirectory.Scripts
         /// <returns>converted string</returns>
         public string ConvertInputToAscii(string input)
         {
+            input = input.ToLower().Replace(" ", "");
+
             // contains lowercase turkish characters
             var charMap = new Dictionary<char, char>()
             {
@@ -76,6 +79,7 @@ namespace PhoneDirectory.Scripts
 
             return input;
         }
+
 
     }
 }

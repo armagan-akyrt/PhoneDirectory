@@ -61,6 +61,7 @@
             UsersSearchBar.Name = "UsersSearchBar";
             UsersSearchBar.Size = new Size(265, 23);
             UsersSearchBar.TabIndex = 1;
+            UsersSearchBar.TextChanged += UsersSearchBar_TextChanged;
             // 
             // label1
             // 

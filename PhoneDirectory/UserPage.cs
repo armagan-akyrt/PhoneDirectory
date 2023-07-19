@@ -40,7 +40,7 @@ namespace PhoneDirectory
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
             Contact contact = new Contact();
-            string input = SearchBar.Text.ToLower().Replace(" ", "");
+            string input = SearchBar.Text;
             input = util.ConvertInputToAscii(input);
 
             contacts = util.PrintContactsList(input, ContactsListBox, contacts, username, true);
@@ -53,7 +53,7 @@ namespace PhoneDirectory
             string uname = " ";
             try
             {
-                uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString().Replace(" ", "").ToLower();
+                uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString();
                 uname = util.ConvertInputToAscii(uname);
             }
             catch (Exception)

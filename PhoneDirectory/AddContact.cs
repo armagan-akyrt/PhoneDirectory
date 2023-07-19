@@ -46,6 +46,7 @@ namespace PhoneDirectory
 
         private void AddContact_Load(object sender, EventArgs e)
         {
+            CurrentUserPrompt.Text = username;
         }
 
         private void btnAddContact_Click(object sender, EventArgs e)
@@ -86,6 +87,11 @@ namespace PhoneDirectory
             Form userPage = new UserPage(username);
             userPage.Show();
             this.Hide();
+        }
+
+        private void RegeneratePassword_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

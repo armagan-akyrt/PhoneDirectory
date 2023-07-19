@@ -18,6 +18,8 @@ namespace PhoneDirectory
 
         private List<User> deletedUsers = new List<User>();
         private User user = new User();
+        string selectedUsername = "";
+
 
         public DeletedUsersPanel(string username)
         {
@@ -44,13 +46,14 @@ namespace PhoneDirectory
             AddressPrompt.Text = deletedUsers[selectedIndex]._address;
 
             user = deletedUsers[selectedIndex];
+            selectedUsername = user._username;
 
         }
 
         private void UpdateAndBringButton_Click(object sender, EventArgs e)
         {
 
-            user.UpdateUser();
+            user.UpdateUser(selectedUsername);
 
             user.BringBackDeletedUser();
             deletedUsers = util.PrintUsersList("", DeletedUsersList, deletedUsers, false);
@@ -61,6 +64,14 @@ namespace PhoneDirectory
         {
             user.DeleteUser();
             deletedUsers = util.PrintUsersList("", DeletedUsersList, deletedUsers, false);
+        }
+
+        private void UsersSearchBar_TextChanged(object sender, EventArgs e)
+        {
+            string input = UsersSearchBar.Text;
+            input = util.ConvertInputToAscii(input);
+
+            deletedUsers = util.PrintUsersList(input, DeletedUsersList, deletedUsers, false);
         }
     }
 }

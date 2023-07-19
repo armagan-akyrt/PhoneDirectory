@@ -171,7 +171,7 @@ namespace PhoneDirectory.Scripts
             return true;
         }
     
-        public bool DeleteContact(string deletedBy)
+        public bool DeleteContact()
         {
             SqlConnection conn = connection.GetConnection();
 
@@ -183,7 +183,6 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@username", this._username);
-                command.Parameters.AddWithValue("@deletedBy", deletedBy);
 
                 command.ExecuteNonQuery();
             }
@@ -215,6 +214,34 @@ namespace PhoneDirectory.Scripts
 
                 command.ExecuteNonQuery();
 
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
+
+        public bool BringBackDeletedUser()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                
+                SqlCommand command = new SqlCommand("RetrieveDeletedContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+
+                command.ExecuteNonQuery();
             }
             catch (Exception)
             {
