@@ -35,6 +35,7 @@
             EmailPrompt = new TextBox();
             PasswordPrompt = new TextBox();
             pictureBox1 = new PictureBox();
+            linkLabel1 = new LinkLabel();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -85,18 +86,30 @@
             // 
             pictureBox1.ImageLocation = "C:\\Users\\MONSTER\\source\\repos\\PhoneDirectory\\PhoneDirectory\\Assets\\logo.png";
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(214, 12);
+            pictureBox1.Location = new Point(214, 128);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(183, 71);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Location = new Point(273, 202);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(45, 15);
+            linkLabel1.TabIndex = 6;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "İletişim";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(409, 334);
+            Controls.Add(linkLabel1);
             Controls.Add(pictureBox1);
             Controls.Add(PasswordPrompt);
             Controls.Add(EmailPrompt);
@@ -119,5 +132,6 @@
         private TextBox EmailPrompt;
         private TextBox PasswordPrompt;
         private PictureBox pictureBox1;
+        private LinkLabel linkLabel1;
     }
 }

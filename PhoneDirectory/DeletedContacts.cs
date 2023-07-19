@@ -55,20 +55,25 @@ namespace PhoneDirectory
         {
             int selectedIndex = DeletedContactsList.SelectedIndex;
 
-            FirstNamePrompt.Text = deletedContacts[selectedIndex]._name;
-            LastNamePrompt.Text = deletedContacts[selectedIndex]._surname;
-            GsmPrompt.Text = deletedContacts[selectedIndex]._phoneNumber;
-            EmailPrompt.Text = deletedContacts[selectedIndex]._email;
-            AddressPrompt.Text = deletedContacts[selectedIndex]._address;
+            if (selectedIndex >= 0)
+            {
+                FirstNamePrompt.Text = deletedContacts[selectedIndex]._name;
+                LastNamePrompt.Text = deletedContacts[selectedIndex]._surname;
+                GsmPrompt.Text = deletedContacts[selectedIndex]._phoneNumber;
+                EmailPrompt.Text = deletedContacts[selectedIndex]._email;
+                AddressPrompt.Text = deletedContacts[selectedIndex]._address;
 
-            contact = deletedContacts[selectedIndex];
-            selectedUsername = contact._username;
+                contact = deletedContacts[selectedIndex];
+                selectedUsername = contact._username;
+            }
+
+
 
         }
 
         private void DeletePermenantlyButton_Click(object sender, EventArgs e)
         {
-            contact.DeleteContact();
+            contact.CutUserContact(username);
 
             deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
         }

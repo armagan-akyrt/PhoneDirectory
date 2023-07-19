@@ -37,17 +37,20 @@ namespace PhoneDirectory
         {
             int selectedIndex = DeletedUsersList.SelectedIndex;
 
-            // write the selected user's info to the textboxes
+            if (selectedIndex >= 0)
+            {
+                // write the selected user's info to the textboxes
 
-            FirstNamePrompt.Text = deletedUsers[selectedIndex]._name;
-            LastNamePrompt.Text = deletedUsers[selectedIndex]._surname;
-            GsmPrompt.Text = deletedUsers[selectedIndex]._phoneNumber;
-            EmailPrompt.Text = deletedUsers[selectedIndex]._email;
-            AddressPrompt.Text = deletedUsers[selectedIndex]._address;
+                FirstNamePrompt.Text = deletedUsers[selectedIndex]._name;
+                LastNamePrompt.Text = deletedUsers[selectedIndex]._surname;
+                GsmPrompt.Text = deletedUsers[selectedIndex]._phoneNumber;
+                EmailPrompt.Text = deletedUsers[selectedIndex]._email;
+                AddressPrompt.Text = deletedUsers[selectedIndex]._address;
 
-            user = deletedUsers[selectedIndex];
-            selectedUsername = user._username;
+                user = deletedUsers[selectedIndex];
+                selectedUsername = user._username;
 
+            }
         }
 
         private void UpdateAndBringButton_Click(object sender, EventArgs e)

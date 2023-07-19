@@ -143,7 +143,8 @@ namespace PhoneDirectory
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
             Form DeletedContacts = new DeletedContacts(username, role);
-            DeletedContacts.ShowDialog();
+            DeletedContacts.Show();
+            this.Hide();
         }
     }
 }

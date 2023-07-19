@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             ContactsListBox = new ListBox();
-            label1 = new Label();
             label2 = new Label();
             NamePrompt = new TextBox();
             SurnamePromp = new TextBox();
@@ -45,31 +44,24 @@
             menuStrip1 = new MenuStrip();
             PersonToolStrip = new ToolStripMenuItem();
             AddPersonToolStrip = new ToolStripMenuItem();
+            DeletedContactsToolStrip = new ToolStripMenuItem();
             AdminToolStrip = new ToolStripMenuItem();
             AdminToolStripMenu = new ToolStripMenuItem();
             DeleteButton = new Button();
-            DeletedContactsToolStrip = new ToolStripMenuItem();
+            groupBox1 = new GroupBox();
             menuStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // ContactsListBox
             // 
             ContactsListBox.FormattingEnabled = true;
             ContactsListBox.ItemHeight = 15;
-            ContactsListBox.Location = new Point(12, 86);
+            ContactsListBox.Location = new Point(12, 55);
             ContactsListBox.Name = "ContactsListBox";
             ContactsListBox.Size = new Size(268, 349);
             ContactsListBox.TabIndex = 0;
             ContactsListBox.SelectedIndexChanged += ContactsListBox_SelectedIndexChanged;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 39);
-            label1.Name = "label1";
-            label1.Size = new Size(41, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Kişiler:";
             // 
             // label2
             // 
@@ -164,7 +156,7 @@
             // 
             // SearchBar
             // 
-            SearchBar.Location = new Point(12, 57);
+            SearchBar.Location = new Point(12, 26);
             SearchBar.Name = "SearchBar";
             SearchBar.Size = new Size(268, 23);
             SearchBar.TabIndex = 15;
@@ -175,7 +167,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(573, 24);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "MenuStrip";
             // 
@@ -189,9 +181,16 @@
             // AddPersonToolStrip
             // 
             AddPersonToolStrip.Name = "AddPersonToolStrip";
-            AddPersonToolStrip.Size = new Size(180, 22);
+            AddPersonToolStrip.Size = new Size(168, 22);
             AddPersonToolStrip.Text = "Bağlantı Ekle";
             AddPersonToolStrip.Click += AddPersonToolStrip_Click;
+            // 
+            // DeletedContactsToolStrip
+            // 
+            DeletedContactsToolStrip.Name = "DeletedContactsToolStrip";
+            DeletedContactsToolStrip.Size = new Size(168, 22);
+            DeletedContactsToolStrip.Text = "Silinen Bağlantılar";
+            DeletedContactsToolStrip.Click += DeletedContactsToolStrip_Click;
             // 
             // AdminToolStrip
             // 
@@ -217,20 +216,24 @@
             DeleteButton.UseVisualStyleBackColor = true;
             DeleteButton.Click += DeleteButton_Click;
             // 
-            // DeletedContactsToolStrip
+            // groupBox1
             // 
-            DeletedContactsToolStrip.Name = "DeletedContactsToolStrip";
-            DeletedContactsToolStrip.Size = new Size(180, 22);
-            DeletedContactsToolStrip.Text = "Silinen Bağlantılar";
-            DeletedContactsToolStrip.Click += DeletedContactsToolStrip_Click;
+            groupBox1.Controls.Add(ContactsListBox);
+            groupBox1.Controls.Add(SearchBar);
+            groupBox1.Location = new Point(0, 25);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(295, 422);
+            groupBox1.TabIndex = 19;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Rehber:";
             // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(573, 454);
+            Controls.Add(groupBox1);
             Controls.Add(DeleteButton);
-            Controls.Add(SearchBar);
             Controls.Add(UpdateContactButton);
             Controls.Add(AddresPrompt);
             Controls.Add(label6);
@@ -242,14 +245,14 @@
             Controls.Add(label3);
             Controls.Add(NamePrompt);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(ContactsListBox);
             Controls.Add(menuStrip1);
             Name = "UserPage";
             Text = "Kullanıcı Ekranı";
             Load += UserPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -257,7 +260,6 @@
         #endregion
 
         private ListBox ContactsListBox;
-        private Label label1;
         private Label label2;
         private TextBox NamePrompt;
         private TextBox SurnamePromp;
@@ -277,5 +279,6 @@
         private ToolStripMenuItem AdminToolStrip;
         private ToolStripMenuItem AdminToolStripMenu;
         private ToolStripMenuItem DeletedContactsToolStrip;
+        private GroupBox groupBox1;
     }
 }

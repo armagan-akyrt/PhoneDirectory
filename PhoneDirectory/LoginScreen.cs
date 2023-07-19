@@ -109,5 +109,11 @@ namespace PhoneDirectory
                 return (hashedPasswordInput == passwordFromDB);
             }
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string url = "https://ilgisoft.com/info";
+            System.Diagnostics.Process.Start(url);
+        }
     }
 }

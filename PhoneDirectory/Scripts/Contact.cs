@@ -35,7 +35,6 @@ namespace PhoneDirectory.Scripts
             this._address = address;
             this._username = username;
         }
-
         
 
         // TODO : check if user exists
@@ -254,6 +253,37 @@ namespace PhoneDirectory.Scripts
             }
 
             return true;
+        }
+
+        public bool CutUserContact(string username)
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("SevereUserContact", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@userUsername", username);
+                command.Parameters.AddWithValue("@contactUsername", this._username);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+
         }
     }
 
