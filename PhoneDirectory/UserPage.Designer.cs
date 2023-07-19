@@ -45,7 +45,10 @@
             menuStrip1 = new MenuStrip();
             PersonToolStrip = new ToolStripMenuItem();
             AddPersonToolStrip = new ToolStripMenuItem();
+            AdminToolStrip = new ToolStripMenuItem();
+            AdminToolStripMenu = new ToolStripMenuItem();
             DeleteButton = new Button();
+            DeletedContactsToolStrip = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -62,7 +65,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 28);
+            label1.Location = new Point(12, 39);
             label1.Name = "label1";
             label1.Size = new Size(41, 15);
             label1.TabIndex = 1;
@@ -169,7 +172,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(800, 24);
@@ -178,17 +181,31 @@
             // 
             // PersonToolStrip
             // 
-            PersonToolStrip.DropDownItems.AddRange(new ToolStripItem[] { AddPersonToolStrip });
+            PersonToolStrip.DropDownItems.AddRange(new ToolStripItem[] { AddPersonToolStrip, DeletedContactsToolStrip });
             PersonToolStrip.Name = "PersonToolStrip";
-            PersonToolStrip.Size = new Size(37, 20);
-            PersonToolStrip.Text = "Kişi";
+            PersonToolStrip.Size = new Size(75, 20);
+            PersonToolStrip.Text = "Bağlantılar";
             // 
             // AddPersonToolStrip
             // 
             AddPersonToolStrip.Name = "AddPersonToolStrip";
-            AddPersonToolStrip.Size = new Size(116, 22);
-            AddPersonToolStrip.Text = "Kişi Ekle";
+            AddPersonToolStrip.Size = new Size(180, 22);
+            AddPersonToolStrip.Text = "Bağlantı Ekle";
             AddPersonToolStrip.Click += AddPersonToolStrip_Click;
+            // 
+            // AdminToolStrip
+            // 
+            AdminToolStrip.DropDownItems.AddRange(new ToolStripItem[] { AdminToolStripMenu });
+            AdminToolStrip.Name = "AdminToolStrip";
+            AdminToolStrip.Size = new Size(61, 20);
+            AdminToolStrip.Text = "Yönetici";
+            // 
+            // AdminToolStripMenu
+            // 
+            AdminToolStripMenu.Name = "AdminToolStripMenu";
+            AdminToolStripMenu.Size = new Size(151, 22);
+            AdminToolStripMenu.Text = "Yönetici Ekranı";
+            AdminToolStripMenu.Click += AdminToolStripMenu_Click;
             // 
             // DeleteButton
             // 
@@ -199,6 +216,13 @@
             DeleteButton.Text = "Sil";
             DeleteButton.UseVisualStyleBackColor = true;
             DeleteButton.Click += DeleteButton_Click;
+            // 
+            // DeletedContactsToolStrip
+            // 
+            DeletedContactsToolStrip.Name = "DeletedContactsToolStrip";
+            DeletedContactsToolStrip.Size = new Size(180, 22);
+            DeletedContactsToolStrip.Text = "Silinen Bağlantılar";
+            DeletedContactsToolStrip.Click += DeletedContactsToolStrip_Click;
             // 
             // UserPage
             // 
@@ -222,7 +246,7 @@
             Controls.Add(ContactsListBox);
             Controls.Add(menuStrip1);
             Name = "UserPage";
-            Text = "UserPage";
+            Text = "Kullanıcı Ekranı";
             Load += UserPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -250,5 +274,8 @@
         private ToolStripMenuItem PersonToolStrip;
         private ToolStripMenuItem AddPersonToolStrip;
         private Button DeleteButton;
+        private ToolStripMenuItem AdminToolStrip;
+        private ToolStripMenuItem AdminToolStripMenu;
+        private ToolStripMenuItem DeletedContactsToolStrip;
     }
 }

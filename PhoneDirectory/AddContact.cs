@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PhoneDirectory.Scripts;
 
 namespace PhoneDirectory
 {
@@ -17,6 +18,8 @@ namespace PhoneDirectory
     {
         public string username;
         private Connection connection = new Connection();
+
+        private UsefulUtilities util = new UsefulUtilities();
         public AddContact(string username)
         {
             InitializeComponent();
@@ -51,8 +54,8 @@ namespace PhoneDirectory
 
         private void btnAddContact_Click(object sender, EventArgs e)
         {
-            string contactUsername = (NamePrompt.Text).ToLower().Replace(" ", "") + (SurnamePrompt.Text).ToLower().Replace(" ", "");
-            contactUsername = ConvertInputToAscii(contactUsername);
+            string contactUsername = NamePrompt.Text + SurnamePrompt.Text;
+            contactUsername = util.ConvertInputToAscii(contactUsername);
             GsmPrompt.Text = GsmPrompt.Text.Replace(" ", "");
 
             string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
@@ -82,16 +85,6 @@ namespace PhoneDirectory
 
         }
 
-        private void ReturnToUserPageButton_Click(object sender, EventArgs e)
-        {
-            Form userPage = new UserPage(username);
-            userPage.Show();
-            this.Hide();
-        }
 
-        private void RegeneratePassword_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

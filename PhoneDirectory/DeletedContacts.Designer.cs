@@ -206,7 +206,7 @@
             Controls.Add(ContactsSearchBar);
             Controls.Add(DeletedContactsList);
             Name = "DeletedContacts";
-            Text = "DeletedContacts";
+            Text = "Silinen Bağlantılar";
             Load += DeletedContacts_Load;
             ResumeLayout(false);
             PerformLayout();

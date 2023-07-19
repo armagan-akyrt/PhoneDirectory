@@ -13,6 +13,7 @@ namespace PhoneDirectory
     public partial class DeletedContacts : Form
     {
         public string username; // current user's username
+        private string role; // current user's role
 
         private List<Contact> deletedContacts = new List<Contact>();
         private Contact contact = new Contact();
@@ -20,15 +21,26 @@ namespace PhoneDirectory
 
         private UsefulUtilities util = new UsefulUtilities();
 
-        public DeletedContacts(string username)
+        public DeletedContacts(string username, string role)
         {
             InitializeComponent();
             this.username = username;
+            this.role = role;
         }
 
         private void DeletedContacts_Load(object sender, EventArgs e)
         {
             deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
+
+            if (role.Equals("ADMIN"))
+            {
+                DeletePermenantlyButton.Enabled = true;
+            }
+            else
+            {
+                DeletePermenantlyButton.Enabled = false;
+            }
+
         }
 
         private void ContactsSearchBar_TextChanged(object sender, EventArgs e)

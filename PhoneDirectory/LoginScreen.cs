@@ -70,13 +70,13 @@ namespace PhoneDirectory
                     if (role == "USER")
                     {
                         // open user page
-                        UserPage userPage = new UserPage(username);
+                        UserPage userPage = new UserPage(username, role);
                         userPage.Show();
                     }
                     else
                     {
                         // opens admin page
-                        AdminPage adminPage = new AdminPage(username);
+                        AdminPage adminPage = new AdminPage(username, role);
                         adminPage.Show();
                     }
 

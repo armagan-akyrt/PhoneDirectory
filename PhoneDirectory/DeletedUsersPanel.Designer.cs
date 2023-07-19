@@ -206,7 +206,7 @@
             Controls.Add(UsersSearchBar);
             Controls.Add(DeletedUsersList);
             Name = "DeletedUsersPanel";
-            Text = "DeletedUsersPanel";
+            Text = "Silinen Kullanıcılar";
             Load += DeletedUsersPanel_Load;
             ResumeLayout(false);
             PerformLayout();

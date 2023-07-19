@@ -16,6 +16,8 @@ namespace PhoneDirectory
     public partial class AdminPage : Form
     {
         public string username; // current user's username
+        private string role; // current user's role
+
         private List<User> users = new List<User>();
         private List<Contact> contacts = new List<Contact>();
         private UsefulUtilities util = new UsefulUtilities();
@@ -24,11 +26,12 @@ namespace PhoneDirectory
         private string selectedUser = ""; // selected user's username from the list
 
 
-        public AdminPage(string username)
+        public AdminPage(string username, string role)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             this.username = username;
+            this.role = role;
         }
 
         private void AdminPage_Load(object sender, EventArgs e)
@@ -64,7 +67,7 @@ namespace PhoneDirectory
 
         private void UserViewStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserPage userPage = new UserPage(username);
+            UserPage userPage = new UserPage(username, role);
             userPage.Show();
             this.Hide();
         }
@@ -86,7 +89,6 @@ namespace PhoneDirectory
             string contactSearch = ContactsSearchBar.Text;
             contactSearch = util.ConvertInputToAscii(contactSearch);
 
-            List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser, true);
             contacts = util.PrintContactsList(contactSearch, ContactsList, contacts, selectedUser, true);
         }
 
@@ -110,7 +112,7 @@ namespace PhoneDirectory
 
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
-            Form deletedContacts = new DeletedContacts(username);
+            Form deletedContacts = new DeletedContacts(username, role);
             deletedContacts.ShowDialog();
         }
 
@@ -118,6 +120,30 @@ namespace PhoneDirectory
         {
             Form addContact = new AddContact(username);
             addContact.ShowDialog();
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void ContactsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = ContactsList.SelectedIndex;
+            if (selectedIndex != -1)
+            {
+                Contact selectedContact = contacts[selectedIndex];
+                NamePrompt.Text = selectedContact._name;
+                LastNamePrompt.Text = selectedContact._surname;
+                GsmPrompt.Text = selectedContact._phoneNumber;
+                EmailPrompt.Text = selectedContact._email;
+                AddressPrompt.Text = selectedContact._address;
+            }
+        }
+
+        private void UpdateUserButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,12 +21,14 @@ namespace PhoneDirectory
         private string oldUsername = "";
 
         public string username;
-        public UserPage(string username)
+        private string role;
+        public UserPage(string username, string role)
         {
             InitializeComponent();
             this.username = username;
+            this.role = role;
             // make this page not changable to other open forms
-            
+
         }
 
 
@@ -34,6 +36,16 @@ namespace PhoneDirectory
         private void UserPage_Load(object sender, EventArgs e)
         {
             contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
+
+            if (role.Equals("ADMIN"))
+            {
+                AdminToolStrip.Visible = true;
+            }
+            else
+            {
+                AdminToolStrip.Visible = false;
+            }
+
 
         }
 
@@ -73,7 +85,7 @@ namespace PhoneDirectory
             AddresPrompt.Text = contactToShow._address;
 
         }
-        
+
         private void UpdatePerson_Click(object sender, EventArgs e)
         {
             GsmPrompt.Text = GsmPrompt.Text.Replace(" ", "");
@@ -97,7 +109,6 @@ namespace PhoneDirectory
                 return;
             }
 
-            Connection connection = new Connection();
             int i = ContactsListBox.SelectedIndex;
 
             contacts[i]._name = NamePrompt.Text;
@@ -120,10 +131,19 @@ namespace PhoneDirectory
         private void AddPersonToolStrip_Click(object sender, EventArgs e)
         {
             Form FormAddContact = new AddContact(username);
-            FormAddContact.Show();
-            this.Hide();
+            FormAddContact.ShowDialog();
         }
 
-        
+        private void AdminToolStripMenu_Click(object sender, EventArgs e)
+        {
+            Form AdminPage = new AdminPage(username, role);
+            AdminPage.ShowDialog();
+        }
+
+        private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
+        {
+            Form DeletedContacts = new DeletedContacts(username, role);
+            DeletedContacts.ShowDialog();
+        }
     }
 }

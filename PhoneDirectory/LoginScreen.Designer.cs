@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginScreen));
             btnLogin = new Button();
             label1 = new Label();
             label2 = new Label();
             EmailPrompt = new TextBox();
             PasswordPrompt = new TextBox();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnLogin
@@ -78,11 +81,23 @@
             PasswordPrompt.Size = new Size(196, 23);
             PasswordPrompt.TabIndex = 4;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.ImageLocation = "C:\\Users\\MONSTER\\source\\repos\\PhoneDirectory\\PhoneDirectory\\Assets\\logo.png";
+            pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
+            pictureBox1.Location = new Point(214, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(183, 71);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 5;
+            pictureBox1.TabStop = false;
+            // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(409, 334);
+            Controls.Add(pictureBox1);
             Controls.Add(PasswordPrompt);
             Controls.Add(EmailPrompt);
             Controls.Add(label2);
@@ -91,6 +106,7 @@
             Name = "LoginScreen";
             Text = "Giriş";
             Load += LoginScreen_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -102,5 +118,6 @@
         private Label label2;
         private TextBox EmailPrompt;
         private TextBox PasswordPrompt;
+        private PictureBox pictureBox1;
     }
 }

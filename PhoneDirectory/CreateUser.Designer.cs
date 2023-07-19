@@ -204,7 +204,7 @@
             Controls.Add(FirstNamePrompt);
             Controls.Add(label1);
             Name = "CreateUser";
-            Text = "CreateUser";
+            Text = "Kullanıcı Oluştur";
             Load += CreateUser_Load;
             ResumeLayout(false);
             PerformLayout();

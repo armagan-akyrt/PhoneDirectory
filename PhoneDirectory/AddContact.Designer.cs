@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             btnAddContact = new Button();
-            RoleComboBox = new ComboBox();
             AddressPrompt = new RichTextBox();
             label6 = new Label();
-            label5 = new Label();
             GsmPrompt = new TextBox();
             label4 = new Label();
             EmailPrompt = new TextBox();
@@ -43,27 +41,17 @@
             label1 = new Label();
             label7 = new Label();
             CurrentUserPrompt = new TextBox();
-            ReturnToUserPageButton = new Button();
             SuspendLayout();
             // 
             // btnAddContact
             // 
-            btnAddContact.Location = new Point(325, 418);
+            btnAddContact.Location = new Point(472, 390);
             btnAddContact.Name = "btnAddContact";
             btnAddContact.Size = new Size(75, 23);
             btnAddContact.TabIndex = 27;
             btnAddContact.Text = "Oluştur";
             btnAddContact.UseVisualStyleBackColor = true;
             btnAddContact.Click += btnAddContact_Click;
-            // 
-            // RoleComboBox
-            // 
-            RoleComboBox.FormattingEnabled = true;
-            RoleComboBox.Items.AddRange(new object[] { "ADMIN", "USER" });
-            RoleComboBox.Location = new Point(325, 185);
-            RoleComboBox.Name = "RoleComboBox";
-            RoleComboBox.Size = new Size(222, 23);
-            RoleComboBox.TabIndex = 26;
             // 
             // AddressPrompt
             // 
@@ -81,15 +69,6 @@
             label6.Size = new Size(37, 15);
             label6.TabIndex = 24;
             label6.Text = "Adres";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(325, 167);
-            label5.Name = "label5";
-            label5.Size = new Size(24, 15);
-            label5.TabIndex = 23;
-            label5.Text = "Rol";
             // 
             // GsmPrompt
             // 
@@ -172,29 +151,16 @@
             CurrentUserPrompt.Size = new Size(222, 23);
             CurrentUserPrompt.TabIndex = 29;
             // 
-            // ReturnToUserPageButton
-            // 
-            ReturnToUserPageButton.Location = new Point(472, 418);
-            ReturnToUserPageButton.Name = "ReturnToUserPageButton";
-            ReturnToUserPageButton.Size = new Size(75, 23);
-            ReturnToUserPageButton.TabIndex = 30;
-            ReturnToUserPageButton.Text = "Geri Dön";
-            ReturnToUserPageButton.UseVisualStyleBackColor = true;
-            ReturnToUserPageButton.Click += ReturnToUserPageButton_Click;
-            // 
             // AddContact
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(ReturnToUserPageButton);
+            ClientSize = new Size(583, 450);
             Controls.Add(CurrentUserPrompt);
             Controls.Add(label7);
             Controls.Add(btnAddContact);
-            Controls.Add(RoleComboBox);
             Controls.Add(AddressPrompt);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(GsmPrompt);
             Controls.Add(label4);
             Controls.Add(EmailPrompt);
@@ -204,7 +170,7 @@
             Controls.Add(NamePrompt);
             Controls.Add(label1);
             Name = "AddContact";
-            Text = "AddContact";
+            Text = "Bağlantı Ekle";
             Load += AddContact_Load;
             ResumeLayout(false);
             PerformLayout();
@@ -213,10 +179,8 @@
         #endregion
 
         private Button btnAddContact;
-        private ComboBox RoleComboBox;
         private RichTextBox AddressPrompt;
         private Label label6;
-        private Label label5;
         private TextBox GsmPrompt;
         private Label label4;
         private TextBox EmailPrompt;
@@ -227,6 +191,5 @@
         private Label label1;
         private Label label7;
         private TextBox CurrentUserPrompt;
-        private Button ReturnToUserPageButton;
     }
 }
