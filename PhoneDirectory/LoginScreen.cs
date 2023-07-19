@@ -47,8 +47,15 @@ namespace PhoneDirectory
                 command.Parameters.AddWithValue("@email", EmailPrompt.Text);
                 command.Parameters.AddWithValue("@password", PasswordPrompt.Text);
 
+                SqlParameter roleParam = new SqlParameter("@role", SqlDbType.VarChar, 50);
+                roleParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(roleParam);
 
-                SqlDataReader reader = command.ExecuteReader();
+                SqlParameter usernameParam = new SqlParameter("@username", SqlDbType.VarChar, 50);
+                usernameParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(usernameParam);
+
+                command.ExecuteNonQuery();
 
                 string role = command.Parameters["@role"].Value.ToString();
                 username = command.Parameters["@username"].Value.ToString();
@@ -59,17 +66,6 @@ namespace PhoneDirectory
                     MessageBox.Show("Giriş Başarılı.");
 
                     User user = new User();
-                    while (reader.Read())
-                    {
-                        user._name = reader["firstName"].ToString();
-                        user._surname = reader["lastName"].ToString();
-                        user._phoneNumber = reader["gsmNumber"].ToString();
-                        user._email = reader["email"].ToString();
-                        user._address = reader["address"].ToString();
-                        user._username = reader["username"].ToString();
-                        user._role = reader["role"].ToString();
-                        user._password = reader["password"].ToString();
-                    }
 
 
                     this.Hide();

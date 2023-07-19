@@ -19,7 +19,7 @@ namespace PhoneDirectory
         private User User = new User();
         private UsefulUtilities util = new UsefulUtilities();
 
-        
+
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
