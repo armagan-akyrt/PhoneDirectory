@@ -15,6 +15,8 @@ namespace PhoneDirectory
 {
     public partial class UserPage : Form
     {
+        private UsefulUtilities util = new UsefulUtilities();
+
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
 
@@ -29,47 +31,19 @@ namespace PhoneDirectory
 
         private void UserPage_Load(object sender, EventArgs e)
         {
-            PrintList("");
+            util.PrintContactsList("", ContactsListBox, contacts, username);
 
         }
-        /// <summary>
-        /// converts turkish string into ascii string
-        /// </summary>
-        /// <param name="input"> input string of any size.</param>
-        /// <returns>converted string</returns>
-        private string ConvertInputToAscii(string input)
-        {
-            // contains lowercase turkish characters
-            var charMap = new Dictionary<char, char>()
-            {
-                {'ç', 'c'},
-                {'ğ', 'g'},
-                {'ı', 'i'},
-                {'ö', 'o'},
-                {'ş', 's'},
-                {'ü', 'u'}
-            };
 
-            foreach (KeyValuePair<char, char> entry in charMap)
-            {
-                input = input.Replace(entry.Key, entry.Value);
-            }
-
-            return input;
-        }
         private void SearchBar_TextChanged(object sender, EventArgs e)
         {
             Contact contact = new Contact();
             string input = SearchBar.Text.ToLower().Replace(" ", "");
-            input = ConvertInputToAscii(input);
-            PrintList(input);
-            //contacts = contact.RetrieveContact(input, username);
-            //ContactsListBox.Items.Clear();
-            //foreach (Contact res in contacts)
-            //{
-            //    string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
-            //    ContactsListBox.Items.Add(tagToWrite);
-            //}
+            input = util.ConvertInputToAscii(input);
+
+            util.PrintContactsList(input, ContactsListBox, contacts, username);
+
+
         }
 
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,7 +52,7 @@ namespace PhoneDirectory
             try
             {
                 uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString().Replace(" ", "").ToLower();
-                uname = ConvertInputToAscii(uname);
+                uname = util.ConvertInputToAscii(uname);
             }
             catch (Exception)
             {
@@ -96,18 +70,6 @@ namespace PhoneDirectory
             GsmPrompt.Text = contactToShow._phoneNumber;
             AddresPrompt.Text = contactToShow._address;
 
-        }
-
-        private void PrintList(string search)
-        {
-            Contact contact = new Contact();
-            contacts = contact.RetrieveContact(search, username);
-            ContactsListBox.Items.Clear();
-            foreach (Contact res in contacts)
-            {
-                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
-                ContactsListBox.Items.Add(tagToWrite);
-            }
         }
 
         private void UpdatePerson_Click(object sender, EventArgs e)
@@ -144,13 +106,13 @@ namespace PhoneDirectory
 
             contacts[i].UpdateContact(oldUsername);
 
-            PrintList("");
+            util.PrintContactsList("", ContactsListBox, contacts, username);
         }
 
-private void DeleteButton_Click(object sender, EventArgs e)
+        private void DeleteButton_Click(object sender, EventArgs e)
         {
             contacts[ContactsListBox.SelectedIndex].SoftDeleteContact();
-            PrintList("");
+            util.PrintContactsList("", ContactsListBox, contacts, username);
         }
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)

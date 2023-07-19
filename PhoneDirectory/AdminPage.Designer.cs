@@ -40,6 +40,9 @@
             UserViewStripMenuItem = new ToolStripMenuItem();
             NewUserMenuStrip = new ToolStripMenuItem();
             DeleteUserButton = new Button();
+            DeletedUsersToolStrip = new ToolStripMenuItem();
+            bağlantılarToolStripMenuItem = new ToolStripMenuItem();
+            DeletedContactsToolStrip = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,9 +71,9 @@
             label2.AutoSize = true;
             label2.Location = new Point(413, 24);
             label2.Name = "label2";
-            label2.Size = new Size(47, 15);
+            label2.Size = new Size(115, 15);
             label2.TabIndex = 3;
-            label2.Text = "Rehber:";
+            label2.Text = "Kullanıcının Rehberi:";
             // 
             // ContactsList
             // 
@@ -111,7 +114,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip, bağlantılarToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1151, 24);
@@ -120,7 +123,7 @@
             // 
             // userToolStrip
             // 
-            userToolStrip.DropDownItems.AddRange(new ToolStripItem[] { UserViewStripMenuItem, NewUserMenuStrip });
+            userToolStrip.DropDownItems.AddRange(new ToolStripItem[] { UserViewStripMenuItem, NewUserMenuStrip, DeletedUsersToolStrip });
             userToolStrip.Name = "userToolStrip";
             userToolStrip.Size = new Size(64, 20);
             userToolStrip.Text = "Kullanıcı";
@@ -149,6 +152,26 @@
             DeleteUserButton.Text = "Sil";
             DeleteUserButton.UseVisualStyleBackColor = true;
             DeleteUserButton.Click += DeleteUserButton_Click;
+            // 
+            // DeletedUsersToolStrip
+            // 
+            DeletedUsersToolStrip.Name = "DeletedUsersToolStrip";
+            DeletedUsersToolStrip.Size = new Size(186, 22);
+            DeletedUsersToolStrip.Text = "Silinen Kullanıcılar";
+            DeletedUsersToolStrip.Click += DeletedUsersToolStrip_Click;
+            // 
+            // bağlantılarToolStripMenuItem
+            // 
+            bağlantılarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { DeletedContactsToolStrip });
+            bağlantılarToolStripMenuItem.Name = "bağlantılarToolStripMenuItem";
+            bağlantılarToolStripMenuItem.Size = new Size(75, 20);
+            bağlantılarToolStripMenuItem.Text = "Bağlantılar";
+            // 
+            // DeletedContactsToolStrip
+            // 
+            DeletedContactsToolStrip.Name = "DeletedContactsToolStrip";
+            DeletedContactsToolStrip.Size = new Size(180, 22);
+            DeletedContactsToolStrip.Text = "Slinen Bağlantılar";
             // 
             // AdminPage
             // 
@@ -189,5 +212,8 @@
         private ToolStripMenuItem UserViewStripMenuItem;
         private ToolStripMenuItem NewUserMenuStrip;
         private Button DeleteUserButton;
+        private ToolStripMenuItem DeletedUsersToolStrip;
+        private ToolStripMenuItem bağlantılarToolStripMenuItem;
+        private ToolStripMenuItem DeletedContactsToolStrip;
     }
 }

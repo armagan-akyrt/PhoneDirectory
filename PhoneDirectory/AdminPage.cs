@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PhoneDirectory.Scripts;
 
+
 namespace PhoneDirectory
 {
 
@@ -17,6 +18,8 @@ namespace PhoneDirectory
         public string username; // current user's username
         private List<User> users = new List<User>();
         private List<Contact> contacts = new List<Contact>();
+        private UsefulUtilities util = new UsefulUtilities();
+
 
         private string selectedUser = ""; // selected user's username from the list
 
@@ -30,26 +33,21 @@ namespace PhoneDirectory
 
         private void AdminPage_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void txtSearchUsers_TextChanged(object sender, EventArgs e)
         {
             // user searcbar string, converted to lowercase and without spaces
             string search = (UsersSearchBar.Text).ToLower().Replace(" ", "");
-            search = ConvertInputToAscii(search);
+            search = util.ConvertInputToAscii(search);
 
             // retrieve users list
             User user = new User();
             users = user.RetrieveUsersList(search);
 
-            // print users list
-            UsersList.Items.Clear();
-            foreach (User u in users)
-            {
-                UsersList.Items.Add(u._name + " " + u._surname);
+            util.PrintUsersList(search, UsersList, users);
 
-            }
         }
 
 
@@ -58,8 +56,9 @@ namespace PhoneDirectory
         {
             // contact searchbar string, converted to lowercase and without spaces
             string search = (ContactsSearchBar.Text).ToLower().Replace(" ", "");
-            search = ConvertInputToAscii(search);
-            PrintList(search, ContactsList);
+            search = util.ConvertInputToAscii(search);
+            util.PrintContactsList(search, ContactsList, contacts, selectedUser);
+
         }
 
         private void UserViewStripMenuItem_Click(object sender, EventArgs e)
@@ -79,52 +78,15 @@ namespace PhoneDirectory
 
             Contact contact = new Contact();
             selectedUser = UsersList.SelectedItem.ToString().Replace(" ", "").ToLower();
-            selectedUser = ConvertInputToAscii(selectedUser);
+            selectedUser = util.ConvertInputToAscii(selectedUser);
             ContactsList.Items.Clear();
 
             // retrieve contacts list
             string contactSearch = ContactsSearchBar.Text.ToLower().Replace(" ", "");
-            contactSearch = ConvertInputToAscii(contactSearch);
+            contactSearch = util.ConvertInputToAscii(contactSearch);
+
             List<Contact> contacts = contact.RetrieveContact(contactSearch, selectedUser);
-            PrintList(contactSearch, ContactsList);
-        }
-
-        private void PrintList(string search, ListBox listBox)
-        {
-            Contact contact = new Contact();
-            contacts = contact.RetrieveContact(search, selectedUser);
-            listBox.Items.Clear();
-            foreach (Contact res in contacts)
-            {
-                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
-                listBox.Items.Add(tagToWrite);
-            }
-        }
-
-        /// <summary>
-        /// converts turkish string into ascii string
-        /// </summary>
-        /// <param name="input"> input string of any size.</param>
-        /// <returns>converted string</returns>
-        private string ConvertInputToAscii(string input)
-        {
-            // contains lowercase turkish characters
-            var charMap = new Dictionary<char, char>()
-            {
-                {'ç', 'c'},
-                {'ğ', 'g'},
-                {'ı', 'i'},
-                {'ö', 'o'},
-                {'ş', 's'},
-                {'ü', 'u'}
-            };
-
-            foreach (KeyValuePair<char, char> entry in charMap)
-            {
-                input = input.Replace(entry.Key, entry.Value);
-            }
-
-            return input;
+            util.PrintContactsList(contactSearch, ContactsList, contacts, selectedUser);
         }
 
         private void NewUserMenuStrip_Click(object sender, EventArgs e)
@@ -138,6 +100,11 @@ namespace PhoneDirectory
         {
 
             users[UsersList.SelectedIndex].SoftDeleteUser();
-        }   
+        }
+
+        private void DeletedUsersToolStrip_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
