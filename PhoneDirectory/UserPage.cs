@@ -149,7 +149,7 @@ namespace PhoneDirectory
 
 private void DeleteButton_Click(object sender, EventArgs e)
         {
-            contacts[ContactsListBox.SelectedIndex].DeleteContact(username);
+            contacts[ContactsListBox.SelectedIndex].SoftDeleteContact();
             PrintList("");
         }
 

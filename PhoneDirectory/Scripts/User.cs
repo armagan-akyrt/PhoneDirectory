@@ -146,7 +146,34 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
-        
+        public bool SoftDeleteUser()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("SoftDeleteFromUsers", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
 
     }
 

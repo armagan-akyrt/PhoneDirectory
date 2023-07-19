@@ -137,6 +137,7 @@ namespace PhoneDirectory
         private void DeleteUserButton_Click(object sender, EventArgs e)
         {
 
-        }
+            users[UsersList.SelectedIndex].SoftDeleteUser();
+        }   
     }
 }

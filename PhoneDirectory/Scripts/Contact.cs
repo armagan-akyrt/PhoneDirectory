@@ -198,6 +198,35 @@ namespace PhoneDirectory.Scripts
 
             return true;
         }
+
+        public bool SoftDeleteContact()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("SoftDeleteFromContacts", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
     }
 
     
