@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUser));
             label1 = new Label();
             FirstNamePrompt = new TextBox();
             LastNamePrompt = new TextBox();
@@ -203,6 +204,7 @@
             Controls.Add(label2);
             Controls.Add(FirstNamePrompt);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "CreateUser";
             Text = "Kullanıcı Oluştur";
             Load += CreateUser_Load;

@@ -74,6 +74,43 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        public bool ChangePassword(string newPassword, string oldPassword)
+        {
+
+            if (!_password.Equals(oldPassword))
+            {
+                return false;
+            }
+
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("ChangePassword", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@password", newPassword);
+
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
+
         public bool UpdateUser(string oldUsername)
         {
             SqlConnection conn = connection.GetConnection();

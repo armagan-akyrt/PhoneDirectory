@@ -36,12 +36,13 @@
             PasswordPrompt = new TextBox();
             pictureBox1 = new PictureBox();
             linkLabel1 = new LinkLabel();
+            NewUserButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(133, 289);
+            btnLogin.Location = new Point(133, 233);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(75, 23);
             btnLogin.TabIndex = 0;
@@ -104,11 +105,22 @@
             linkLabel1.Text = "İletişim";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
+            // NewUserButton
+            // 
+            NewUserButton.Location = new Point(13, 233);
+            NewUserButton.Name = "NewUserButton";
+            NewUserButton.Size = new Size(114, 23);
+            NewUserButton.TabIndex = 7;
+            NewUserButton.Text = "Yeni Kullanıcı";
+            NewUserButton.UseVisualStyleBackColor = true;
+            NewUserButton.Click += NewUserButton_Click;
+            // 
             // LoginScreen
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(409, 334);
+            ClientSize = new Size(409, 267);
+            Controls.Add(NewUserButton);
             Controls.Add(linkLabel1);
             Controls.Add(pictureBox1);
             Controls.Add(PasswordPrompt);
@@ -116,6 +128,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btnLogin);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginScreen";
             Text = "Giriş";
             Load += LoginScreen_Load;
@@ -133,5 +146,6 @@
         private TextBox PasswordPrompt;
         private PictureBox pictureBox1;
         private LinkLabel linkLabel1;
+        private Button NewUserButton;
     }
 }

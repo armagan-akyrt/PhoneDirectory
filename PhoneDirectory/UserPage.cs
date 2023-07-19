@@ -15,7 +15,11 @@ namespace PhoneDirectory
 {
     public partial class UserPage : Form
     {
+
+        private User User = new User();
         private UsefulUtilities util = new UsefulUtilities();
+
+        
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
@@ -145,6 +149,11 @@ namespace PhoneDirectory
             Form DeletedContacts = new DeletedContacts(username, role);
             DeletedContacts.Show();
             this.Hide();
+        }
+
+        private void ChangePasswordStripTool_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

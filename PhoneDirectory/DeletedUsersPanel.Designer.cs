@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeletedUsersPanel));
             DeletedUsersList = new ListBox();
             UsersSearchBar = new TextBox();
             label1 = new Label();
@@ -205,6 +206,7 @@
             Controls.Add(label1);
             Controls.Add(UsersSearchBar);
             Controls.Add(DeletedUsersList);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DeletedUsersPanel";
             Text = "Silinen Kullanıcılar";
             Load += DeletedUsersPanel_Load;

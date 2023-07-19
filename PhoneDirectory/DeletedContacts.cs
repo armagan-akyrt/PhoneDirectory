@@ -67,8 +67,6 @@ namespace PhoneDirectory
                 selectedUsername = contact._username;
             }
 
-
-
         }
 
         private void DeletePermenantlyButton_Click(object sender, EventArgs e)

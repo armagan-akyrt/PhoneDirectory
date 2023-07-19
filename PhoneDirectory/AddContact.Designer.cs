@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddContact));
             btnAddContact = new Button();
             AddressPrompt = new RichTextBox();
             label6 = new Label();
@@ -169,6 +170,7 @@
             Controls.Add(label2);
             Controls.Add(NamePrompt);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddContact";
             Text = "Bağlantı Ekle";
             Load += AddContact_Load;

@@ -37,8 +37,6 @@ namespace PhoneDirectory.Scripts
         }
         
 
-        // TODO : check if user exists
-        // TODO : remove any special characters from username
         /// <summary>
         /// creates a new contact with the associated user
         /// </summary>
@@ -78,7 +76,6 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
-        // TODO : check if retrieve is successful
         /// <summary>
         /// retrieves contact information from database
         /// </summary>
@@ -287,5 +284,4 @@ namespace PhoneDirectory.Scripts
         }
     }
 
-    
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPage));
             ContactsListBox = new ListBox();
             label2 = new Label();
             NamePrompt = new TextBox();
@@ -49,6 +50,7 @@
             AdminToolStripMenu = new ToolStripMenuItem();
             DeleteButton = new Button();
             groupBox1 = new GroupBox();
+            ChangePasswordStripTool = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -164,7 +166,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip, ChangePasswordStripTool });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(573, 24);
@@ -202,7 +204,7 @@
             // AdminToolStripMenu
             // 
             AdminToolStripMenu.Name = "AdminToolStripMenu";
-            AdminToolStripMenu.Size = new Size(151, 22);
+            AdminToolStripMenu.Size = new Size(180, 22);
             AdminToolStripMenu.Text = "Yönetici Ekranı";
             AdminToolStripMenu.Click += AdminToolStripMenu_Click;
             // 
@@ -227,6 +229,13 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Rehber:";
             // 
+            // ChangePasswordStripTool
+            // 
+            ChangePasswordStripTool.Name = "ChangePasswordStripTool";
+            ChangePasswordStripTool.Size = new Size(85, 20);
+            ChangePasswordStripTool.Text = "Şifre Değiştir";
+            ChangePasswordStripTool.Click += ChangePasswordStripTool_Click;
+            // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -246,6 +255,7 @@
             Controls.Add(NamePrompt);
             Controls.Add(label2);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UserPage";
             Text = "Kullanıcı Ekranı";
             Load += UserPage_Load;
@@ -280,5 +290,6 @@
         private ToolStripMenuItem AdminToolStripMenu;
         private ToolStripMenuItem DeletedContactsToolStrip;
         private GroupBox groupBox1;
+        private ToolStripMenuItem ChangePasswordStripTool;
     }
 }

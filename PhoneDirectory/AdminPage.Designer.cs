@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPage));
             UsersList = new ListBox();
             ContactsList = new ListBox();
             btnBringContacts = new Button();
@@ -340,6 +341,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MinimizeBox = false;
             Name = "AdminPage";

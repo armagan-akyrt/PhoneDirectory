@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeletedContacts));
             label2 = new Label();
             ContactsSearchBar = new TextBox();
             DeletedContactsList = new ListBox();
@@ -205,6 +206,7 @@
             Controls.Add(label2);
             Controls.Add(ContactsSearchBar);
             Controls.Add(DeletedContactsList);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DeletedContacts";
             Text = "Silinen Bağlantılar";
             Load += DeletedContacts_Load;
