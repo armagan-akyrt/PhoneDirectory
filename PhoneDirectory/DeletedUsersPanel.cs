@@ -18,13 +18,17 @@ namespace PhoneDirectory
 
         private List<User> deletedUsers = new List<User>();
         private User user = new User();
+
+        private User currentUser = new User();
         string selectedUsername = "";
 
 
-        public DeletedUsersPanel(string username)
+        public DeletedUsersPanel(User user)
         {
             InitializeComponent();
-            this.username = username;
+
+            this.currentUser = user;
+            this.username = this.currentUser._username;
         }
 
         private void DeletedUsersPanel_Load(object sender, EventArgs e)

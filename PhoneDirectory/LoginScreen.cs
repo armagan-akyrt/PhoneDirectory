@@ -16,6 +16,7 @@ namespace PhoneDirectory
     public partial class LoginScreen : Form
     {
         private string username;
+        private User user = new User();
         public LoginScreen()
         {
             InitializeComponent();
@@ -47,25 +48,35 @@ namespace PhoneDirectory
                 command.Parameters.AddWithValue("@email", EmailPrompt.Text);
                 command.Parameters.AddWithValue("@password", PasswordPrompt.Text);
 
-                SqlParameter roleParam = new SqlParameter("@role", SqlDbType.VarChar, 50);
-                roleParam.Direction = ParameterDirection.Output;
-                command.Parameters.Add(roleParam);
+                //SqlParameter roleParam = new SqlParameter("@role", SqlDbType.VarChar, 50);
+                //roleParam.Direction = ParameterDirection.Output;
+                //command.Parameters.Add(roleParam);
 
-                SqlParameter usernameParam = new SqlParameter("@username", SqlDbType.VarChar, 50);
-                usernameParam.Direction = ParameterDirection.Output;
-                command.Parameters.Add(usernameParam);
+                //SqlParameter usernameParam = new SqlParameter("@username", SqlDbType.VarChar, 50);
+                //usernameParam.Direction = ParameterDirection.Output;
+                //command.Parameters.Add(usernameParam);
 
-                command.ExecuteNonQuery();
+                SqlDataReader reader = command.ExecuteReader();
 
-                string role = command.Parameters["@role"].Value.ToString();
-                username = command.Parameters["@username"].Value.ToString();
+                while (reader.Read())
+                {
+                    user._name = reader["firstName"]?.ToString() ?? string.Empty;
+                    user._surname = reader["lastName"]?.ToString() ?? string.Empty;
+                    user._phoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
+                    user._email = reader["email"]?.ToString() ?? string.Empty;
+                    user._address = reader["address"]?.ToString() ?? string.Empty;
+                    user._username = reader["username"]?.ToString() ?? string.Empty;
+                    user._role = reader["role"]?.ToString() ?? string.Empty;
+                    user._password = reader["password"]?.ToString() ?? string.Empty;
+                }
+
+                string role = user._role;
+                username = user._username;
 
                 if (!string.IsNullOrEmpty(role))
                 {
                     // if verified, open admin page.
                     MessageBox.Show("Giriş Başarılı.");
-
-                    User user = new User();
 
 
                     this.Hide();
@@ -73,13 +84,13 @@ namespace PhoneDirectory
                     if (role == "USER")
                     {
                         // open user page
-                        UserPage userPage = new UserPage(username, role);
+                        UserPage userPage = new UserPage(user);
                         userPage.Show();
                     }
                     else
                     {
                         // opens admin page
-                        AdminPage adminPage = new AdminPage(username, role);
+                        AdminPage adminPage = new AdminPage(user);
                         adminPage.Show();
                     }
 

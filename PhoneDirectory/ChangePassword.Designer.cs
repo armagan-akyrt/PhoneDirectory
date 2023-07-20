@@ -69,6 +69,7 @@
             // 
             OldPwdText.Location = new Point(12, 74);
             OldPwdText.Name = "OldPwdText";
+            OldPwdText.PasswordChar = '*';
             OldPwdText.Size = new Size(198, 23);
             OldPwdText.TabIndex = 3;
             // 
@@ -76,6 +77,7 @@
             // 
             NewPwdBox.Location = new Point(12, 127);
             NewPwdBox.Name = "NewPwdBox";
+            NewPwdBox.PasswordChar = '*';
             NewPwdBox.Size = new Size(198, 23);
             NewPwdBox.TabIndex = 4;
             // 
@@ -83,6 +85,7 @@
             // 
             NewPwdAgain.Location = new Point(12, 188);
             NewPwdAgain.Name = "NewPwdAgain";
+            NewPwdAgain.PasswordChar = '*';
             NewPwdAgain.Size = new Size(198, 23);
             NewPwdAgain.TabIndex = 5;
             // 

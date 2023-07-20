@@ -15,9 +15,10 @@ namespace PhoneDirectory
     {
         public string username;
         private User user = new User();
-        public ChangePassword()
+        public ChangePassword(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private void ChangePassword_Load(object sender, EventArgs e)
@@ -27,15 +28,21 @@ namespace PhoneDirectory
 
         private void ChangePwdButton_Click(object sender, EventArgs e)
         {
+            if (!user._password.Equals(OldPwdText.Text))
+            {
+                MessageBox.Show("Eski şifre yanlış!!");
+                return;
+            }
+
             if (NewPwdBox.Text.Equals(NewPwdAgain.Text))
             {
-                user.ChangePassword(username, NewPwdBox.Text);
-                MessageBox.Show("Password changed successfully!");
+                user.ChangePassword(NewPwdBox.Text, OldPwdText.Text);
+                MessageBox.Show("Şifre başarıyla değiştirildi!");
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Passwords do not match!");
+                MessageBox.Show("Şifreler uyuşmuyor!");
             }
         }
     }

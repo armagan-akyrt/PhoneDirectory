@@ -22,16 +22,20 @@ namespace PhoneDirectory
         private List<Contact> contacts = new List<Contact>();
         private UsefulUtilities util = new UsefulUtilities();
 
+        private User currentUser = new User();
 
         private string selectedUser = ""; // selected user's username from the list
 
 
-        public AdminPage(string username, string role)
+        public AdminPage(User user)
         {
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
-            this.username = username;
-            this.role = role;
+
+            currentUser = user;
+
+            this.username = currentUser._username;
+            this.role = currentUser._role;
         }
 
         private void AdminPage_Load(object sender, EventArgs e)
@@ -67,7 +71,7 @@ namespace PhoneDirectory
 
         private void UserViewStripMenuItem_Click(object sender, EventArgs e)
         {
-            UserPage userPage = new UserPage(username, role);
+            UserPage userPage = new UserPage(currentUser);
             userPage.Show();
             this.Hide();
         }
@@ -79,6 +83,10 @@ namespace PhoneDirectory
 
         private void btnBringContacts_Click(object sender, EventArgs e)
         {
+            if (UsersList.SelectedIndex == -1 || UsersList.SelectedItems == null)
+            {
+                return;
+            }
 
             Contact contact = new Contact();
             selectedUser = UsersList.SelectedItem.ToString();
@@ -106,19 +114,19 @@ namespace PhoneDirectory
 
         private void DeletedUsersToolStrip_Click(object sender, EventArgs e)
         {
-            Form deletedUsers = new DeletedUsersPanel(username);
+            Form deletedUsers = new DeletedUsersPanel(currentUser);
             deletedUsers.ShowDialog();
         }
 
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
-            Form deletedContacts = new DeletedContacts(username, role);
+            Form deletedContacts = new DeletedContacts(currentUser);
             deletedContacts.ShowDialog();
         }
 
         private void NewContactToolstrip_Click(object sender, EventArgs e)
         {
-            Form addContact = new AddContact(username);
+            Form addContact = new AddContact(currentUser);
             addContact.ShowDialog();
         }
 

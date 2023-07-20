@@ -16,21 +16,23 @@ namespace PhoneDirectory
     public partial class UserPage : Form
     {
 
-        private User User = new User();
+        private User user = new User();
         private UsefulUtilities util = new UsefulUtilities();
 
-
+        
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
 
         public string username;
         private string role;
-        public UserPage(string username, string role)
+        public UserPage(User user)
         {
             InitializeComponent();
-            this.username = username;
-            this.role = role;
+            this.user = user;
+
+            this.username = user._username;
+            this.role = user._role;
             // make this page not changable to other open forms
 
         }
@@ -134,26 +136,27 @@ namespace PhoneDirectory
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)
         {
-            Form FormAddContact = new AddContact(username);
+            Form FormAddContact = new AddContact(user);
             FormAddContact.ShowDialog();
         }
 
         private void AdminToolStripMenu_Click(object sender, EventArgs e)
         {
-            Form AdminPage = new AdminPage(username, role);
+            Form AdminPage = new AdminPage(user);
             AdminPage.ShowDialog();
         }
 
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
-            Form DeletedContacts = new DeletedContacts(username, role);
+            Form DeletedContacts = new DeletedContacts(user);
             DeletedContacts.Show();
             this.Hide();
         }
 
         private void ChangePasswordStripTool_Click(object sender, EventArgs e)
         {
-            
+            Form ChangePwd = new ChangePassword(user);
+            ChangePwd.ShowDialog();
         }
     }
 }

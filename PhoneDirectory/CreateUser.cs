@@ -27,7 +27,19 @@ namespace PhoneDirectory
         private void CreateUser_Load(object sender, EventArgs e)
         {
             PasswordPrompt.Text = user.GenerateRandomPassword();
+            
 
+
+            if(username.Length == 0)
+            {
+                label5.Hide();
+                RoleComboBox.Hide();
+            }
+            else
+            {
+                label5.Show();
+                RoleComboBox.Show();
+            }
         }
 
         private void RegeneratePassword_Click(object sender, EventArgs e)
@@ -42,7 +54,7 @@ namespace PhoneDirectory
             user._phoneNumber = GsmPrompt.Text;
             user._email = EmailPrompt.Text;
             user._address = AddressPrompt.Text;
-            user._role = RoleComboBox.SelectedText;
+            user._role = (username.Length > 0) ? RoleComboBox.Text : "USER";
             user._password = PasswordPrompt.Text;
             user._username = " ";
 

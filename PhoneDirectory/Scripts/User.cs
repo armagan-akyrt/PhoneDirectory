@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace PhoneDirectory.Scripts
 {
-    internal class User
+    public class User
     {
         public string _name;
         public string _surname;
@@ -162,23 +162,21 @@ namespace PhoneDirectory.Scripts
                 while (reader.Read())
                 {
                     User user = new User();
-                    user._name = reader["firstName"].ToString();
-                    user._surname = reader["lastName"].ToString();
-                    user._phoneNumber = reader["gsmNumber"].ToString();
-                    user._email = reader["email"].ToString();
-                    user._address = reader["address"].ToString();
-                    user._username = reader["username"].ToString();
-                    user._role = reader["role"].ToString();
-                    user._password = reader["password"].ToString();
+                    user._name = reader["firstName"]?.ToString() ?? string.Empty;
+                    user._surname = reader["lastName"]?.ToString() ?? string.Empty;
+                    user._phoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
+                    user._email = reader["email"]?.ToString() ?? string.Empty;
+                    user._address = reader["address"]?.ToString() ?? string.Empty;
+                    user._username = reader["username"]?.ToString() ?? string.Empty;
+                    user._role = reader["role"]?.ToString() ?? string.Empty;
+                    user._password = reader["password"]?.ToString() ?? string.Empty;
                     users.Add(user);
                 }
-
             }
             catch (Exception)
             {
                 throw;
             }
-
             finally
             {
                 conn.Close();

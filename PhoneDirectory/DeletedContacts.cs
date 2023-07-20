@@ -12,6 +12,9 @@ namespace PhoneDirectory
 {
     public partial class DeletedContacts : Form
     {
+
+        private User user = new User();
+
         public string username; // current user's username
         private string role; // current user's role
 
@@ -21,11 +24,14 @@ namespace PhoneDirectory
 
         private UsefulUtilities util = new UsefulUtilities();
 
-        public DeletedContacts(string username, string role)
+        public DeletedContacts(User user)
         {
             InitializeComponent();
-            this.username = username;
-            this.role = role;
+
+            this.user = user;
+
+            this.username = user._username;
+            this.role = user._role;
         }
 
         private void DeletedContacts_Load(object sender, EventArgs e)

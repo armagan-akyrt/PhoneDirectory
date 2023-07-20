@@ -17,13 +17,17 @@ namespace PhoneDirectory
     public partial class AddContact : Form
     {
         public string username;
+        private User user = new User();
+
         private Connection connection = new Connection();
 
         private UsefulUtilities util = new UsefulUtilities();
-        public AddContact(string username)
+        public AddContact(User user)
         {
             InitializeComponent();
-            this.username = username;
+            this.user = user;
+
+            this.username = this.user._username;
         }
 
         private string ConvertInputToAscii(string input)
