@@ -19,7 +19,11 @@ namespace PhoneDirectory
         private string role; // current user's role
 
         private List<User> users = new List<User>();
+        private User user = new User();
+
         private List<Contact> contacts = new List<Contact>();
+
+
         private UsefulUtilities util = new UsefulUtilities();
 
         private User currentUser = new User();
@@ -90,6 +94,17 @@ namespace PhoneDirectory
                 return;
             }
 
+            int selectedIndex = UsersList.SelectedIndex;
+
+            user = users[selectedIndex];
+
+            UserFirstNamePropmt.Text = users[selectedIndex].Name;
+            UserLastNamePrompt.Text = users[selectedIndex].Surname;
+            UserEmailPrompt.Text = users[selectedIndex].Mail;
+            UserGsmPrompt.Text = users[selectedIndex].PhoneNumber;
+            UserAddressPrompt.Text = users[selectedIndex].Address;
+            UserRoleBox.SelectedItem = users[selectedIndex].Role.Equals("ADMIN") ? "ADMIN" : "USER";
+
             Contact contact = new Contact();
             selectedUser = UsersList.SelectedItem.ToString();
             selectedUser = util.ConvertInputToAscii(selectedUser);
@@ -159,7 +174,7 @@ namespace PhoneDirectory
             }
         }
 
-        private void UpdateUserButton_Click(object sender, EventArgs e)
+        private void UpdateContactButton_Click(object sender, EventArgs e)
         {
             int selectedIndex = ContactsList.SelectedIndex;
             try
@@ -187,6 +202,18 @@ namespace PhoneDirectory
         private void AdminPage_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void UpdateUserButton_Click(object sender, EventArgs e)
+        {
+            user.Name = UserFirstNamePropmt.Text;
+            user.Surname = UserLastNamePrompt.Text;
+            user.Mail = UserEmailPrompt.Text;
+            user.PhoneNumber = UserGsmPrompt.Text;
+            user.Address = UserAddressPrompt.Text;
+            user.Role = UserRoleBox.SelectedItem.ToString();
+
+            user.UpdateUser(user.Username);
         }
     }
 }

@@ -51,18 +51,33 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            UpdateUserButton = new Button();
+            UpdateContactButton = new Button();
             AddressPrompt = new RichTextBox();
             EmailPrompt = new TextBox();
             GsmPrompt = new TextBox();
             LastNamePrompt = new TextBox();
             NamePrompt = new TextBox();
             pictureBox1 = new PictureBox();
+            groupBox4 = new GroupBox();
+            label11 = new Label();
+            UserRoleBox = new ComboBox();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            label9 = new Label();
+            label10 = new Label();
+            UpdateUserButton = new Button();
+            UserAddressPrompt = new RichTextBox();
+            UserEmailPrompt = new TextBox();
+            UserGsmPrompt = new TextBox();
+            UserLastNamePrompt = new TextBox();
+            UserFirstNamePropmt = new TextBox();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // UsersList
@@ -119,7 +134,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip, bağlantılarToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1151, 24);
+            menuStrip1.Size = new Size(1495, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -216,13 +231,13 @@
             groupBox3.Controls.Add(label3);
             groupBox3.Controls.Add(label2);
             groupBox3.Controls.Add(label1);
-            groupBox3.Controls.Add(UpdateUserButton);
+            groupBox3.Controls.Add(UpdateContactButton);
             groupBox3.Controls.Add(AddressPrompt);
             groupBox3.Controls.Add(EmailPrompt);
             groupBox3.Controls.Add(GsmPrompt);
             groupBox3.Controls.Add(LastNamePrompt);
             groupBox3.Controls.Add(NamePrompt);
-            groupBox3.Location = new Point(830, 27);
+            groupBox3.Location = new Point(1174, 27);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(309, 389);
             groupBox3.TabIndex = 12;
@@ -274,15 +289,15 @@
             label1.TabIndex = 6;
             label1.Text = "Ad:";
             // 
-            // UpdateUserButton
+            // UpdateContactButton
             // 
-            UpdateUserButton.Location = new Point(214, 354);
-            UpdateUserButton.Name = "UpdateUserButton";
-            UpdateUserButton.Size = new Size(75, 23);
-            UpdateUserButton.TabIndex = 5;
-            UpdateUserButton.Text = "Güncelle";
-            UpdateUserButton.UseVisualStyleBackColor = true;
-            UpdateUserButton.Click += UpdateUserButton_Click;
+            UpdateContactButton.Location = new Point(214, 354);
+            UpdateContactButton.Name = "UpdateContactButton";
+            UpdateContactButton.Size = new Size(75, 23);
+            UpdateContactButton.TabIndex = 5;
+            UpdateContactButton.Text = "Güncelle";
+            UpdateContactButton.UseVisualStyleBackColor = true;
+            UpdateContactButton.Click += UpdateContactButton_Click;
             // 
             // AddressPrompt
             // 
@@ -324,18 +339,150 @@
             // 
             pictureBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             pictureBox1.ImageLocation = "C:\\Users\\MONSTER\\source\\repos\\PhoneDirectory\\PhoneDirectory\\Assets\\logo.png";
-            pictureBox1.Location = new Point(830, 422);
+            pictureBox1.Location = new Point(1174, 422);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(309, 200);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 13;
             pictureBox1.TabStop = false;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(label11);
+            groupBox4.Controls.Add(UserRoleBox);
+            groupBox4.Controls.Add(label6);
+            groupBox4.Controls.Add(label7);
+            groupBox4.Controls.Add(label8);
+            groupBox4.Controls.Add(label9);
+            groupBox4.Controls.Add(label10);
+            groupBox4.Controls.Add(UpdateUserButton);
+            groupBox4.Controls.Add(UserAddressPrompt);
+            groupBox4.Controls.Add(UserEmailPrompt);
+            groupBox4.Controls.Add(UserGsmPrompt);
+            groupBox4.Controls.Add(UserLastNamePrompt);
+            groupBox4.Controls.Add(UserFirstNamePropmt);
+            groupBox4.Location = new Point(830, 27);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(338, 389);
+            groupBox4.TabIndex = 14;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Kullanıcı Bilgileri";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(39, 165);
+            label11.Name = "label11";
+            label11.Size = new Size(27, 15);
+            label11.TabIndex = 22;
+            label11.Text = "Rol:";
+            // 
+            // UserRoleBox
+            // 
+            UserRoleBox.FormattingEnabled = true;
+            UserRoleBox.Items.AddRange(new object[] { "ADMIN", "USER" });
+            UserRoleBox.Location = new Point(102, 162);
+            UserRoleBox.Name = "UserRoleBox";
+            UserRoleBox.Size = new Size(220, 23);
+            UserRoleBox.TabIndex = 11;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(39, 239);
+            label6.Name = "label6";
+            label6.Size = new Size(40, 15);
+            label6.TabIndex = 21;
+            label6.Text = "Adres:";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(39, 202);
+            label7.Name = "label7";
+            label7.Size = new Size(50, 15);
+            label7.TabIndex = 20;
+            label7.Text = "E-posta:";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(39, 128);
+            label8.Name = "label8";
+            label8.Size = new Size(46, 15);
+            label8.TabIndex = 19;
+            label8.Text = "Tel. No:";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(39, 91);
+            label9.Name = "label9";
+            label9.Size = new Size(42, 15);
+            label9.TabIndex = 18;
+            label9.Text = "Soyad:";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(41, 59);
+            label10.Name = "label10";
+            label10.Size = new Size(25, 15);
+            label10.TabIndex = 17;
+            label10.Text = "Ad:";
+            // 
+            // UpdateUserButton
+            // 
+            UpdateUserButton.Location = new Point(247, 354);
+            UpdateUserButton.Name = "UpdateUserButton";
+            UpdateUserButton.Size = new Size(75, 23);
+            UpdateUserButton.TabIndex = 16;
+            UpdateUserButton.Text = "Güncelle";
+            UpdateUserButton.UseVisualStyleBackColor = true;
+            UpdateUserButton.Click += UpdateUserButton_Click;
+            // 
+            // UserAddressPrompt
+            // 
+            UserAddressPrompt.Location = new Point(102, 239);
+            UserAddressPrompt.Name = "UserAddressPrompt";
+            UserAddressPrompt.Size = new Size(220, 109);
+            UserAddressPrompt.TabIndex = 15;
+            UserAddressPrompt.Text = "";
+            // 
+            // UserEmailPrompt
+            // 
+            UserEmailPrompt.Location = new Point(102, 199);
+            UserEmailPrompt.Name = "UserEmailPrompt";
+            UserEmailPrompt.Size = new Size(220, 23);
+            UserEmailPrompt.TabIndex = 14;
+            // 
+            // UserGsmPrompt
+            // 
+            UserGsmPrompt.Location = new Point(102, 125);
+            UserGsmPrompt.Name = "UserGsmPrompt";
+            UserGsmPrompt.Size = new Size(220, 23);
+            UserGsmPrompt.TabIndex = 13;
+            // 
+            // UserLastNamePrompt
+            // 
+            UserLastNamePrompt.Location = new Point(102, 88);
+            UserLastNamePrompt.Name = "UserLastNamePrompt";
+            UserLastNamePrompt.Size = new Size(220, 23);
+            UserLastNamePrompt.TabIndex = 12;
+            // 
+            // UserFirstNamePropmt
+            // 
+            UserFirstNamePropmt.Location = new Point(102, 51);
+            UserFirstNamePropmt.Name = "UserFirstNamePropmt";
+            UserFirstNamePropmt.Size = new Size(220, 23);
+            UserFirstNamePropmt.TabIndex = 11;
+            // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1151, 634);
+            ClientSize = new Size(1495, 634);
+            Controls.Add(groupBox4);
             Controls.Add(pictureBox1);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -357,6 +504,8 @@
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -381,7 +530,7 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Label label1;
-        private Button UpdateUserButton;
+        private Button UpdateContactButton;
         private RichTextBox AddressPrompt;
         private TextBox EmailPrompt;
         private TextBox GsmPrompt;
@@ -392,5 +541,19 @@
         private Label label3;
         private Label label2;
         private PictureBox pictureBox1;
+        private GroupBox groupBox4;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private Button UpdateUserButton;
+        private RichTextBox UserAddressPrompt;
+        private TextBox UserEmailPrompt;
+        private TextBox UserGsmPrompt;
+        private TextBox UserLastNamePrompt;
+        private TextBox UserFirstNamePropmt;
+        private Label label11;
+        private ComboBox UserRoleBox;
     }
 }
