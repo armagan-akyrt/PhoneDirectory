@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,11 @@ namespace PhoneDirectory
     public partial class ChangePassword : Form
     {
         public string username;
+        private string oldPwd;
         private User user = new User();
+
+        private UsefulUtilities util = new UsefulUtilities();
+
         public ChangePassword(User user)
         {
             InitializeComponent();
@@ -23,12 +28,16 @@ namespace PhoneDirectory
 
         private void ChangePassword_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void ChangePwdButton_Click(object sender, EventArgs e)
         {
-            if (!user._password.Equals(OldPwdText.Text))
+
+            oldPwd = util.EncryptPassword(OldPwdText.Text);
+
+
+            if (!user.Password.Equals(oldPwd))
             {
                 MessageBox.Show("Eski şifre yanlış!!");
                 return;
@@ -36,7 +45,7 @@ namespace PhoneDirectory
 
             if (NewPwdBox.Text.Equals(NewPwdAgain.Text))
             {
-                user.ChangePassword(NewPwdBox.Text, OldPwdText.Text);
+                user.ChangePassword(NewPwdBox.Text, oldPwd);
                 MessageBox.Show("Şifre başarıyla değiştirildi!");
                 this.Close();
             }

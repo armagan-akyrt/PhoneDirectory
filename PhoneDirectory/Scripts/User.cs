@@ -4,20 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Security.Cryptography;
+using Microsoft.VisualBasic.ApplicationServices;
+using System.Data;
 
 namespace PhoneDirectory.Scripts
 {
     public class User
     {
-        public string _name;
-        public string _surname;
-        public string _phoneNumber;
-        public string _email;
-        public string _address;
-        public string _password;
-        public string _role;
-        public string _username;
+        private string _name;
+        private string _surname;
+        private string _phoneNumber;
+        private string _email;
+        private string _address;
+        private string _password;
+        private string _role;
+        private string _username;
 
+        private UsefulUtilities util = new UsefulUtilities();
         Connection connection = new Connection();
 
         public User()
@@ -38,6 +42,63 @@ namespace PhoneDirectory.Scripts
 
         }
 
+        #region Getters and Setters
+        // GET/SET password
+        public string Password
+        {
+            get { return _password; }
+            set 
+            { 
+
+                _password = value;
+                _password = util.EncryptPassword(_password);
+            }
+        }
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+
+        public string Surname
+        {
+            get { return _surname; }
+            set { _surname = value; }
+        }
+
+        public string PhoneNumber
+        {
+            get { return _phoneNumber; }
+            set { _phoneNumber = value; }
+        }
+
+        public string Mail
+        {
+            get { return _email; }
+            set { _email = value; }
+        }
+
+        public string Address
+        {
+            get { return _address; }
+            set { _address = value; }
+        }
+
+        public string Role
+        {
+            get { return _role; }
+            set { _role = value; }
+        }
+
+        public string Username
+        {
+            get { return _username; }
+            set { _username = value; }
+        }
+
+        #endregion
+
         // TODO : check if user exists
         // TODO : remove any special characters from username
         public bool CreateUser()
@@ -50,14 +111,14 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("CreateUser", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@name", this._name);
-                command.Parameters.AddWithValue("@surname", this._surname);
-                command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
-                command.Parameters.AddWithValue("@email", this._email);
-                command.Parameters.AddWithValue("@address", this._address);
-                command.Parameters.AddWithValue("@password", this._password);
-                command.Parameters.AddWithValue("@role", this._role);
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@name", this.Name);
+                command.Parameters.AddWithValue("@surname", this.Surname);
+                command.Parameters.AddWithValue("@gsmNum", this.PhoneNumber);
+                command.Parameters.AddWithValue("@email", this.Mail);
+                command.Parameters.AddWithValue("@address", this.Address);
+                command.Parameters.AddWithValue("@password", this.Password);
+                command.Parameters.AddWithValue("@role", this.Role);
+                command.Parameters.AddWithValue("@username", this.Username);
 
                 command.ExecuteNonQuery();
             }
@@ -81,6 +142,8 @@ namespace PhoneDirectory.Scripts
             {
                 return false;
             }
+
+            newPassword = util.EncryptPassword(newPassword);
 
             SqlConnection conn = connection.GetConnection();
 
@@ -143,6 +206,52 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        public User LoginVerify(string email, string password)
+        {
+            SqlConnection conn = connection.GetConnection();
+            User user = new User();
+
+            string encrypted = util.EncryptPassword(password);
+
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("VerifyUnamePwd", conn);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@email", email);
+                command.Parameters.AddWithValue("@password", encrypted);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    user.Name = reader["firstName"]?.ToString() ?? string.Empty;
+                    user.Surname = reader["lastName"]?.ToString() ?? string.Empty;
+                    user.PhoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
+                    user.Mail = reader["email"]?.ToString() ?? string.Empty;
+                    user.Address = reader["address"]?.ToString() ?? string.Empty;
+                    user.Username = reader["username"]?.ToString() ?? string.Empty;
+                    user.Role = reader["role"]?.ToString() ?? string.Empty;
+                    user._password = reader["password"]?.ToString() ?? string.Empty;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+                throw;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return user;
+
+        }
+
         public List<User> RetrieveUsersList(string searchWord, bool activeState)
         {
             SqlConnection conn = connection.GetConnection();
@@ -162,13 +271,13 @@ namespace PhoneDirectory.Scripts
                 while (reader.Read())
                 {
                     User user = new User();
-                    user._name = reader["firstName"]?.ToString() ?? string.Empty;
-                    user._surname = reader["lastName"]?.ToString() ?? string.Empty;
-                    user._phoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
-                    user._email = reader["email"]?.ToString() ?? string.Empty;
-                    user._address = reader["address"]?.ToString() ?? string.Empty;
-                    user._username = reader["username"]?.ToString() ?? string.Empty;
-                    user._role = reader["role"]?.ToString() ?? string.Empty;
+                    user.Name = reader["firstName"]?.ToString() ?? string.Empty;
+                    user.Surname = reader["lastName"]?.ToString() ?? string.Empty;
+                    user.PhoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
+                    user.Mail = reader["email"]?.ToString() ?? string.Empty;
+                    user.Address = reader["address"]?.ToString() ?? string.Empty;
+                    user.Username = reader["username"]?.ToString() ?? string.Empty;
+                    user.Role = reader["role"]?.ToString() ?? string.Empty;
                     user._password = reader["password"]?.ToString() ?? string.Empty;
                     users.Add(user);
                 }
@@ -302,7 +411,7 @@ namespace PhoneDirectory.Scripts
 
             }
 
-            this._password = password;
+            Password = password;
             return password;
         }
 

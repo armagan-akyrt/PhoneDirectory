@@ -31,8 +31,8 @@ namespace PhoneDirectory
             InitializeComponent();
             this.user = user;
 
-            this.username = user._username;
-            this.role = user._role;
+            this.username = user.Username;
+            this.role = user.Role;
             // make this page not changable to other open forms
 
         }

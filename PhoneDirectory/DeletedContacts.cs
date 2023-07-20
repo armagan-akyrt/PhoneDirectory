@@ -30,8 +30,8 @@ namespace PhoneDirectory
 
             this.user = user;
 
-            this.username = user._username;
-            this.role = user._role;
+            this.username = user.Username;
+            this.role = user.Role;
         }
 
         private void DeletedContacts_Load(object sender, EventArgs e)

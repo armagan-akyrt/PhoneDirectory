@@ -28,7 +28,7 @@ namespace PhoneDirectory
             InitializeComponent();
 
             this.currentUser = user;
-            this.username = this.currentUser._username;
+            this.username = this.currentUser.Username;
         }
 
         private void DeletedUsersPanel_Load(object sender, EventArgs e)
@@ -45,14 +45,14 @@ namespace PhoneDirectory
             {
                 // write the selected user's info to the textboxes
 
-                FirstNamePrompt.Text = deletedUsers[selectedIndex]._name;
-                LastNamePrompt.Text = deletedUsers[selectedIndex]._surname;
-                GsmPrompt.Text = deletedUsers[selectedIndex]._phoneNumber;
-                EmailPrompt.Text = deletedUsers[selectedIndex]._email;
-                AddressPrompt.Text = deletedUsers[selectedIndex]._address;
+                FirstNamePrompt.Text = deletedUsers[selectedIndex].Name;
+                LastNamePrompt.Text = deletedUsers[selectedIndex].Surname;
+                GsmPrompt.Text = deletedUsers[selectedIndex].PhoneNumber;
+                EmailPrompt.Text = deletedUsers[selectedIndex].Mail;
+                AddressPrompt.Text = deletedUsers[selectedIndex].Address;
 
                 user = deletedUsers[selectedIndex];
-                selectedUsername = user._username;
+                selectedUsername = user.Username;
 
             }
         }

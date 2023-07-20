@@ -36,78 +36,39 @@ namespace PhoneDirectory
         /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            Connection connection = new Connection();
-            SqlConnection conn = connection.GetConnection();
+            string pwdEncrypted = new UsefulUtilities().EncryptPassword(PasswordPrompt.Text);
 
-            try
+            user = user.LoginVerify(EmailPrompt.Text, PasswordPrompt.Text);
+                
+
+            string role = user.Role;
+            username = user.Username;
+
+            if (!string.IsNullOrEmpty(role))
             {
-                conn.Open();
-                SqlCommand command = new SqlCommand("VerifyUnamePwd", conn);
-                command.CommandType = CommandType.StoredProcedure;
+                // if verified, open admin page.
+                MessageBox.Show("Giriş Başarılı.");
 
-                command.Parameters.AddWithValue("@email", EmailPrompt.Text);
-                command.Parameters.AddWithValue("@password", PasswordPrompt.Text);
 
-                //SqlParameter roleParam = new SqlParameter("@role", SqlDbType.VarChar, 50);
-                //roleParam.Direction = ParameterDirection.Output;
-                //command.Parameters.Add(roleParam);
+                this.Hide();
 
-                //SqlParameter usernameParam = new SqlParameter("@username", SqlDbType.VarChar, 50);
-                //usernameParam.Direction = ParameterDirection.Output;
-                //command.Parameters.Add(usernameParam);
-
-                SqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+                if (role == "USER")
                 {
-                    user._name = reader["firstName"]?.ToString() ?? string.Empty;
-                    user._surname = reader["lastName"]?.ToString() ?? string.Empty;
-                    user._phoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
-                    user._email = reader["email"]?.ToString() ?? string.Empty;
-                    user._address = reader["address"]?.ToString() ?? string.Empty;
-                    user._username = reader["username"]?.ToString() ?? string.Empty;
-                    user._role = reader["role"]?.ToString() ?? string.Empty;
-                    user._password = reader["password"]?.ToString() ?? string.Empty;
-                }
-
-                string role = user._role;
-                username = user._username;
-
-                if (!string.IsNullOrEmpty(role))
-                {
-                    // if verified, open admin page.
-                    MessageBox.Show("Giriş Başarılı.");
-
-
-                    this.Hide();
-
-                    if (role == "USER")
-                    {
-                        // open user page
-                        UserPage userPage = new UserPage(user);
-                        userPage.Show();
-                    }
-                    else
-                    {
-                        // opens admin page
-                        AdminPage adminPage = new AdminPage(user);
-                        adminPage.Show();
-                    }
-
+                    // open user page
+                    UserPage userPage = new UserPage(user);
+                    userPage.Show();
                 }
                 else
                 {
-                    MessageBox.Show("Kullanıcı adı veya şifre yanlış.");
+                    // opens admin page
+                    AdminPage adminPage = new AdminPage(user);
+                    adminPage.Show();
                 }
 
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                conn.Close();
+                MessageBox.Show("Kullanıcı adı veya şifre yanlış.");
             }
 
         }

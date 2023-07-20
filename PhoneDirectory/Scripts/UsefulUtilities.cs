@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
@@ -45,7 +46,7 @@ namespace PhoneDirectory.Scripts
 
             foreach (User res in users)
             {
-                string tagToWrite = "FIRST LAST".Replace("FIRST", res._name).Replace("LAST", res._surname);
+                string tagToWrite = "FIRST LAST".Replace("FIRST", res.Name).Replace("LAST", res.Surname);
                 listBox.Items.Add(tagToWrite);
             }
 
@@ -80,6 +81,23 @@ namespace PhoneDirectory.Scripts
             return input;
         }
 
+        
+        /// <summary>
+        /// encrypts password with SHA256
+        /// </summary>
+        /// <returns></returns>
+        public string EncryptPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                string pwdToReturn;
+
+                byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                pwdToReturn = Convert.ToBase64String(bytes);
+
+                return pwdToReturn;
+            }
+        }
 
     }
 }

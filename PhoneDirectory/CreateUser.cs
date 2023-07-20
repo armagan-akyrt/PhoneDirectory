@@ -49,14 +49,14 @@ namespace PhoneDirectory
 
         private void CreateUserButton_Click(object sender, EventArgs e)
         {
-            user._name = FirstNamePrompt.Text;
-            user._surname = LastNamePrompt.Text;
-            user._phoneNumber = GsmPrompt.Text;
-            user._email = EmailPrompt.Text;
-            user._address = AddressPrompt.Text;
-            user._role = (username.Length > 0) ? RoleComboBox.Text : "USER";
-            user._password = PasswordPrompt.Text;
-            user._username = " ";
+            user.Name = FirstNamePrompt.Text;
+            user.Surname = LastNamePrompt.Text;
+            user.PhoneNumber = GsmPrompt.Text;
+            user.Mail = EmailPrompt.Text;
+            user.Address = AddressPrompt.Text;
+            user.Role = (username.Length > 0) ? RoleComboBox.Text : "USER";
+            user.Password = PasswordPrompt.Text;
+            user.Username = " ";
 
             user.CreateUser();
         }

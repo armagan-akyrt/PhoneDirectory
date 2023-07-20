@@ -27,7 +27,7 @@ namespace PhoneDirectory
             InitializeComponent();
             this.user = user;
 
-            this.username = this.user._username;
+            this.username = this.user.Username;
         }
 
         private string ConvertInputToAscii(string input)

@@ -34,8 +34,8 @@ namespace PhoneDirectory
 
             currentUser = user;
 
-            this.username = currentUser._username;
-            this.role = currentUser._role;
+            this.username = currentUser.Username;
+            this.role = currentUser.Role;
         }
 
         private void AdminPage_Load(object sender, EventArgs e)
