@@ -346,6 +346,7 @@
             MinimizeBox = false;
             Name = "AdminPage";
             Text = "Yönetici Sayfası";
+            FormClosing += AdminPage_FormClosing;
             Load += AdminPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

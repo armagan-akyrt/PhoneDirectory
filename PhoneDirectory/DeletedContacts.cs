@@ -61,16 +61,23 @@ namespace PhoneDirectory
         {
             int selectedIndex = DeletedContactsList.SelectedIndex;
 
-            if (selectedIndex >= 0)
+            try
             {
-                FirstNamePrompt.Text = deletedContacts[selectedIndex]._name;
-                LastNamePrompt.Text = deletedContacts[selectedIndex]._surname;
-                GsmPrompt.Text = deletedContacts[selectedIndex]._phoneNumber;
-                EmailPrompt.Text = deletedContacts[selectedIndex]._email;
-                AddressPrompt.Text = deletedContacts[selectedIndex]._address;
+                if (selectedIndex >= 0)
+                {
+                    FirstNamePrompt.Text = deletedContacts[selectedIndex]._name;
+                    LastNamePrompt.Text = deletedContacts[selectedIndex]._surname;
+                    GsmPrompt.Text = deletedContacts[selectedIndex]._phoneNumber;
+                    EmailPrompt.Text = deletedContacts[selectedIndex]._email;
+                    AddressPrompt.Text = deletedContacts[selectedIndex]._address;
 
-                contact = deletedContacts[selectedIndex];
-                selectedUsername = contact._username;
+                    contact = deletedContacts[selectedIndex];
+                    selectedUsername = contact._username;
+                }
+            }
+            catch (Exception)
+            {
+                return;
             }
 
         }
@@ -85,7 +92,14 @@ namespace PhoneDirectory
         private void UpdateAndBringButton_Click(object sender, EventArgs e)
         {
             contact.UpdateContact(selectedUsername);
-            contact.BringBackDeletedUser();
+            if (contact.BringBackDeletedUser())
+            {
+                MessageBox.Show("Kullanıcı başarıyla geri getirildi.");
+            }
+            else
+            {
+                MessageBox.Show("Kullanıcı geri getirilemedi.");
+            }
 
             deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
         }

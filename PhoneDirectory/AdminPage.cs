@@ -25,6 +25,7 @@ namespace PhoneDirectory
         private User currentUser = new User();
 
         private string selectedUser = ""; // selected user's username from the list
+        private string contactUsername = ""; // selected contact's name from the list
 
 
         public AdminPage(User user)
@@ -37,6 +38,7 @@ namespace PhoneDirectory
             this.username = currentUser.Username;
             this.role = currentUser.Role;
         }
+
 
         private void AdminPage_Load(object sender, EventArgs e)
         {
@@ -138,20 +140,53 @@ namespace PhoneDirectory
         private void ContactsList_SelectedIndexChanged(object sender, EventArgs e)
         {
             int selectedIndex = ContactsList.SelectedIndex;
-            if (selectedIndex != -1)
+            try
             {
-                Contact selectedContact = contacts[selectedIndex];
-                NamePrompt.Text = selectedContact._name;
-                LastNamePrompt.Text = selectedContact._surname;
-                GsmPrompt.Text = selectedContact._phoneNumber;
-                EmailPrompt.Text = selectedContact._email;
-                AddressPrompt.Text = selectedContact._address;
+                if (selectedIndex != -1)
+                {
+                    this.contactUsername = contacts[selectedIndex]._username;
+                    Contact selectedContact = contacts[selectedIndex];
+                    NamePrompt.Text = selectedContact._name;
+                    LastNamePrompt.Text = selectedContact._surname;
+                    GsmPrompt.Text = selectedContact._phoneNumber;
+                    EmailPrompt.Text = selectedContact._email;
+                    AddressPrompt.Text = selectedContact._address;
+                }
+            }
+            catch (Exception)
+            {
+                return;
             }
         }
 
         private void UpdateUserButton_Click(object sender, EventArgs e)
         {
+            int selectedIndex = ContactsList.SelectedIndex;
+            try
+            {
+                if (selectedIndex != -1)
+                {
+                    Contact currentContact = contacts[selectedIndex];
+                    currentContact._name = NamePrompt.Text;
+                    currentContact._surname = LastNamePrompt.Text;
+                    currentContact._phoneNumber = GsmPrompt.Text;
+                    currentContact._email = EmailPrompt.Text;
+                    currentContact._address = AddressPrompt.Text;
 
+                    currentContact.UpdateContact(contactUsername);
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
+
+        }
+
+        private void AdminPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

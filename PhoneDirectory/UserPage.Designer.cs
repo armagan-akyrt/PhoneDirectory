@@ -48,9 +48,9 @@
             DeletedContactsToolStrip = new ToolStripMenuItem();
             AdminToolStrip = new ToolStripMenuItem();
             AdminToolStripMenu = new ToolStripMenuItem();
+            ChangePasswordStripTool = new ToolStripMenuItem();
             DeleteButton = new Button();
             groupBox1 = new GroupBox();
-            ChangePasswordStripTool = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -204,9 +204,16 @@
             // AdminToolStripMenu
             // 
             AdminToolStripMenu.Name = "AdminToolStripMenu";
-            AdminToolStripMenu.Size = new Size(180, 22);
+            AdminToolStripMenu.Size = new Size(151, 22);
             AdminToolStripMenu.Text = "Yönetici Ekranı";
             AdminToolStripMenu.Click += AdminToolStripMenu_Click;
+            // 
+            // ChangePasswordStripTool
+            // 
+            ChangePasswordStripTool.Name = "ChangePasswordStripTool";
+            ChangePasswordStripTool.Size = new Size(85, 20);
+            ChangePasswordStripTool.Text = "Şifre Değiştir";
+            ChangePasswordStripTool.Click += ChangePasswordStripTool_Click;
             // 
             // DeleteButton
             // 
@@ -228,13 +235,6 @@
             groupBox1.TabIndex = 19;
             groupBox1.TabStop = false;
             groupBox1.Text = "Rehber:";
-            // 
-            // ChangePasswordStripTool
-            // 
-            ChangePasswordStripTool.Name = "ChangePasswordStripTool";
-            ChangePasswordStripTool.Size = new Size(85, 20);
-            ChangePasswordStripTool.Text = "Şifre Değiştir";
-            ChangePasswordStripTool.Click += ChangePasswordStripTool_Click;
             // 
             // UserPage
             // 
@@ -258,6 +258,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "UserPage";
             Text = "Kullanıcı Ekranı";
+            FormClosing += UserPage_FormClosing;
             Load += UserPage_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

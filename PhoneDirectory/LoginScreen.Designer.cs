@@ -131,6 +131,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "LoginScreen";
             Text = "Giriş";
+            FormClosing += LoginScreen_FormClosing;
             Load += LoginScreen_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

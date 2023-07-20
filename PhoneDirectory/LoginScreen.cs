@@ -27,8 +27,6 @@ namespace PhoneDirectory
 
         }
 
-
-
         /// <summary>
         /// validates username and password and opens next page accordingly.
         /// </summary>
@@ -39,7 +37,7 @@ namespace PhoneDirectory
             string pwdEncrypted = new UsefulUtilities().EncryptPassword(PasswordPrompt.Text);
 
             user = user.LoginVerify(EmailPrompt.Text, PasswordPrompt.Text);
-                
+
 
             string role = user.Role;
             username = user.Username;
@@ -73,17 +71,6 @@ namespace PhoneDirectory
 
         }
 
-        private bool VerifyPassword(string passwordInput, string passwordFromDB)
-        {
-
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(passwordInput));
-                string hashedPasswordInput = Convert.ToBase64String(hashBytes);
-
-                return (hashedPasswordInput == passwordFromDB);
-            }
-        }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -95,6 +82,11 @@ namespace PhoneDirectory
         {
             Form CreateUser = new CreateUser("");
             CreateUser.ShowDialog();
+        }
+
+        private void LoginScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

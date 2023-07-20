@@ -41,19 +41,27 @@ namespace PhoneDirectory
         {
             int selectedIndex = DeletedUsersList.SelectedIndex;
 
-            if (selectedIndex >= 0)
+            try
             {
-                // write the selected user's info to the textboxes
+                if (selectedIndex >= 0)
+                {
+                    // write the selected user's info to the textboxes
 
-                FirstNamePrompt.Text = deletedUsers[selectedIndex].Name;
-                LastNamePrompt.Text = deletedUsers[selectedIndex].Surname;
-                GsmPrompt.Text = deletedUsers[selectedIndex].PhoneNumber;
-                EmailPrompt.Text = deletedUsers[selectedIndex].Mail;
-                AddressPrompt.Text = deletedUsers[selectedIndex].Address;
+                    FirstNamePrompt.Text = deletedUsers[selectedIndex].Name;
+                    LastNamePrompt.Text = deletedUsers[selectedIndex].Surname;
+                    GsmPrompt.Text = deletedUsers[selectedIndex].PhoneNumber;
+                    EmailPrompt.Text = deletedUsers[selectedIndex].Mail;
+                    AddressPrompt.Text = deletedUsers[selectedIndex].Address;
 
-                user = deletedUsers[selectedIndex];
-                selectedUsername = user.Username;
+                    user = deletedUsers[selectedIndex];
+                    selectedUsername = user.Username;
 
+                }
+            }
+            catch (Exception)
+            {
+                
+                return;
             }
         }
 

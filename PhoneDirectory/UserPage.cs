@@ -19,7 +19,7 @@ namespace PhoneDirectory
         private User user = new User();
         private UsefulUtilities util = new UsefulUtilities();
 
-        
+
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
@@ -73,6 +73,15 @@ namespace PhoneDirectory
             {
                 uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString();
                 uname = util.ConvertInputToAscii(uname);
+
+                Contact contactToShow = contacts.Find(x => x._username == uname);
+                oldUsername = contactToShow._username;
+
+                NamePrompt.Text = contactToShow._name;
+                SurnamePromp.Text = contactToShow._surname;
+                EmailPrompt.Text = contactToShow._email;
+                GsmPrompt.Text = contactToShow._phoneNumber;
+                AddresPrompt.Text = contactToShow._address;
             }
             catch (Exception)
             {
@@ -81,14 +90,7 @@ namespace PhoneDirectory
             }
 
 
-            Contact contactToShow = contacts.Find(x => x._username == uname);
-            oldUsername = contactToShow._username;
 
-            NamePrompt.Text = contactToShow._name;
-            SurnamePromp.Text = contactToShow._surname;
-            EmailPrompt.Text = contactToShow._email;
-            GsmPrompt.Text = contactToShow._phoneNumber;
-            AddresPrompt.Text = contactToShow._address;
 
         }
 
@@ -150,13 +152,17 @@ namespace PhoneDirectory
         {
             Form DeletedContacts = new DeletedContacts(user);
             DeletedContacts.Show();
-            this.Hide();
         }
 
         private void ChangePasswordStripTool_Click(object sender, EventArgs e)
         {
             Form ChangePwd = new ChangePassword(user);
             ChangePwd.ShowDialog();
+        }
+
+        private void UserPage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

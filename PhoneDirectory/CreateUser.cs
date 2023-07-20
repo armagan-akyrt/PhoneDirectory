@@ -58,7 +58,16 @@ namespace PhoneDirectory
             user.Password = PasswordPrompt.Text;
             user.Username = " ";
 
-            user.CreateUser();
+            if(user.CreateUser())
+            {
+                MessageBox.Show("Kullanıcı başarıyla oluşturuldu.");
+                this.Close();
+                return;
+            }
+
+            MessageBox.Show("Kullanıcı oluşturulamadı!");
+
+
         }
     }
 }
