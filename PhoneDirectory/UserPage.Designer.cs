@@ -246,15 +246,16 @@
             // AddMeetingToolStrip
             // 
             AddMeetingToolStrip.Name = "AddMeetingToolStrip";
-            AddMeetingToolStrip.Size = new Size(167, 22);
+            AddMeetingToolStrip.Size = new Size(180, 22);
             AddMeetingToolStrip.Text = "Toplantı Ekle";
             AddMeetingToolStrip.Click += AddMeetingToolStrip_Click;
             // 
             // DeletedMeetingsToolStrip
             // 
             DeletedMeetingsToolStrip.Name = "DeletedMeetingsToolStrip";
-            DeletedMeetingsToolStrip.Size = new Size(167, 22);
+            DeletedMeetingsToolStrip.Size = new Size(180, 22);
             DeletedMeetingsToolStrip.Text = "Silinen Toplantılar";
+            DeletedMeetingsToolStrip.Click += DeletedMeetingsToolStrip_Click;
             // 
             // DeleteButton
             // 
@@ -323,6 +324,7 @@
             DeleteMeetingButton.TabIndex = 31;
             DeleteMeetingButton.Text = "Sil";
             DeleteMeetingButton.UseVisualStyleBackColor = true;
+            DeleteMeetingButton.Click += DeleteMeetingButton_Click;
             // 
             // UpdateMeetingButton
             // 

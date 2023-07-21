@@ -9,6 +9,7 @@ namespace PhoneDirectory.Scripts
 {
     public class Meeting
     {
+
         private User _user = new User();
         private Contact _contact = new Contact();
         
@@ -30,7 +31,6 @@ namespace PhoneDirectory.Scripts
         public string MeetingNotes { get => _meetingNotes; set => _meetingNotes = value; }
         public DateTime MeetingStartDate { get => _meetingStartDate; set => _meetingStartDate = value; }
         public DateTime MeetingEndDate { get => _meetingEndDate; set => _meetingEndDate = value; }
-
         public User User { get => _user; set => _user = value; }
         public Contact Contact { get => _contact; set => _contact = value; }
         #endregion
@@ -107,7 +107,7 @@ namespace PhoneDirectory.Scripts
             {
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("RemoveMeeting", conn);
+                SqlCommand command = new SqlCommand("DeleteMeeting", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@meetingId", this._meetingId);
@@ -152,18 +152,6 @@ namespace PhoneDirectory.Scripts
                     meeting._meetingStartDate = Convert.ToDateTime(reader["startDate"]);
                     meeting._meetingEndDate = Convert.ToDateTime(reader["endDate"]);
 
-                    /*User user = new User();
-                    user.Name = reader["firstName"]?.ToString() ?? string.Empty;
-                    user.Surname = reader["lastName"]?.ToString() ?? string.Empty;
-                    user.PhoneNumber = reader["gsmNumber"]?.ToString() ?? string.Empty;
-                    user.Mail = reader["email"]?.ToString() ?? string.Empty;
-                    user.Address = reader["address"]?.ToString() ?? string.Empty;
-                    user.Username = reader["username"]?.ToString() ?? string.Empty;
-                    user.Role = reader["role"]?.ToString() ?? string.Empty;
-                    user.Id = Convert.ToInt32(reader["userId"]?.ToString() ?? string.Empty);
-                    user.Password = "";*/
-
-
                     Contact contact = new Contact();
                     contact._phoneNumber = (reader["gsmNumber"]?.ToString() ?? string.Empty);
                     contact._email = (reader["email"]?.ToString() ?? string.Empty);
@@ -190,5 +178,31 @@ namespace PhoneDirectory.Scripts
             return meetings;
         }
 
+        public bool BringBackMeeting()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("BringMeetingBack", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@meetingId", this._meetingId);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
     }
 }

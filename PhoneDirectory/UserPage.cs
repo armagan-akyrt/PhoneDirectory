@@ -189,6 +189,7 @@ namespace PhoneDirectory
                 fullNamePrompt.Text = meetings[selectedIndex].Contact._name.ToString() + " " + meetings[selectedIndex].Contact._surname.ToString();
                 StartTimePicker.Value = meetings[selectedIndex].MeetingStartDate;
                 EndTimePicker.Value = meetings[selectedIndex].MeetingEndDate;
+                NotesPrompt.Text = meetings[selectedIndex].MeetingNotes;
             }
             catch (Exception)
             {
@@ -215,7 +216,19 @@ namespace PhoneDirectory
 
         private void UpdateMeetingButton_Click(object sender, EventArgs e)
         {
+            selectedMeeting.MeetingNotes = NotesPrompt.Text;
             selectedMeeting.UpdateMeeting();
+        }
+
+        private void DeleteMeetingButton_Click(object sender, EventArgs e)
+        {
+            selectedMeeting.RemoveMeeting();
+        }
+
+        private void DeletedMeetingsToolStrip_Click(object sender, EventArgs e)
+        {
+            Form DeletedMeetings = new DeletedMeetings(user);
+            DeletedMeetings.ShowDialog();
         }
     }
 }
