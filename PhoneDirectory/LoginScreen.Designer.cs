@@ -42,7 +42,7 @@
             // 
             // btnLogin
             // 
-            btnLogin.Location = new Point(133, 233);
+            btnLogin.Location = new Point(133, 203);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(75, 23);
             btnLogin.TabIndex = 0;
@@ -53,7 +53,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 57);
+            label1.Location = new Point(12, 27);
             label1.Name = "label1";
             label1.Size = new Size(76, 15);
             label1.TabIndex = 1;
@@ -62,7 +62,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 144);
+            label2.Location = new Point(12, 114);
             label2.Name = "label2";
             label2.Size = new Size(33, 15);
             label2.TabIndex = 2;
@@ -70,14 +70,14 @@
             // 
             // EmailPrompt
             // 
-            EmailPrompt.Location = new Point(12, 75);
+            EmailPrompt.Location = new Point(12, 45);
             EmailPrompt.Name = "EmailPrompt";
             EmailPrompt.Size = new Size(196, 23);
             EmailPrompt.TabIndex = 3;
             // 
             // PasswordPrompt
             // 
-            PasswordPrompt.Location = new Point(12, 176);
+            PasswordPrompt.Location = new Point(12, 146);
             PasswordPrompt.Name = "PasswordPrompt";
             PasswordPrompt.PasswordChar = '*';
             PasswordPrompt.Size = new Size(196, 23);
@@ -87,7 +87,7 @@
             // 
             pictureBox1.ImageLocation = "C:\\Users\\MONSTER\\source\\repos\\PhoneDirectory\\PhoneDirectory\\Assets\\logo.png";
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(214, 128);
+            pictureBox1.Location = new Point(214, 98);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(183, 71);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -97,7 +97,7 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(273, 202);
+            linkLabel1.Location = new Point(273, 172);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(45, 15);
             linkLabel1.TabIndex = 6;
@@ -107,7 +107,7 @@
             // 
             // NewUserButton
             // 
-            NewUserButton.Location = new Point(13, 233);
+            NewUserButton.Location = new Point(13, 203);
             NewUserButton.Name = "NewUserButton";
             NewUserButton.Size = new Size(114, 23);
             NewUserButton.TabIndex = 7;

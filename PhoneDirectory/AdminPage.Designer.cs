@@ -42,6 +42,8 @@
             bağlantılarToolStripMenuItem = new ToolStripMenuItem();
             DeletedContactsToolStrip = new ToolStripMenuItem();
             NewContactToolstrip = new ToolStripMenuItem();
+            GuestsToolStrip = new ToolStripMenuItem();
+            CreateGuestButton = new ToolStripMenuItem();
             DeleteUserButton = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
@@ -72,6 +74,10 @@
             UserGsmPrompt = new TextBox();
             UserLastNamePrompt = new TextBox();
             UserFirstNamePropmt = new TextBox();
+            RetrieveCardToolStripMenu = new ToolStripMenuItem();
+            ViewGuests = new ToolStripMenuItem();
+            ViewAllGuests = new ToolStripMenuItem();
+            ViewGuestsInside = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -131,7 +137,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip, bağlantılarToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { userToolStrip, bağlantılarToolStripMenuItem, GuestsToolStrip });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1495, 24);
@@ -186,6 +192,20 @@
             NewContactToolstrip.Size = new Size(165, 22);
             NewContactToolstrip.Text = "Yeni Bağlantı";
             NewContactToolstrip.Click += NewContactToolstrip_Click;
+            // 
+            // GuestsToolStrip
+            // 
+            GuestsToolStrip.DropDownItems.AddRange(new ToolStripItem[] { CreateGuestButton, RetrieveCardToolStripMenu, ViewGuests });
+            GuestsToolStrip.Name = "GuestsToolStrip";
+            GuestsToolStrip.Size = new Size(55, 20);
+            GuestsToolStrip.Text = "Misafir";
+            // 
+            // CreateGuestButton
+            // 
+            CreateGuestButton.Name = "CreateGuestButton";
+            CreateGuestButton.Size = new Size(182, 22);
+            CreateGuestButton.Text = "Misafir Oluştur";
+            CreateGuestButton.Click += CreateGuestButton_Click;
             // 
             // DeleteUserButton
             // 
@@ -478,6 +498,33 @@
             UserFirstNamePropmt.Size = new Size(220, 23);
             UserFirstNamePropmt.TabIndex = 11;
             // 
+            // RetrieveCardToolStripMenu
+            // 
+            RetrieveCardToolStripMenu.Name = "RetrieveCardToolStripMenu";
+            RetrieveCardToolStripMenu.Size = new Size(182, 22);
+            RetrieveCardToolStripMenu.Text = "Kart Teslim Al";
+            // 
+            // ViewGuests
+            // 
+            ViewGuests.DropDownItems.AddRange(new ToolStripItem[] { ViewAllGuests, ViewGuestsInside });
+            ViewGuests.Name = "ViewGuests";
+            ViewGuests.Size = new Size(182, 22);
+            ViewGuests.Text = "Misafirleri Görüntüle";
+            // 
+            // ViewAllGuests
+            // 
+            ViewAllGuests.Name = "ViewAllGuests";
+            ViewAllGuests.Size = new Size(193, 22);
+            ViewAllGuests.Text = "Tümü";
+            ViewAllGuests.Click += ViewAllGuests_Click;
+            // 
+            // ViewGuestsInside
+            // 
+            ViewGuestsInside.Name = "ViewGuestsInside";
+            ViewGuestsInside.Size = new Size(193, 22);
+            ViewGuestsInside.Text = "Kart Teslim Etmeyenler";
+            ViewGuestsInside.Click += ViewGuestsInside_Click;
+            // 
             // AdminPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -556,5 +603,11 @@
         private TextBox UserFirstNamePropmt;
         private Label label11;
         private ComboBox UserRoleBox;
+        private ToolStripMenuItem GuestsToolStrip;
+        private ToolStripMenuItem CreateGuestButton;
+        private ToolStripMenuItem RetrieveCardToolStripMenu;
+        private ToolStripMenuItem ViewGuests;
+        private ToolStripMenuItem ViewAllGuests;
+        private ToolStripMenuItem ViewGuestsInside;
     }
 }

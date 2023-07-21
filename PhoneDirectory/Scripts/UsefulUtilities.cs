@@ -84,6 +84,22 @@ namespace PhoneDirectory.Scripts
             return meetings;
         }
 
+        public List<Guest> PrintGuestList(string search, ListBox listBox, List<Guest> guests, bool isInside)
+        {
+            Guest guest = new Guest();
+            guests = (isInside) ? guest.RetrieveGuestsInside(search) : guest.RetrieveAllGuest(search);
+            listBox.Items.Clear();
+
+            foreach (Guest res in guests)
+            {
+                string tagToWrite = "FIRST LAST DATE".Replace("FIRST", res.Name).Replace("LAST", res.Surname).Replace("DATE", res.CardAcquisitionDate.ToString());
+                listBox.Items.Add(tagToWrite);
+            }
+
+            return guests;
+
+        }
+
         /// <summary>
         /// converts turkish string into ascii string
         /// </summary>

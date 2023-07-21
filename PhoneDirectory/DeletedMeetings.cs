@@ -66,5 +66,15 @@ namespace PhoneDirectory
             selectedMeeting.RemoveMeeting();
             meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user);
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void MeetingsSearchBar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

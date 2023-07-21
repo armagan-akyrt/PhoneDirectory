@@ -220,5 +220,28 @@ namespace PhoneDirectory
         {
 
         }
+
+        private void misafirSayfasıToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CreateGuestButton_Click(object sender, EventArgs e)
+        {
+            Form AddGuest = new AddGuest();
+            AddGuest.ShowDialog();
+        }
+
+        private void ViewAllGuests_Click(object sender, EventArgs e)
+        {
+            Form AllGuests = new GuestsList(false);
+            AllGuests.ShowDialog();
+        }
+
+        private void ViewGuestsInside_Click(object sender, EventArgs e)
+        {
+            Form InsideGuests = new GuestsList(true);
+            InsideGuests.ShowDialog();
+        }
     }
 }

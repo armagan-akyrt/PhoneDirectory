@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             groupBox2 = new GroupBox();
-            GuestMeetingsList = new ListBox();
             MeetingsSearchBar = new TextBox();
             UpcomingMeetingsList = new ListBox();
             EndTimePicker = new DateTimePicker();
@@ -47,7 +46,6 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(GuestMeetingsList);
             groupBox2.Controls.Add(MeetingsSearchBar);
             groupBox2.Controls.Add(UpcomingMeetingsList);
             groupBox2.Location = new Point(12, 18);
@@ -56,15 +54,6 @@
             groupBox2.TabIndex = 17;
             groupBox2.TabStop = false;
             groupBox2.Text = "Gelecek Toplantılar:";
-            // 
-            // GuestMeetingsList
-            // 
-            GuestMeetingsList.FormattingEnabled = true;
-            GuestMeetingsList.ItemHeight = 15;
-            GuestMeetingsList.Location = new Point(15, 276);
-            GuestMeetingsList.Name = "GuestMeetingsList";
-            GuestMeetingsList.Size = new Size(262, 124);
-            GuestMeetingsList.TabIndex = 2;
             // 
             // MeetingsSearchBar
             // 
@@ -79,7 +68,7 @@
             UpcomingMeetingsList.ItemHeight = 15;
             UpcomingMeetingsList.Location = new Point(15, 52);
             UpcomingMeetingsList.Name = "UpcomingMeetingsList";
-            UpcomingMeetingsList.Size = new Size(262, 214);
+            UpcomingMeetingsList.Size = new Size(262, 349);
             UpcomingMeetingsList.TabIndex = 0;
             UpcomingMeetingsList.SelectedIndexChanged += UpcomingMeetingsList_SelectedIndexChanged;
             // 
@@ -176,7 +165,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(573, 450);
             Controls.Add(EndTimePicker);
             Controls.Add(StartTimePicker);
             Controls.Add(DeleteMeetingButton);
@@ -199,7 +188,6 @@
         #endregion
 
         private GroupBox groupBox2;
-        private ListBox GuestMeetingsList;
         private TextBox MeetingsSearchBar;
         private ListBox UpcomingMeetingsList;
         private DateTimePicker EndTimePicker;

@@ -88,5 +88,11 @@ namespace PhoneDirectory
         {
             Application.Exit();
         }
+
+        private void CreateGuestButton_Click(object sender, EventArgs e)
+        {
+            Form AddGuest = new AddGuest();
+            AddGuest.ShowDialog();
+        }
     }
 }

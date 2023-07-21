@@ -56,7 +56,6 @@
             DeleteButton = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
-            GuestMeetingsList = new ListBox();
             MeetingsSearchBar = new TextBox();
             UpcomingMeetingsList = new ListBox();
             DeleteMeetingButton = new Button();
@@ -246,14 +245,14 @@
             // AddMeetingToolStrip
             // 
             AddMeetingToolStrip.Name = "AddMeetingToolStrip";
-            AddMeetingToolStrip.Size = new Size(180, 22);
+            AddMeetingToolStrip.Size = new Size(167, 22);
             AddMeetingToolStrip.Text = "Toplantı Ekle";
             AddMeetingToolStrip.Click += AddMeetingToolStrip_Click;
             // 
             // DeletedMeetingsToolStrip
             // 
             DeletedMeetingsToolStrip.Name = "DeletedMeetingsToolStrip";
-            DeletedMeetingsToolStrip.Size = new Size(180, 22);
+            DeletedMeetingsToolStrip.Size = new Size(167, 22);
             DeletedMeetingsToolStrip.Text = "Silinen Toplantılar";
             DeletedMeetingsToolStrip.Click += DeletedMeetingsToolStrip_Click;
             // 
@@ -280,7 +279,6 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(GuestMeetingsList);
             groupBox2.Controls.Add(MeetingsSearchBar);
             groupBox2.Controls.Add(UpcomingMeetingsList);
             groupBox2.Location = new Point(546, 27);
@@ -289,15 +287,6 @@
             groupBox2.TabIndex = 16;
             groupBox2.TabStop = false;
             groupBox2.Text = "Gelecek Toplantılar:";
-            // 
-            // GuestMeetingsList
-            // 
-            GuestMeetingsList.FormattingEnabled = true;
-            GuestMeetingsList.ItemHeight = 15;
-            GuestMeetingsList.Location = new Point(15, 276);
-            GuestMeetingsList.Name = "GuestMeetingsList";
-            GuestMeetingsList.Size = new Size(262, 124);
-            GuestMeetingsList.TabIndex = 2;
             // 
             // MeetingsSearchBar
             // 
@@ -312,7 +301,7 @@
             UpcomingMeetingsList.ItemHeight = 15;
             UpcomingMeetingsList.Location = new Point(15, 52);
             UpcomingMeetingsList.Name = "UpcomingMeetingsList";
-            UpcomingMeetingsList.Size = new Size(262, 214);
+            UpcomingMeetingsList.Size = new Size(262, 349);
             UpcomingMeetingsList.TabIndex = 0;
             UpcomingMeetingsList.SelectedIndexChanged += UpcomingMeetingsList_SelectedIndexChanged;
             // 
@@ -495,7 +484,6 @@
         private Label label10;
         private DateTimePicker StartTimePicker;
         private DateTimePicker EndTimePicker;
-        private ListBox GuestMeetingsList;
         private ToolStripMenuItem toplantılarToolStripMenuItem;
         private ToolStripMenuItem AddMeetingToolStrip;
         private ToolStripMenuItem DeletedMeetingsToolStrip;
