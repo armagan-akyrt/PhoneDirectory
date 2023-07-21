@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace PhoneDirectory.Scripts
@@ -44,6 +46,8 @@ namespace PhoneDirectory.Scripts
             users = user.RetrieveUsersList(search, activeState);
             listBox.Items.Clear();
 
+            
+
             foreach (User res in users)
             {
                 string tagToWrite = "FIRST LAST".Replace("FIRST", res.Name).Replace("LAST", res.Surname);
@@ -51,6 +55,33 @@ namespace PhoneDirectory.Scripts
             }
 
             return users;
+        }
+
+        /// <summary>
+        /// Prints meetings list to listbox
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="listBox"></param>
+        /// <param name="meetings"></param>
+        /// <param name="activeState"></param>
+        /// <returns></returns>
+        public List<Meeting> PrintMeetingsList(string search, ListBox listBox, List<Meeting> meetings, bool activeState, User user)
+        {
+            Meeting meeting = new Meeting();
+            meeting.User = user;
+            meetings = meeting.GetMeetings(activeState);
+            listBox.Items.Clear();
+
+
+            foreach (Meeting res in meetings)
+            {
+                string tagToWrite = "FIRST LAST START - END".Replace("FIRST", res.Contact._name).Replace("LAST", res.Contact._surname);
+                tagToWrite = tagToWrite.Replace("START", res.MeetingStartDate.ToString()).Replace("END", res.MeetingEndDate.ToString());
+
+                listBox.Items.Add(tagToWrite);
+            }
+
+            return meetings;
         }
 
         /// <summary>

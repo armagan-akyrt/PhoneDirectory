@@ -19,7 +19,8 @@ namespace PhoneDirectory
         private User user = new User();
         private UsefulUtilities util = new UsefulUtilities();
 
-
+        private Meeting selectedMeeting = new Meeting();
+        private List<Meeting> meetings = new List<Meeting>();
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
@@ -42,7 +43,10 @@ namespace PhoneDirectory
         private void UserPage_Load(object sender, EventArgs e)
         {
             contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
+            Meeting meeting = new Meeting();
+            meeting.User = user;
 
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user);
             if (role.Equals("ADMIN"))
             {
                 AdminToolStrip.Visible = true;
@@ -88,9 +92,6 @@ namespace PhoneDirectory
 
                 return;
             }
-
-
-
 
         }
 
@@ -163,6 +164,58 @@ namespace PhoneDirectory
         private void UserPage_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EndTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void UpcomingMeetingsList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = UpcomingMeetingsList.SelectedIndex;
+            if (selectedIndex == -1)
+            {
+                return;
+            }
+
+            try
+            {
+                selectedMeeting = meetings[selectedIndex];
+                fullNamePrompt.Text = meetings[selectedIndex].Contact._name.ToString() + " " + meetings[selectedIndex].Contact._surname.ToString();
+                StartTimePicker.Value = meetings[selectedIndex].MeetingStartDate;
+                EndTimePicker.Value = meetings[selectedIndex].MeetingEndDate;
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
+        }
+
+        private void AddMeetingToolStrip_Click(object sender, EventArgs e)
+        {
+            Form AddMeeting = new AddMeeting(user);
+            AddMeeting.ShowDialog();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user);
+        }
+
+        private void UpdateMeetingButton_Click(object sender, EventArgs e)
+        {
+            selectedMeeting.UpdateMeeting();
         }
     }
 }

@@ -211,6 +211,7 @@
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Kullanıcı Ara:";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // groupBox2
             // 

@@ -20,6 +20,7 @@ namespace PhoneDirectory.Scripts
         private string _password;
         private string _role;
         private string _username;
+        private int _id;
 
         private UsefulUtilities util = new UsefulUtilities();
         Connection connection = new Connection();
@@ -53,6 +54,12 @@ namespace PhoneDirectory.Scripts
                 _password = value;
                 _password = util.EncryptPassword(_password);
             }
+        }
+
+        public int Id
+        {
+            get { return _id; }
+            set { _id = value; }
         }
 
         public string Name
@@ -234,8 +241,8 @@ namespace PhoneDirectory.Scripts
                     user.Username = reader["username"]?.ToString() ?? string.Empty;
                     user.Role = reader["role"]?.ToString() ?? string.Empty;
                     user._password = reader["password"]?.ToString() ?? string.Empty;
+                    user.Id = Convert.ToInt32(reader["id"]?.ToString() ?? string.Empty);
                 }
-
 
             }
             catch (Exception ex)
@@ -279,6 +286,7 @@ namespace PhoneDirectory.Scripts
                     user.Username = reader["username"]?.ToString() ?? string.Empty;
                     user.Role = reader["role"]?.ToString() ?? string.Empty;
                     user._password = reader["password"]?.ToString() ?? string.Empty;
+                    user.Id = Convert.ToInt32(reader["id"]?.ToString() ?? string.Empty);
                     users.Add(user);
                 }
             }

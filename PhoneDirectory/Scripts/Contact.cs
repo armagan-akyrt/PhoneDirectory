@@ -9,7 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 namespace PhoneDirectory.Scripts
 {
 
-    internal class Contact
+    public class Contact
     {
         #region Data Fields
         public string _name;
@@ -18,6 +18,7 @@ namespace PhoneDirectory.Scripts
         public string _email;
         public string _address;
         public string _username;
+        public int _id;
         #endregion
 
         private Connection connection = new Connection();
@@ -34,6 +35,7 @@ namespace PhoneDirectory.Scripts
             this._email = mail;
             this._address = address;
             this._username = username;
+            this._id = 0;
         }
         
 
@@ -104,12 +106,13 @@ namespace PhoneDirectory.Scripts
                 {
                     Contact contact = new Contact();
 
-                    contact._phoneNumber = (reader["gsmNumber"].ToString() is null) ? " " : reader["gsmNumber"].ToString();
-                    contact._email = (reader["email"].ToString() is null) ? " " : reader["email"].ToString();
-                    contact._address = (reader["address"].ToString() is null) ? " " : reader["address"].ToString();
-                    contact._username = (reader["username"].ToString() is null) ? " " : reader["username"].ToString();
-                    contact._name = (reader["firstName"].ToString() is null) ? " " : reader["firstName"].ToString();
-                    contact._surname = (reader["lastName"].ToString() is null) ? " " : reader["lastName"].ToString();
+                    contact._phoneNumber = (reader["gsmNumber"]?.ToString()?? string.Empty);
+                    contact._email = (reader["email"]?.ToString() ?? string.Empty);
+                    contact._address = (reader["address"]?.ToString() ?? string.Empty);
+                    contact._username = (reader["username"]?.ToString() ?? string.Empty);
+                    contact._name = (reader["firstName"]?.ToString() ?? string.Empty);
+                    contact._surname = (reader["lastName"]?.ToString() ?? string.Empty);
+                    contact._id = Convert.ToInt32(reader["id"]?.ToString() ?? string.Empty);
 
                     contacts.Add(contact);
                 }

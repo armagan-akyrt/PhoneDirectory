@@ -215,5 +215,10 @@ namespace PhoneDirectory
 
             user.UpdateUser(user.Username);
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

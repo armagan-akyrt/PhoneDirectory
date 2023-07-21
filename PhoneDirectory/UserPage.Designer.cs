@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserPage));
             ContactsListBox = new ListBox();
             label2 = new Label();
@@ -49,10 +50,29 @@
             AdminToolStrip = new ToolStripMenuItem();
             AdminToolStripMenu = new ToolStripMenuItem();
             ChangePasswordStripTool = new ToolStripMenuItem();
+            toplantılarToolStripMenuItem = new ToolStripMenuItem();
+            AddMeetingToolStrip = new ToolStripMenuItem();
+            DeletedMeetingsToolStrip = new ToolStripMenuItem();
             DeleteButton = new Button();
             groupBox1 = new GroupBox();
+            groupBox2 = new GroupBox();
+            GuestMeetingsList = new ListBox();
+            MeetingsSearchBar = new TextBox();
+            UpcomingMeetingsList = new ListBox();
+            DeleteMeetingButton = new Button();
+            UpdateMeetingButton = new Button();
+            NotesPrompt = new RichTextBox();
+            label1 = new Label();
+            label7 = new Label();
+            label8 = new Label();
+            fullNamePrompt = new TextBox();
+            label10 = new Label();
+            StartTimePicker = new DateTimePicker();
+            EndTimePicker = new DateTimePicker();
+            timer1 = new System.Windows.Forms.Timer(components);
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // ContactsListBox
@@ -166,12 +186,13 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip, ChangePasswordStripTool });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip, ChangePasswordStripTool, toplantılarToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(573, 24);
+            menuStrip1.Size = new Size(1101, 24);
             menuStrip1.TabIndex = 16;
             menuStrip1.Text = "MenuStrip";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // PersonToolStrip
             // 
@@ -215,6 +236,26 @@
             ChangePasswordStripTool.Text = "Şifre Değiştir";
             ChangePasswordStripTool.Click += ChangePasswordStripTool_Click;
             // 
+            // toplantılarToolStripMenuItem
+            // 
+            toplantılarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddMeetingToolStrip, DeletedMeetingsToolStrip });
+            toplantılarToolStripMenuItem.Name = "toplantılarToolStripMenuItem";
+            toplantılarToolStripMenuItem.Size = new Size(74, 20);
+            toplantılarToolStripMenuItem.Text = "Toplantılar";
+            // 
+            // AddMeetingToolStrip
+            // 
+            AddMeetingToolStrip.Name = "AddMeetingToolStrip";
+            AddMeetingToolStrip.Size = new Size(167, 22);
+            AddMeetingToolStrip.Text = "Toplantı Ekle";
+            AddMeetingToolStrip.Click += AddMeetingToolStrip_Click;
+            // 
+            // DeletedMeetingsToolStrip
+            // 
+            DeletedMeetingsToolStrip.Name = "DeletedMeetingsToolStrip";
+            DeletedMeetingsToolStrip.Size = new Size(167, 22);
+            DeletedMeetingsToolStrip.Text = "Silinen Toplantılar";
+            // 
             // DeleteButton
             // 
             DeleteButton.Location = new Point(301, 412);
@@ -236,11 +277,156 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Rehber:";
             // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(GuestMeetingsList);
+            groupBox2.Controls.Add(MeetingsSearchBar);
+            groupBox2.Controls.Add(UpcomingMeetingsList);
+            groupBox2.Location = new Point(546, 27);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(295, 420);
+            groupBox2.TabIndex = 16;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Gelecek Toplantılar:";
+            // 
+            // GuestMeetingsList
+            // 
+            GuestMeetingsList.FormattingEnabled = true;
+            GuestMeetingsList.ItemHeight = 15;
+            GuestMeetingsList.Location = new Point(15, 276);
+            GuestMeetingsList.Name = "GuestMeetingsList";
+            GuestMeetingsList.Size = new Size(262, 124);
+            GuestMeetingsList.TabIndex = 2;
+            // 
+            // MeetingsSearchBar
+            // 
+            MeetingsSearchBar.Location = new Point(15, 22);
+            MeetingsSearchBar.Name = "MeetingsSearchBar";
+            MeetingsSearchBar.Size = new Size(262, 23);
+            MeetingsSearchBar.TabIndex = 1;
+            // 
+            // UpcomingMeetingsList
+            // 
+            UpcomingMeetingsList.FormattingEnabled = true;
+            UpcomingMeetingsList.ItemHeight = 15;
+            UpcomingMeetingsList.Location = new Point(15, 52);
+            UpcomingMeetingsList.Name = "UpcomingMeetingsList";
+            UpcomingMeetingsList.Size = new Size(262, 214);
+            UpcomingMeetingsList.TabIndex = 0;
+            UpcomingMeetingsList.SelectedIndexChanged += UpcomingMeetingsList_SelectedIndexChanged;
+            // 
+            // DeleteMeetingButton
+            // 
+            DeleteMeetingButton.Location = new Point(847, 412);
+            DeleteMeetingButton.Name = "DeleteMeetingButton";
+            DeleteMeetingButton.Size = new Size(75, 23);
+            DeleteMeetingButton.TabIndex = 31;
+            DeleteMeetingButton.Text = "Sil";
+            DeleteMeetingButton.UseVisualStyleBackColor = true;
+            // 
+            // UpdateMeetingButton
+            // 
+            UpdateMeetingButton.Location = new Point(1011, 412);
+            UpdateMeetingButton.Name = "UpdateMeetingButton";
+            UpdateMeetingButton.Size = new Size(75, 23);
+            UpdateMeetingButton.TabIndex = 30;
+            UpdateMeetingButton.Text = "Güncelle";
+            UpdateMeetingButton.UseVisualStyleBackColor = true;
+            UpdateMeetingButton.Click += UpdateMeetingButton_Click;
+            // 
+            // NotesPrompt
+            // 
+            NotesPrompt.Location = new Point(847, 222);
+            NotesPrompt.Name = "NotesPrompt";
+            NotesPrompt.Size = new Size(239, 177);
+            NotesPrompt.TabIndex = 29;
+            NotesPrompt.Text = "";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(847, 204);
+            label1.Name = "label1";
+            label1.Size = new Size(27, 15);
+            label1.TabIndex = 28;
+            label1.Text = "Not";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(847, 151);
+            label7.Name = "label7";
+            label7.Size = new Size(29, 15);
+            label7.TabIndex = 26;
+            label7.Text = "Bitiş";
+            label7.Click += label7_Click;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(847, 95);
+            label8.Name = "label8";
+            label8.Size = new Size(57, 15);
+            label8.TabIndex = 24;
+            label8.Text = "Başlangıç";
+            // 
+            // fullNamePrompt
+            // 
+            fullNamePrompt.Location = new Point(847, 59);
+            fullNamePrompt.Name = "fullNamePrompt";
+            fullNamePrompt.Size = new Size(239, 23);
+            fullNamePrompt.TabIndex = 21;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(847, 41);
+            label10.Name = "label10";
+            label10.Size = new Size(57, 15);
+            label10.TabIndex = 20;
+            label10.Text = "Ad Soyad";
+            // 
+            // StartTimePicker
+            // 
+            StartTimePicker.CustomFormat = "dd/MM/yy - HH.mm";
+            StartTimePicker.Format = DateTimePickerFormat.Custom;
+            StartTimePicker.Location = new Point(847, 113);
+            StartTimePicker.Name = "StartTimePicker";
+            StartTimePicker.Size = new Size(239, 23);
+            StartTimePicker.TabIndex = 32;
+            // 
+            // EndTimePicker
+            // 
+            EndTimePicker.CustomFormat = "dd/MM/yy - HH.mm";
+            EndTimePicker.Format = DateTimePickerFormat.Custom;
+            EndTimePicker.Location = new Point(847, 169);
+            EndTimePicker.Name = "EndTimePicker";
+            EndTimePicker.Size = new Size(239, 23);
+            EndTimePicker.TabIndex = 33;
+            EndTimePicker.ValueChanged += EndTimePicker_ValueChanged;
+            // 
+            // timer1
+            // 
+            timer1.Enabled = true;
+            timer1.Interval = 6000;
+            timer1.Tick += timer1_Tick;
+            // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(573, 454);
+            ClientSize = new Size(1101, 454);
+            Controls.Add(EndTimePicker);
+            Controls.Add(StartTimePicker);
+            Controls.Add(DeleteMeetingButton);
+            Controls.Add(UpdateMeetingButton);
+            Controls.Add(NotesPrompt);
+            Controls.Add(label1);
+            Controls.Add(label7);
+            Controls.Add(label8);
+            Controls.Add(fullNamePrompt);
+            Controls.Add(label10);
+            Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(DeleteButton);
             Controls.Add(UpdateContactButton);
@@ -264,6 +450,8 @@
             menuStrip1.PerformLayout();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -292,5 +480,23 @@
         private ToolStripMenuItem DeletedContactsToolStrip;
         private GroupBox groupBox1;
         private ToolStripMenuItem ChangePasswordStripTool;
+        private GroupBox groupBox2;
+        private TextBox MeetingsSearchBar;
+        private ListBox UpcomingMeetingsList;
+        private Button DeleteMeetingButton;
+        private Button UpdateMeetingButton;
+        private RichTextBox NotesPrompt;
+        private Label label1;
+        private Label label7;
+        private Label label8;
+        private TextBox fullNamePrompt;
+        private Label label10;
+        private DateTimePicker StartTimePicker;
+        private DateTimePicker EndTimePicker;
+        private ListBox GuestMeetingsList;
+        private ToolStripMenuItem toplantılarToolStripMenuItem;
+        private ToolStripMenuItem AddMeetingToolStrip;
+        private ToolStripMenuItem DeletedMeetingsToolStrip;
+        private System.Windows.Forms.Timer timer1;
     }
 }
