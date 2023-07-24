@@ -84,6 +84,14 @@ namespace PhoneDirectory.Scripts
             return meetings;
         }
 
+        /// <summary>
+        /// Prints guests list to listbox
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="listBox"></param>
+        /// <param name="guests"></param>
+        /// <param name="isInside"></param>
+        /// <returns></returns>
         public List<Guest> PrintGuestList(string search, ListBox listBox, List<Guest> guests, bool isInside)
         {
             Guest guest = new Guest();
@@ -132,7 +140,7 @@ namespace PhoneDirectory.Scripts
         /// <summary>
         /// encrypts password with SHA256
         /// </summary>
-        /// <returns></returns>
+        /// <returns>encrypted password</returns>
         public string EncryptPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())

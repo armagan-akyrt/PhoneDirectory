@@ -79,6 +79,10 @@ namespace PhoneDirectory.Scripts
             _cardAcquisitionDate = DateTime.Now;
         }
 
+        /// <summary>
+        /// Creates a guest in the database
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool CreateGuest()
         {
             SqlConnection conn = connection.GetConnection();
@@ -118,6 +122,11 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Gets the list of all guests
+        /// </summary>
+        /// <param name="searchWord"> part of the username to search</param>
+        /// <returns>list of guests with username containing a part of searchword</returns>
         public List<Guest> RetrieveAllGuest(string searchWord)
         {
             SqlConnection conn = connection.GetConnection();
@@ -170,6 +179,11 @@ namespace PhoneDirectory.Scripts
             return guests;
         }
 
+        /// <summary>
+        /// Gets the list of guests that are currently inside the building
+        /// </summary>
+        /// <param name="searchWord">part of the username to search</param>
+        /// <returns>list of guests with username containing a part of searchword</returns>
         public List<Guest> RetrieveGuestsInside(string searchWord)
         {
             SqlConnection conn = connection.GetConnection();
@@ -224,14 +238,18 @@ namespace PhoneDirectory.Scripts
             return guests;
         }
 
+        /// <summary>
+        /// Writes the card obtained date to the database.
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool ObtainCard()
         {
             SqlConnection conn = connection.GetConnection();
-            SqlCommand command = new SqlCommand("ObtainCard", conn);
 
             try
             {
                 conn.Open();
+                SqlCommand command = new SqlCommand("ObtainCard", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@cardId", this.CardId);
@@ -250,6 +268,39 @@ namespace PhoneDirectory.Scripts
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Delete guest from database
+        /// </summary>
+        /// <returns>true on success</returns>
+        public bool DeleteGuest()
+        {
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("DeleteGuest", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@id", this.Id);
+                command.ExecuteNonQuery();
+
+            }
+            catch (Exception)
+            {
+                
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+
         }
 
     }

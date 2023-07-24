@@ -22,9 +22,11 @@ namespace PhoneDirectory
         private Contact contact = new Contact();
         private string selectedUsername = "";
 
+        private bool isAdmin = false;
+
         private UsefulUtilities util = new UsefulUtilities();
 
-        public DeletedContacts(User user)
+        public DeletedContacts(User user, bool isFromAdminScreen)
         {
             InitializeComponent();
 
@@ -32,20 +34,14 @@ namespace PhoneDirectory
 
             this.username = user.Username;
             this.role = user.Role;
+            this.isAdmin = isFromAdminScreen;
         }
 
         private void DeletedContacts_Load(object sender, EventArgs e)
         {
             deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
 
-            if (role.Equals("ADMIN"))
-            {
-                DeletePermenantlyButton.Enabled = true;
-            }
-            else
-            {
-                DeletePermenantlyButton.Enabled = false;
-            }
+
 
         }
 

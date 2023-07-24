@@ -38,6 +38,7 @@ namespace PhoneDirectory
             this.WindowState = FormWindowState.Maximized;
 
             currentUser = user;
+            this.user = user;
 
             this.username = currentUser.Username;
             this.role = currentUser.Role;
@@ -84,7 +85,7 @@ namespace PhoneDirectory
 
         private void lsUsersList_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void btnBringContacts_Click(object sender, EventArgs e)
@@ -137,7 +138,7 @@ namespace PhoneDirectory
 
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
-            Form deletedContacts = new DeletedContacts(currentUser);
+            Form deletedContacts = new DeletedContacts(user, true);
             deletedContacts.ShowDialog();
         }
 
@@ -166,6 +167,7 @@ namespace PhoneDirectory
                     GsmPrompt.Text = selectedContact._phoneNumber;
                     EmailPrompt.Text = selectedContact._email;
                     AddressPrompt.Text = selectedContact._address;
+
                 }
             }
             catch (Exception)
@@ -211,7 +213,7 @@ namespace PhoneDirectory
             user.Mail = UserEmailPrompt.Text;
             user.PhoneNumber = UserGsmPrompt.Text;
             user.Address = UserAddressPrompt.Text;
-            user.Role = UserRoleBox.SelectedItem.ToString();
+            user.Role = UserRoleBox.SelectedItem?.ToString()??"USER";
 
             user.UpdateUser(user.Username);
         }

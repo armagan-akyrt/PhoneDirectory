@@ -42,8 +42,8 @@ namespace PhoneDirectory.Scripts
         /// <summary>
         /// creates a new contact with the associated user
         /// </summary>
-        /// <param name="associatedUser"></param>
-        /// <returns></returns>
+        /// <param name="associatedUser">the user who created this contact</param>
+        /// <returns>true on success</returns>
         public bool CreateContact(string associatedUser)
         {
             SqlConnection conn = connection.GetConnection();
@@ -81,9 +81,9 @@ namespace PhoneDirectory.Scripts
         /// <summary>
         /// retrieves contact information from database
         /// </summary>
-        /// <param name="checkName"></param>
-        /// <param name="userUsername"></param>
-        /// <returns></returns>
+        /// <param name="checkName">searchword for contacts.</param>
+        /// <param name="userUsername">associated user username</param>
+        /// <returns>list of contacts associeated with user.</returns>
         public List<Contact> RetrieveContact(string checkName, string userUsername, bool isActive)
         {
 
@@ -170,6 +170,10 @@ namespace PhoneDirectory.Scripts
             return true;
         }
     
+        /// <summary>
+        /// Deletes contact from database permenantly
+        /// </summary>
+        /// <returns>true if successful</returns>
         public bool DeleteContact()
         {
             SqlConnection conn = connection.GetConnection();
@@ -198,6 +202,10 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Soft deletes contact from database
+        /// </summary>
+        /// <returns>true if successful</returns>
         public bool SoftDeleteContact()
         {
             SqlConnection conn = connection.GetConnection();
@@ -227,6 +235,10 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Retrieves soft deleted contact from database
+        /// </summary>
+        /// <returns>true if successful</returns>
         public bool BringBackDeletedUser()
         {
             SqlConnection conn = connection.GetConnection();
@@ -255,6 +267,11 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Severes contact from user
+        /// </summary>
+        /// <param name="username">associated user</param>
+        /// <returns>true if successful.</returns>
         public bool CutUserContact(string username)
         {
             SqlConnection conn = connection.GetConnection();

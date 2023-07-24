@@ -162,6 +162,7 @@
             DeleteButton.TabIndex = 11;
             DeleteButton.Text = "Sil";
             DeleteButton.UseVisualStyleBackColor = true;
+            DeleteButton.Click += DeleteButton_Click;
             // 
             // label5
             // 

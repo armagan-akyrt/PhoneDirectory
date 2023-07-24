@@ -15,6 +15,7 @@ namespace PhoneDirectory
     {
         private bool isInside;
         private List<Guest> guests = new List<Guest>();
+        private Guest selectedGuest = new Guest();
 
         private UsefulUtilities util = new UsefulUtilities();
 
@@ -47,25 +48,29 @@ namespace PhoneDirectory
                 return;
             }
 
-            Guest guest = guests[selectedIndex];
-            FirstNamePrompt.Text = guest.Name;
-            LastNamePrompt.Text = guest.Surname;
+            selectedGuest = guests[selectedIndex];
+            FirstNamePrompt.Text = selectedGuest.Name;
+            LastNamePrompt.Text = selectedGuest.Surname;
 
-            VisitedGuestBox.Text = guest.Visiting.Name + " " + guest.Visiting.Surname;
-            AcquireDateTimePicker.Value = guest.CardAcquisitionDate;
-            SubmitDateTimePicker.Value = (isInside) ? DateTime.UtcNow : guest.CardSubmitDate;
+            VisitedGuestBox.Text = selectedGuest.Visiting.Name + " " + selectedGuest.Visiting.Surname;
+            AcquireDateTimePicker.Value = selectedGuest.CardAcquisitionDate;
+            SubmitDateTimePicker.Value = (isInside) ? DateTime.UtcNow : selectedGuest.CardSubmitDate;
         }
 
         private void GetCardButton_Click(object sender, EventArgs e)
         {
-            Guest guest = guests[GuestsListBox.SelectedIndex];
-            if (guest.ObtainCard())
+            if (selectedGuest.ObtainCard())
             {
                 MessageBox.Show("Kart başarıyla teslim alındı.");
                 return;
             }
 
             MessageBox.Show("Kart teslim alınamadı.");
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            selectedGuest.DeleteGuest();
         }
     }
 }

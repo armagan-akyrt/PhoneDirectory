@@ -35,7 +35,10 @@ namespace PhoneDirectory.Scripts
         public Contact Contact { get => _contact; set => _contact = value; }
         #endregion
 
-
+        /// <summary>
+        /// Creates a meeting in the database
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool CreateMeeting()
         {
             SqlConnection conn = connection.GetConnection();
@@ -67,6 +70,10 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Updates the meeting in the database
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool UpdateMeeting()
         {
 
@@ -99,6 +106,10 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Removes the meeting from the database First delete is soft delete, second delete is hard delete
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool RemoveMeeting()
         {
             SqlConnection conn = connection.GetConnection();
@@ -126,6 +137,11 @@ namespace PhoneDirectory.Scripts
             return true;
         }
 
+        /// <summary>
+        /// Returns a list of meetings from the database
+        /// </summary>
+        /// <param name="activeState">whether or not soft deleted. 1=> active 0=> soft deleted</param>
+        /// <returns>a list of meetings</returns>
         public List<Meeting> GetMeetings(bool activeState)
         {
             List<Meeting> meetings = new List<Meeting>();
@@ -178,6 +194,10 @@ namespace PhoneDirectory.Scripts
             return meetings;
         }
 
+        /// <summary>
+        /// Brings back a soft deleted meeting
+        /// </summary>
+        /// <returns>true on success</returns>
         public bool BringBackMeeting()
         {
             SqlConnection conn = connection.GetConnection();

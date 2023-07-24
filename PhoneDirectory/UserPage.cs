@@ -151,7 +151,7 @@ namespace PhoneDirectory
 
         private void DeletedContactsToolStrip_Click(object sender, EventArgs e)
         {
-            Form DeletedContacts = new DeletedContacts(user);
+            Form DeletedContacts = new DeletedContacts(user, false);
             DeletedContacts.Show();
         }
 
