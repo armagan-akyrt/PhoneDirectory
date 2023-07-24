@@ -31,7 +31,7 @@ namespace PhoneDirectory
 
         private void DeletedContacts_Load(object sender, EventArgs e)
         {
-            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
+            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, user.Id, false);
 
 
 
@@ -42,7 +42,7 @@ namespace PhoneDirectory
             string input = ContactsSearchBar.Text;
             input = util.ConvertInputToAscii(input);
 
-            deletedContacts = util.PrintContactsList(input, DeletedContactsList, deletedContacts, username, false);
+            deletedContacts = util.PrintContactsList(input, DeletedContactsList, deletedContacts, user.Id, false);
         }
 
         private void DeletedContactsList_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,9 +72,9 @@ namespace PhoneDirectory
 
         private void DeletePermenantlyButton_Click(object sender, EventArgs e)
         {
-            contact.CutUserContact(username);
+            contact.CutUserContact(user.Id);
 
-            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
+            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, user.Id, false);
         }
 
         private void UpdateAndBringButton_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace PhoneDirectory
                 MessageBox.Show("Kullanıcı geri getirilemedi.");
             }
 
-            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, username, false);
+            deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, user.Id, false);
         }
     }
 }

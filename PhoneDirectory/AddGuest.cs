@@ -29,18 +29,6 @@ namespace PhoneDirectory
             guest.CardId = Convert.ToInt32(CardIdPrompt.Text);
             guest.CompanyName = CompanyNamePrompt.Text;
 
-            //List<Guest> guests = new List<Guest>();
-            //guests = guest.RetrieveGuestsInside("", startDate: DateTime.Now.AddYears(-100), endDate: DateTime.MaxValue, "");
-
-            //foreach (Guest res in guests)
-            //{
-            //    if (guest.CardId == res.CardId)
-            //    {
-            //        MessageBox.Show("Kart müsait değil, lütfen başka bir kart giriniz.");
-            //        CardIdPrompt.Focus();
-            //        return;
-            //    }
-            //}
 
             if (guest.CreateGuest())
             {

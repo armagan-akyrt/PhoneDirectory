@@ -103,7 +103,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(274, 291);
+            ClientSize = new Size(230, 272);
             Controls.Add(ChangePwdButton);
             Controls.Add(NewPwdAgain);
             Controls.Add(NewPwdBox);

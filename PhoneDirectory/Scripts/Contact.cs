@@ -56,8 +56,14 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@address", this._address);
                 command.Parameters.AddWithValue("@username", this._username);
                 command.Parameters.AddWithValue("@userUserName", associatedUser);
+                
+                SqlParameter contactIdParam = new SqlParameter("@id", System.Data.SqlDbType.Int);
+                contactIdParam.Direction = System.Data.ParameterDirection.Output;
+                command.Parameters.Add(contactIdParam);
 
                 command.ExecuteNonQuery();
+
+                this._id = Convert.ToInt32(contactIdParam.Value.ToString());
             }
             catch (Exception)
             {
@@ -79,7 +85,7 @@ namespace PhoneDirectory.Scripts
         /// <param name="checkName">searchword for contacts.</param>
         /// <param name="userUsername">associated user username</param>
         /// <returns>list of contacts associeated with user.</returns>
-        public List<Contact> RetrieveContact(string checkName, string userUsername, bool isActive)
+        public List<Contact> RetrieveContact(string checkName, int userId, bool isActive)
         {
 
             List<Contact> contacts = new List<Contact>();
@@ -93,7 +99,7 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@contactSearch", checkName);
-                command.Parameters.AddWithValue("@userUsername", userUsername);
+                command.Parameters.AddWithValue("@id", userId);
                 command.Parameters.AddWithValue("@activeState", isActive);
 
                 SqlDataReader reader = command.ExecuteReader();
@@ -147,7 +153,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
                 command.Parameters.AddWithValue("@email", this._email);
                 command.Parameters.AddWithValue("@address", this._address);
-                command.Parameters.AddWithValue("@oldUsername", oldUserName);
+                command.Parameters.AddWithValue("@id", this._id);
 
                 command.ExecuteNonQuery();
 
@@ -212,7 +218,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("SoftDeleteFromContacts", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this._id);
 
                 command.ExecuteNonQuery();
 
@@ -244,7 +250,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("RetrieveDeletedContact", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this._id);
 
                 command.ExecuteNonQuery();
             }
@@ -266,7 +272,7 @@ namespace PhoneDirectory.Scripts
         /// </summary>
         /// <param name="username">associated user</param>
         /// <returns>true if successful.</returns>
-        public bool CutUserContact(string username)
+        public bool CutUserContact(int userId)
         {
             SqlConnection conn = connection.GetConnection();
 
@@ -277,8 +283,8 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("SevereUserContact", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@userUsername", username);
-                command.Parameters.AddWithValue("@contactUsername", this._username);
+                command.Parameters.AddWithValue("@userId", userId);
+                command.Parameters.AddWithValue("@contactId", this._id);
 
                 command.ExecuteNonQuery();
 

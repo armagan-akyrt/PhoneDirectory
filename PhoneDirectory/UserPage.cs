@@ -34,7 +34,7 @@ namespace PhoneDirectory
 
         private void UserPage_Load(object sender, EventArgs e)
         {
-            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, user.Id, true);
             Meeting meeting = new Meeting();
             meeting.User = user;
 
@@ -57,7 +57,7 @@ namespace PhoneDirectory
             string input = SearchBar.Text;
             input = util.ConvertInputToAscii(input);
 
-            contacts = util.PrintContactsList(input, ContactsListBox, contacts, username, true);
+            contacts = util.PrintContactsList(input, ContactsListBox, contacts, user.Id, true);
 
 
         }
@@ -128,7 +128,7 @@ namespace PhoneDirectory
 
             contacts[selectedIndex].UpdateContact(oldUsername);
 
-            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, user.Id, true);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -139,7 +139,7 @@ namespace PhoneDirectory
                 return;
             }
             contacts[selectedIndex].SoftDeleteContact();
-            contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, user.Id, true);
         }
 
         private void AddPersonToolStrip_Click(object sender, EventArgs e)

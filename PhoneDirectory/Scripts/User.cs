@@ -121,7 +121,12 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@role", this.Role);
                 command.Parameters.AddWithValue("@username", this.Username);
 
+                SqlParameter userIdParam = new SqlParameter("@id", SqlDbType.Int);
+                userIdParam.Direction = ParameterDirection.Output;
+                command.Parameters.Add(userIdParam);
+
                 command.ExecuteNonQuery();
+                this.Id = (int)userIdParam.Value;
             }
             catch (Exception)
             {
@@ -149,7 +154,7 @@ namespace PhoneDirectory.Scripts
             {
                 return false;
             }
-
+            string tempNewPassword = newPassword;
             newPassword = util.EncryptPassword(newPassword);
 
             SqlConnection conn = connection.GetConnection();
@@ -162,7 +167,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("ChangePassword", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this.Id);
                 command.Parameters.AddWithValue("@password", newPassword);
 
                 command.ExecuteNonQuery();
@@ -178,6 +183,7 @@ namespace PhoneDirectory.Scripts
                 conn.Close();
             }
 
+            this.Password = tempNewPassword;
             return true;
         }
 
@@ -204,7 +210,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@password", this._password);
                 command.Parameters.AddWithValue("@role", this._role);
                 command.Parameters.AddWithValue("@username", this._username);
-                command.Parameters.AddWithValue("@oldUsername", oldUsername);
+                command.Parameters.AddWithValue("@id", this.Id);
 
                 command.ExecuteNonQuery();
 
@@ -333,7 +339,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("RemoveUser", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this.Id);
 
                 command.ExecuteNonQuery();
 
@@ -365,7 +371,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("SoftDeleteFromUsers", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this.Id);
 
                 command.ExecuteNonQuery();
 
@@ -398,7 +404,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("RetrieveDeletedUser", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this.Id);
                 command.ExecuteNonQuery();
             }
             catch (Exception)

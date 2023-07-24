@@ -24,14 +24,14 @@ namespace PhoneDirectory
         private void AddMeeting_Load(object sender, EventArgs e)
         {
             meetingToCreate.User = user;
-            contacts = util.PrintContactsList("", ContactsListBox, contacts, user.Username, true);
+            contacts = util.PrintContactsList("", ContactsListBox, contacts, user.Id, true);
         }
 
         private void ContactSearchBar_TextChanged(object sender, EventArgs e)
         {
             string searchInput = util.ConvertInputToAscii(ContactSearchBar.Text);
 
-            contacts = util.PrintContactsList(searchInput, ContactsListBox, contacts, user.Username, true);
+            contacts = util.PrintContactsList(searchInput, ContactsListBox, contacts, user.Id, true);
         }
 
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace PhoneDirectory
 
         private void ChangePassword_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ChangePwdButton_Click(object sender, EventArgs e)
@@ -36,6 +36,7 @@ namespace PhoneDirectory
             if (NewPwdBox.Text.Equals(NewPwdAgain.Text))
             {
                 user.ChangePassword(NewPwdBox.Text, oldPwd);
+                
                 MessageBox.Show("Şifre başarıyla değiştirildi!");
                 this.Close();
             }

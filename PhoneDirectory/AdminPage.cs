@@ -63,7 +63,7 @@ namespace PhoneDirectory
             // contact searchbar string, converted to lowercase and without spaces
             string search = (ContactsSearchBar.Text);
             search = util.ConvertInputToAscii(search);
-            contacts = util.PrintContactsList(search, ContactsList, contacts, selectedUser, true);
+            contacts = util.PrintContactsList(search, ContactsList, contacts, user.Id, true);
 
         }
 
@@ -106,7 +106,7 @@ namespace PhoneDirectory
             string contactSearch = ContactsSearchBar.Text;
             contactSearch = util.ConvertInputToAscii(contactSearch);
 
-            contacts = util.PrintContactsList(contactSearch, ContactsList, contacts, selectedUser, true);
+            contacts = util.PrintContactsList(contactSearch, ContactsList, contacts, user.Id, true);
         }
 
         private void NewUserMenuStrip_Click(object sender, EventArgs e)

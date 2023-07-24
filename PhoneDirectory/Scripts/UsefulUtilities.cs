@@ -12,11 +12,11 @@ namespace PhoneDirectory.Scripts
         /// <param name="listBox"></param>
         /// <param name="contacts"></param>
         /// <param name="username"></param>
-        public List<Contact> PrintContactsList(string search, ListBox listBox, List<Contact> contacts, string username, bool activeState)
+        public List<Contact> PrintContactsList(string search, ListBox listBox, List<Contact> contacts, int userId, bool activeState)
         {
             Contact contact = new Contact();
             contacts.Clear();
-            contacts = contact.RetrieveContact(search, username, activeState);
+            contacts = contact.RetrieveContact(search, userId, activeState);
             listBox.Items.Clear();
             foreach (Contact res in contacts)
             {
