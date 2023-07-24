@@ -39,7 +39,7 @@ namespace PhoneDirectory.Scripts
         /// </summary>
         /// <param name="associatedUser">the user who created this contact</param>
         /// <returns>true on success</returns>
-        public bool CreateContact(string associatedUser)
+        public bool CreateContact(int userId)
         {
             SqlConnection conn = connection.GetConnection();
             try
@@ -54,8 +54,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@gsmNum", this._phoneNumber);
                 command.Parameters.AddWithValue("@email", this._email);
                 command.Parameters.AddWithValue("@address", this._address);
-                command.Parameters.AddWithValue("@username", this._username);
-                command.Parameters.AddWithValue("@userUserName", associatedUser);
+                command.Parameters.AddWithValue("@userId", userId);
                 
                 SqlParameter contactIdParam = new SqlParameter("@id", System.Data.SqlDbType.Int);
                 contactIdParam.Direction = System.Data.ParameterDirection.Output;
@@ -63,7 +62,7 @@ namespace PhoneDirectory.Scripts
 
                 command.ExecuteNonQuery();
 
-                this._id = Convert.ToInt32(contactIdParam.Value.ToString());
+                this._id = Convert.ToInt32(contactIdParam.Value);
             }
             catch (Exception)
             {
@@ -186,7 +185,7 @@ namespace PhoneDirectory.Scripts
                 SqlCommand command = new SqlCommand("RemoveContact", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@username", this._username);
+                command.Parameters.AddWithValue("@id", this._id);
 
                 command.ExecuteNonQuery();
             }

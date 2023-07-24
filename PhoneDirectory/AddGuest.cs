@@ -61,5 +61,11 @@ namespace PhoneDirectory
             users = util.PrintUsersList(searchWord, UsersListBox, users, true);
 
         }
+
+        private void SearchCompanyPrompt_TextChanged(object sender, EventArgs e)
+        {
+
+
+        }
     }
 }

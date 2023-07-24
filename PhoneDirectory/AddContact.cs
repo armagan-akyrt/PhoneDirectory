@@ -75,7 +75,7 @@ namespace PhoneDirectory
 
             Contact contact = new Contact(NamePrompt.Text, SurnamePrompt.Text, GsmPrompt.Text, EmailPrompt.Text, AddressPrompt.Text, contactUsername);
 
-            contact.CreateContact(username);
+            contact.CreateContact(user.Id);
 
         }
 
