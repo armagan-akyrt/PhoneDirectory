@@ -76,7 +76,7 @@ namespace PhoneDirectory
 
         private void lsUsersList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void btnBringContacts_Click(object sender, EventArgs e)
@@ -204,7 +204,7 @@ namespace PhoneDirectory
             user.Mail = UserEmailPrompt.Text;
             user.PhoneNumber = UserGsmPrompt.Text;
             user.Address = UserAddressPrompt.Text;
-            user.Role = UserRoleBox.SelectedItem?.ToString()??"USER";
+            user.Role = UserRoleBox.SelectedItem?.ToString() ?? "USER";
 
             user.UpdateUser(user.Username);
         }
@@ -235,6 +235,11 @@ namespace PhoneDirectory
         {
             Form InsideGuests = new GuestsList(true);
             InsideGuests.ShowDialog();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

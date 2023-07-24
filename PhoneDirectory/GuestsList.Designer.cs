@@ -74,6 +74,7 @@
             GuestSearchBar.Name = "GuestSearchBar";
             GuestSearchBar.Size = new Size(249, 23);
             GuestSearchBar.TabIndex = 2;
+            GuestSearchBar.TextChanged += GuestSearchBar_TextChanged;
             // 
             // FirstNamePrompt
             // 

@@ -44,6 +44,10 @@
             NewContactToolstrip = new ToolStripMenuItem();
             GuestsToolStrip = new ToolStripMenuItem();
             CreateGuestButton = new ToolStripMenuItem();
+            RetrieveCardToolStripMenu = new ToolStripMenuItem();
+            ViewGuests = new ToolStripMenuItem();
+            ViewAllGuests = new ToolStripMenuItem();
+            ViewGuestsInside = new ToolStripMenuItem();
             DeleteUserButton = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
@@ -74,10 +78,6 @@
             UserGsmPrompt = new TextBox();
             UserLastNamePrompt = new TextBox();
             UserFirstNamePropmt = new TextBox();
-            RetrieveCardToolStripMenu = new ToolStripMenuItem();
-            ViewGuests = new ToolStripMenuItem();
-            ViewAllGuests = new ToolStripMenuItem();
-            ViewGuestsInside = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -143,6 +143,7 @@
             menuStrip1.Size = new Size(1495, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
+            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // userToolStrip
             // 
@@ -206,6 +207,33 @@
             CreateGuestButton.Size = new Size(182, 22);
             CreateGuestButton.Text = "Misafir Oluştur";
             CreateGuestButton.Click += CreateGuestButton_Click;
+            // 
+            // RetrieveCardToolStripMenu
+            // 
+            RetrieveCardToolStripMenu.Name = "RetrieveCardToolStripMenu";
+            RetrieveCardToolStripMenu.Size = new Size(182, 22);
+            RetrieveCardToolStripMenu.Text = "Kart Teslim Al";
+            // 
+            // ViewGuests
+            // 
+            ViewGuests.DropDownItems.AddRange(new ToolStripItem[] { ViewAllGuests, ViewGuestsInside });
+            ViewGuests.Name = "ViewGuests";
+            ViewGuests.Size = new Size(182, 22);
+            ViewGuests.Text = "Misafirleri Görüntüle";
+            // 
+            // ViewAllGuests
+            // 
+            ViewAllGuests.Name = "ViewAllGuests";
+            ViewAllGuests.Size = new Size(193, 22);
+            ViewAllGuests.Text = "Tümü";
+            ViewAllGuests.Click += ViewAllGuests_Click;
+            // 
+            // ViewGuestsInside
+            // 
+            ViewGuestsInside.Name = "ViewGuestsInside";
+            ViewGuestsInside.Size = new Size(193, 22);
+            ViewGuestsInside.Text = "Kart Teslim Etmeyenler";
+            ViewGuestsInside.Click += ViewGuestsInside_Click;
             // 
             // DeleteUserButton
             // 
@@ -497,33 +525,6 @@
             UserFirstNamePropmt.Name = "UserFirstNamePropmt";
             UserFirstNamePropmt.Size = new Size(220, 23);
             UserFirstNamePropmt.TabIndex = 11;
-            // 
-            // RetrieveCardToolStripMenu
-            // 
-            RetrieveCardToolStripMenu.Name = "RetrieveCardToolStripMenu";
-            RetrieveCardToolStripMenu.Size = new Size(182, 22);
-            RetrieveCardToolStripMenu.Text = "Kart Teslim Al";
-            // 
-            // ViewGuests
-            // 
-            ViewGuests.DropDownItems.AddRange(new ToolStripItem[] { ViewAllGuests, ViewGuestsInside });
-            ViewGuests.Name = "ViewGuests";
-            ViewGuests.Size = new Size(182, 22);
-            ViewGuests.Text = "Misafirleri Görüntüle";
-            // 
-            // ViewAllGuests
-            // 
-            ViewAllGuests.Name = "ViewAllGuests";
-            ViewAllGuests.Size = new Size(193, 22);
-            ViewAllGuests.Text = "Tümü";
-            ViewAllGuests.Click += ViewAllGuests_Click;
-            // 
-            // ViewGuestsInside
-            // 
-            ViewGuestsInside.Name = "ViewGuestsInside";
-            ViewGuestsInside.Size = new Size(193, 22);
-            ViewGuestsInside.Text = "Kart Teslim Etmeyenler";
-            ViewGuestsInside.Click += ViewGuestsInside_Click;
             // 
             // AdminPage
             // 

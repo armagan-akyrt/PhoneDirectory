@@ -63,5 +63,13 @@ namespace PhoneDirectory
         {
             selectedGuest.DeleteGuest();
         }
+
+        private void GuestSearchBar_TextChanged(object sender, EventArgs e)
+        {
+            string searchWord = GuestSearchBar.Text;
+            searchWord = util.ConvertInputToAscii(searchWord);
+
+            guests = util.PrintGuestList(searchWord, GuestsListBox, guests, isInside);
+        }
     }
 }

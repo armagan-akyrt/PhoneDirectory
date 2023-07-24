@@ -294,6 +294,7 @@
             MeetingsSearchBar.Name = "MeetingsSearchBar";
             MeetingsSearchBar.Size = new Size(262, 23);
             MeetingsSearchBar.TabIndex = 1;
+            MeetingsSearchBar.TextChanged += MeetingsSearchBar_TextChanged;
             // 
             // UpcomingMeetingsList
             // 

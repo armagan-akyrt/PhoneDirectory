@@ -234,5 +234,13 @@ namespace PhoneDirectory
             Form DeletedMeetings = new DeletedMeetings(user);
             DeletedMeetings.ShowDialog();
         }
+
+        private void MeetingsSearchBar_TextChanged(object sender, EventArgs e)
+        {
+            string input = MeetingsSearchBar.Text;
+            input = util.ConvertInputToAscii(input);
+
+            meetings = util.PrintMeetingsList(input, UpcomingMeetingsList, meetings, true, user);
+        }
     }
 }
