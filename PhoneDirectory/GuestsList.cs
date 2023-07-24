@@ -10,6 +10,12 @@ namespace PhoneDirectory
 
         private UsefulUtilities util = new UsefulUtilities();
 
+        private DateTime startDate;
+        private DateTime endDate;
+
+        private string companyName = "";
+        private string searchWord = "";
+
         public GuestsList(bool isInside)
         {
             this.isInside = isInside;
@@ -18,7 +24,15 @@ namespace PhoneDirectory
 
         private void GuestsList_Load(object sender, EventArgs e)
         {
-            guests = util.PrintGuestList("", GuestsListBox, guests, isInside);
+            IntervalCalendar.MaxSelectionCount = 61;
+            IntervalCalendar.SelectionStart = DateTime.Now.AddMonths(-1);
+            IntervalCalendar.SelectionEnd = DateTime.Now;
+
+            startDate = IntervalCalendar.SelectionStart;
+            endDate = IntervalCalendar.SelectionEnd;
+
+
+            guests = util.PrintGuestList("", GuestsListBox, guests, isInside, startDate, endDate, companyName);
             if (isInside)
             {
                 label4.Hide();
@@ -46,6 +60,7 @@ namespace PhoneDirectory
             VisitedGuestBox.Text = selectedGuest.Visiting.Name + " " + selectedGuest.Visiting.Surname;
             AcquireDateTimePicker.Value = selectedGuest.CardAcquisitionDate;
             SubmitDateTimePicker.Value = (isInside) ? DateTime.UtcNow : selectedGuest.CardSubmitDate;
+            CompanyNameBox.Text = selectedGuest.CompanyName;
         }
 
         private void GetCardButton_Click(object sender, EventArgs e)
@@ -66,10 +81,60 @@ namespace PhoneDirectory
 
         private void GuestSearchBar_TextChanged(object sender, EventArgs e)
         {
-            string searchWord = GuestSearchBar.Text;
+            if (GuestSearchBar.Text == "Kullanıcı adıyla ara")
+                return;
+
+            searchWord = GuestSearchBar.Text;
             searchWord = util.ConvertInputToAscii(searchWord);
 
-            guests = util.PrintGuestList(searchWord, GuestsListBox, guests, isInside);
+            guests = util.PrintGuestList(searchWord, GuestsListBox, guests, isInside, startDate, endDate, companyName);
+        }
+
+        private void UpdateHistoryInterval_Click(object sender, EventArgs e)
+        {
+            startDate = IntervalCalendar.SelectionStart;
+            endDate = IntervalCalendar.SelectionEnd;
+
+            guests = util.PrintGuestList(searchWord, GuestsListBox, guests, isInside, startDate, endDate, companyName);
+        }
+
+        private void GuestSearchBar_Enter(object sender, EventArgs e)
+        {
+            if (GuestSearchBar.Text == "Kullanıcı adıyla ara")
+                GuestSearchBar.Text = "";
+        }
+
+        private void GuestSearchBar_Leave(object sender, EventArgs e)
+        {
+            if (GuestSearchBar.Text == "")
+                GuestSearchBar.Text = "Kullanıcı adıyla ara";
+
+        }
+
+        private void CompanyNameSearch_Enter(object sender, EventArgs e)
+        {
+            if (CompanyNameSearch.Text == "Firma adıyla ara")
+                CompanyNameSearch.Text = "";
+        }
+
+        private void CompanyNameSearch_Leave(object sender, EventArgs e)
+        {
+            if (CompanyNameSearch.Text == "")
+                CompanyNameSearch.Text = "Firma adıyla ara";
+        }
+
+        private void CompanyNameSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (CompanyNameSearch.Text == "Firma adıyla ara")
+                return;
+
+            companyName = CompanyNameSearch.Text;
+            companyName = companyName.ToLower();
+
+            guests = util.PrintGuestList(searchWord, GuestsListBox, guests, isInside, startDate, endDate, companyName);
+
+
+
         }
     }
 }

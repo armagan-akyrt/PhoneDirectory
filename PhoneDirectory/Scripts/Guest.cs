@@ -17,6 +17,8 @@ namespace PhoneDirectory.Scripts
         private DateTime _cardAcquisitionDate;
         private DateTime _cardSubmitDate;
 
+        private string _companyName;
+
         private UsefulUtilities util = new UsefulUtilities();
         private Connection connection = new Connection();
 
@@ -65,6 +67,12 @@ namespace PhoneDirectory.Scripts
             get { return _cardSubmitDate; }
             set { _cardSubmitDate = value; }
         }
+
+        public string CompanyName
+        {
+            get { return _companyName; }
+            set { _companyName = value; }
+        }
         #endregion
 
         public Guest()
@@ -93,6 +101,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.AddWithValue("@lastName", this.Surname);
                 command.Parameters.AddWithValue("@cardId", this.CardId);
                 command.Parameters.AddWithValue("@userId", this.Visiting.Id);
+                command.Parameters.AddWithValue("@companyName", this.CompanyName);
 
                 SqlParameter outputParameter = new SqlParameter();
                 outputParameter.ParameterName = "@id";
@@ -123,7 +132,7 @@ namespace PhoneDirectory.Scripts
         /// </summary>
         /// <param name="searchWord"> part of the username to search</param>
         /// <returns>list of guests with username containing a part of searchword</returns>
-        public List<Guest> RetrieveAllGuest(string searchWord)
+        public List<Guest> RetrieveAllGuest(string searchWord, DateTime startDate,DateTime endDate, string companyName)
         {
             SqlConnection conn = connection.GetConnection();
             List<Guest> guests = new List<Guest>();
@@ -134,6 +143,9 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
                 
                 command.Parameters.AddWithValue("@username", searchWord);
+                command.Parameters.AddWithValue("@startDate", startDate);
+                command.Parameters.AddWithValue("@endDate", endDate);
+                command.Parameters.AddWithValue("@companyName", companyName);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -147,6 +159,7 @@ namespace PhoneDirectory.Scripts
                     guest.Id = Convert.ToInt32(reader["id"]);
                     guest.Username = reader["username"]?.ToString() ?? string.Empty;
                     guest.CardSubmitDate = Convert.ToDateTime(reader["cardSubmitDate"]);
+                    guest._companyName = reader["companyName"]?.ToString() ?? string.Empty;
 
                     User user = new User();
                     user.Name = reader["userFirstName"]?.ToString() ?? string.Empty;
@@ -180,7 +193,7 @@ namespace PhoneDirectory.Scripts
         /// </summary>
         /// <param name="searchWord">part of the username to search</param>
         /// <returns>list of guests with username containing a part of searchword</returns>
-        public List<Guest> RetrieveGuestsInside(string searchWord)
+        public List<Guest> RetrieveGuestsInside(string searchWord, DateTime startDate, DateTime endDate, string companyName)
         {
             SqlConnection conn = connection.GetConnection();
             List<Guest> guests = new List<Guest>();
@@ -192,6 +205,9 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@username", searchWord);
+                command.Parameters.AddWithValue("@startDate", startDate);
+                command.Parameters.AddWithValue("@endDate", endDate);
+                command.Parameters.AddWithValue("@companyName", companyName);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -204,6 +220,7 @@ namespace PhoneDirectory.Scripts
                     guest.CardAcquisitionDate = Convert.ToDateTime(reader["acquisitionTime"]);
                     guest.Id = Convert.ToInt32(reader["id"]);
                     guest.Username = reader["username"]?.ToString() ?? string.Empty;
+                    guest.CompanyName = reader["companyName"]?.ToString() ?? string.Empty;
 
                     User user = new User();
                     user.Name = reader["userFirstName"]?.ToString() ?? string.Empty;

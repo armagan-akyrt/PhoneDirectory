@@ -68,6 +68,7 @@ namespace PhoneDirectory
             selectedIndex = ContactsListBox.SelectedIndex;
             try
             {
+
                 uname = ContactsListBox.Items[selectedIndex].ToString();
                 uname = util.ConvertInputToAscii(uname);
 
@@ -220,6 +221,7 @@ namespace PhoneDirectory
 
         private void UpdateMeetingButton_Click(object sender, EventArgs e)
         {
+            selectedMeeting.Contact = contacts[selectedIndex];
             selectedMeeting.MeetingNotes = NotesPrompt.Text;
             selectedMeeting.UpdateMeeting();
         }

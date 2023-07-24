@@ -39,12 +39,14 @@
             groupBox1 = new GroupBox();
             UserSearchBar = new TextBox();
             UsersListBox = new ListBox();
+            CompanyNamePrompt = new TextBox();
+            label4 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // CreateGuestButton
             // 
-            CreateGuestButton.Location = new Point(444, 221);
+            CreateGuestButton.Location = new Point(444, 284);
             CreateGuestButton.Name = "CreateGuestButton";
             CreateGuestButton.Size = new Size(75, 23);
             CreateGuestButton.TabIndex = 29;
@@ -86,7 +88,7 @@
             // 
             // CardIdPrompt
             // 
-            CardIdPrompt.Location = new Point(280, 159);
+            CardIdPrompt.Location = new Point(280, 222);
             CardIdPrompt.Name = "CardIdPrompt";
             CardIdPrompt.Size = new Size(239, 23);
             CardIdPrompt.TabIndex = 30;
@@ -94,7 +96,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(280, 141);
+            label1.Location = new Point(280, 204);
             label1.Name = "label1";
             label1.Size = new Size(77, 15);
             label1.TabIndex = 31;
@@ -129,11 +131,29 @@
             UsersListBox.TabIndex = 0;
             UsersListBox.SelectedIndexChanged += UsersListBox_SelectedIndexChanged;
             // 
+            // CompanyNamePrompt
+            // 
+            CompanyNamePrompt.Location = new Point(280, 164);
+            CompanyNamePrompt.Name = "CompanyNamePrompt";
+            CompanyNamePrompt.Size = new Size(239, 23);
+            CompanyNamePrompt.TabIndex = 33;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(280, 146);
+            label4.Name = "label4";
+            label4.Size = new Size(58, 15);
+            label4.TabIndex = 34;
+            label4.Text = "Firma Adı";
+            // 
             // AddGuest
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(643, 416);
+            Controls.Add(label4);
+            Controls.Add(CompanyNamePrompt);
             Controls.Add(groupBox1);
             Controls.Add(label1);
             Controls.Add(CardIdPrompt);
@@ -163,5 +183,7 @@
         private GroupBox groupBox1;
         private TextBox UserSearchBar;
         private ListBox UsersListBox;
+        private TextBox CompanyNamePrompt;
+        private Label label4;
     }
 }

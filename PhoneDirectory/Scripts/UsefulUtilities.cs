@@ -85,15 +85,15 @@ namespace PhoneDirectory.Scripts
         /// <param name="guests"></param>
         /// <param name="isInside"></param>
         /// <returns></returns>
-        public List<Guest> PrintGuestList(string search, ListBox listBox, List<Guest> guests, bool isInside)
+        public List<Guest> PrintGuestList(string search, ListBox listBox, List<Guest> guests, bool isInside, DateTime startDate, DateTime endDate, string companyName)
         {
             Guest guest = new Guest();
-            guests = (isInside) ? guest.RetrieveGuestsInside(search) : guest.RetrieveAllGuest(search);
+            guests = (isInside) ? guest.RetrieveGuestsInside(search, startDate, endDate, companyName) : guest.RetrieveAllGuest(search, startDate, endDate, companyName);
             listBox.Items.Clear();
 
             foreach (Guest res in guests)
             {
-                string tagToWrite = "FIRST LAST DATE".Replace("FIRST", res.Name).Replace("LAST", res.Surname).Replace("DATE", res.CardAcquisitionDate.ToString());
+                string tagToWrite = "FIRST LAST - COMPANY - DATE".Replace("FIRST", res.Name).Replace("LAST", res.Surname).Replace("DATE", res.CardAcquisitionDate.ToString()).Replace("COMPANY", res.CompanyName);
                 listBox.Items.Add(tagToWrite);
             }
 

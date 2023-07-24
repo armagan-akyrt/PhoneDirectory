@@ -27,6 +27,7 @@ namespace PhoneDirectory
             guest.Name = NamePrompt.Text;
             guest.Surname = SurnamePrompt.Text;
             guest.CardId = Convert.ToInt32(CardIdPrompt.Text);
+            guest.CompanyName = CompanyNamePrompt.Text;
 
 
 
