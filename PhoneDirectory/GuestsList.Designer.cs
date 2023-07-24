@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestsList));
             GuestsListBox = new ListBox();
             groupBox1 = new GroupBox();
             GuestSearchBar = new TextBox();
@@ -199,6 +200,7 @@
             Controls.Add(LastNamePrompt);
             Controls.Add(FirstNamePrompt);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "GuestsList";
             Text = "GuestsList";
             Load += GuestsList_Load;

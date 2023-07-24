@@ -1,15 +1,5 @@
 ﻿using PhoneDirectory.Scripts;
-using System;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace PhoneDirectory
 {
@@ -24,6 +14,8 @@ namespace PhoneDirectory
 
         private List<Contact> contacts = new List<Contact>();
         private string oldUsername = "";
+
+        private int selectedIndex = -1;
 
         public string username;
         private string role;
@@ -73,9 +65,10 @@ namespace PhoneDirectory
         private void ContactsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             string uname = " ";
+            selectedIndex = ContactsListBox.SelectedIndex;
             try
             {
-                uname = ContactsListBox.Items[ContactsListBox.SelectedIndex].ToString();
+                uname = ContactsListBox.Items[selectedIndex].ToString();
                 uname = util.ConvertInputToAscii(uname);
 
                 Contact contactToShow = contacts.Find(x => x._username == uname);
@@ -97,6 +90,12 @@ namespace PhoneDirectory
 
         private void UpdatePerson_Click(object sender, EventArgs e)
         {
+            if (selectedIndex < 0)
+            {
+                MessageBox.Show("Lütfen bir bağlantı seçiniz.");
+                return;
+            }
+
             GsmPrompt.Text = GsmPrompt.Text.Replace(" ", "");
 
             string emailPattern = @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$";
@@ -118,22 +117,27 @@ namespace PhoneDirectory
                 return;
             }
 
-            int i = ContactsListBox.SelectedIndex;
+            selectedIndex = ContactsListBox.SelectedIndex;
 
-            contacts[i]._name = NamePrompt.Text;
-            contacts[i]._surname = SurnamePromp.Text;
-            contacts[i]._email = EmailPrompt.Text;
-            contacts[i]._phoneNumber = GsmPrompt.Text;
-            contacts[i]._address = AddresPrompt.Text;
+            contacts[selectedIndex]._name = NamePrompt.Text;
+            contacts[selectedIndex]._surname = SurnamePromp.Text;
+            contacts[selectedIndex]._email = EmailPrompt.Text;
+            contacts[selectedIndex]._phoneNumber = GsmPrompt.Text;
+            contacts[selectedIndex]._address = AddresPrompt.Text;
 
-            contacts[i].UpdateContact(oldUsername);
+            contacts[selectedIndex].UpdateContact(oldUsername);
 
             contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            contacts[ContactsListBox.SelectedIndex].SoftDeleteContact();
+            if (selectedIndex < 0)
+            {
+                MessageBox.Show("Lütfen bir bağlantı seçiniz.");
+                return;
+            }
+            contacts[selectedIndex].SoftDeleteContact();
             contacts = util.PrintContactsList("", ContactsListBox, contacts, username, true);
         }
 
@@ -177,19 +181,19 @@ namespace PhoneDirectory
 
         private void UpcomingMeetingsList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int selectedIndex = UpcomingMeetingsList.SelectedIndex;
-            if (selectedIndex == -1)
+            int meetingsSelectedIndex = UpcomingMeetingsList.SelectedIndex;
+            if (meetingsSelectedIndex == -1)
             {
                 return;
             }
 
             try
             {
-                selectedMeeting = meetings[selectedIndex];
-                fullNamePrompt.Text = meetings[selectedIndex].Contact._name.ToString() + " " + meetings[selectedIndex].Contact._surname.ToString();
-                StartTimePicker.Value = meetings[selectedIndex].MeetingStartDate;
-                EndTimePicker.Value = meetings[selectedIndex].MeetingEndDate;
-                NotesPrompt.Text = meetings[selectedIndex].MeetingNotes;
+                selectedMeeting = meetings[meetingsSelectedIndex];
+                fullNamePrompt.Text = meetings[meetingsSelectedIndex].Contact._name.ToString() + " " + meetings[meetingsSelectedIndex].Contact._surname.ToString();
+                StartTimePicker.Value = meetings[meetingsSelectedIndex].MeetingStartDate;
+                EndTimePicker.Value = meetings[meetingsSelectedIndex].MeetingEndDate;
+                NotesPrompt.Text = meetings[meetingsSelectedIndex].MeetingNotes;
             }
             catch (Exception)
             {

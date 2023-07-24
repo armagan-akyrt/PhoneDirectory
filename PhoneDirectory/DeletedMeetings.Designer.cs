@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeletedMeetings));
             groupBox2 = new GroupBox();
             MeetingsSearchBar = new TextBox();
             UpcomingMeetingsList = new ListBox();
@@ -177,8 +178,10 @@
             Controls.Add(fullNamePrompt);
             Controls.Add(label10);
             Controls.Add(groupBox2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "DeletedMeetings";
             Text = "DeletedMeetings";
+            Load += DeletedMeetings_Load;
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Security.Cryptography.X509Certificates;
 
 namespace PhoneDirectory.Scripts
 {
@@ -225,7 +220,6 @@ namespace PhoneDirectory.Scripts
             catch (Exception)
             {
                 return false;
-                throw;
             }
             finally
             {

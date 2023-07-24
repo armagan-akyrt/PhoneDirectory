@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddMeeting));
             groupBox1 = new GroupBox();
             ContactSearchBar = new TextBox();
             ContactsListBox = new ListBox();
@@ -138,6 +139,7 @@
             Controls.Add(EndDatePicker);
             Controls.Add(StartDatePicker);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddMeeting";
             Text = "Toplantı Oluştur";
             Load += AddMeeting_Load;

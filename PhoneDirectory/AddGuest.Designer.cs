@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddGuest));
             CreateGuestButton = new Button();
             SurnamePrompt = new TextBox();
             label3 = new Label();
@@ -141,6 +142,7 @@
             Controls.Add(label3);
             Controls.Add(NamePrompt);
             Controls.Add(label2);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddGuest";
             Text = "AddGuest";
             Load += AddGuest_Load;
