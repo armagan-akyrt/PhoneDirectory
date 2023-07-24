@@ -90,7 +90,7 @@ namespace PhoneDirectory.Scripts
         public bool CreateGuest()
         {
             SqlConnection conn = connection.GetConnection();
-
+            int success = 0;
             try
             {
                 conn.Open();
@@ -109,7 +109,7 @@ namespace PhoneDirectory.Scripts
                 outputParameter.Direction = System.Data.ParameterDirection.Output;
                 command.Parameters.Add(outputParameter);
 
-                command.ExecuteNonQuery();
+                success = command.ExecuteNonQuery();
 
                 this._id = Convert.ToInt32(outputParameter.Value);
 
@@ -122,6 +122,11 @@ namespace PhoneDirectory.Scripts
             finally
             {
                 conn.Close();
+            }
+
+            if (success < 0) 
+            {
+                return false;
             }
 
             return true;
