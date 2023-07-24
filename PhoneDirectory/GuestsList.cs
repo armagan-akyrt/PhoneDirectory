@@ -31,6 +31,9 @@ namespace PhoneDirectory
             {
                 label4.Hide();
                 SubmitDateTimePicker.Hide();
+            }
+            else
+            {
                 GetCardButton.Hide();
             }
 
@@ -51,6 +54,18 @@ namespace PhoneDirectory
             VisitedGuestBox.Text = guest.Visiting.Name + " " + guest.Visiting.Surname;
             AcquireDateTimePicker.Value = guest.CardAcquisitionDate;
             SubmitDateTimePicker.Value = (isInside) ? DateTime.UtcNow : guest.CardSubmitDate;
+        }
+
+        private void GetCardButton_Click(object sender, EventArgs e)
+        {
+            Guest guest = guests[GuestsListBox.SelectedIndex];
+            if (guest.ObtainCard())
+            {
+                MessageBox.Show("Kart başarıyla teslim alındı.");
+                return;
+            }
+
+            MessageBox.Show("Kart teslim alınamadı.");
         }
     }
 }

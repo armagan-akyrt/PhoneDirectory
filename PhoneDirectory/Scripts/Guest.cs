@@ -224,5 +224,33 @@ namespace PhoneDirectory.Scripts
             return guests;
         }
 
+        public bool ObtainCard()
+        {
+            SqlConnection conn = connection.GetConnection();
+            SqlCommand command = new SqlCommand("ObtainCard", conn);
+
+            try
+            {
+                conn.Open();
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@cardId", this.CardId);
+                command.Parameters.AddWithValue("@id", this.Id);
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return true;
+        }
+
     }
 }

@@ -152,6 +152,7 @@
             GetCardButton.TabIndex = 10;
             GetCardButton.Text = "Teslim Alındı";
             GetCardButton.UseVisualStyleBackColor = true;
+            GetCardButton.Click += GetCardButton_Click;
             // 
             // DeleteButton
             // 
