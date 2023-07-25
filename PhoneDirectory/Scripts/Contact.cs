@@ -86,6 +86,7 @@ namespace PhoneDirectory.Scripts
         /// <returns>list of contacts associeated with user.</returns>
         public List<Contact> RetrieveContact(string checkName, int userId, bool isActive)
         {
+            
 
             List<Contact> contacts = new List<Contact>();
 
