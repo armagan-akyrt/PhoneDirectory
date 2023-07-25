@@ -72,7 +72,7 @@ namespace PhoneDirectory
 
         private void DeletePermenantlyButton_Click(object sender, EventArgs e)
         {
-
+            
             contact.CutUserContact(user.Id);
 
             deletedContacts = util.PrintContactsList("", DeletedContactsList, deletedContacts, user.Id, false);
