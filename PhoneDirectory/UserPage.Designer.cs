@@ -69,6 +69,7 @@
             StartTimePicker = new DateTimePicker();
             EndTimePicker = new DateTimePicker();
             timer1 = new System.Windows.Forms.Timer(components);
+            PreviousMeetingsToolStrip = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -237,7 +238,7 @@
             // 
             // toplantılarToolStripMenuItem
             // 
-            toplantılarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddMeetingToolStrip, DeletedMeetingsToolStrip });
+            toplantılarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { AddMeetingToolStrip, DeletedMeetingsToolStrip, PreviousMeetingsToolStrip });
             toplantılarToolStripMenuItem.Name = "toplantılarToolStripMenuItem";
             toplantılarToolStripMenuItem.Size = new Size(74, 20);
             toplantılarToolStripMenuItem.Text = "Toplantılar";
@@ -245,14 +246,14 @@
             // AddMeetingToolStrip
             // 
             AddMeetingToolStrip.Name = "AddMeetingToolStrip";
-            AddMeetingToolStrip.Size = new Size(167, 22);
+            AddMeetingToolStrip.Size = new Size(180, 22);
             AddMeetingToolStrip.Text = "Toplantı Ekle";
             AddMeetingToolStrip.Click += AddMeetingToolStrip_Click;
             // 
             // DeletedMeetingsToolStrip
             // 
             DeletedMeetingsToolStrip.Name = "DeletedMeetingsToolStrip";
-            DeletedMeetingsToolStrip.Size = new Size(167, 22);
+            DeletedMeetingsToolStrip.Size = new Size(180, 22);
             DeletedMeetingsToolStrip.Text = "Silinen Toplantılar";
             DeletedMeetingsToolStrip.Click += DeletedMeetingsToolStrip_Click;
             // 
@@ -403,6 +404,13 @@
             timer1.Interval = 6000;
             timer1.Tick += timer1_Tick;
             // 
+            // PreviousMeetingsToolStrip
+            // 
+            PreviousMeetingsToolStrip.Name = "PreviousMeetingsToolStrip";
+            PreviousMeetingsToolStrip.Size = new Size(180, 22);
+            PreviousMeetingsToolStrip.Text = "Geçmiş Toplantılar";
+            PreviousMeetingsToolStrip.Click += PreviousMeetingsToolStrip_Click;
+            // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -489,5 +497,6 @@
         private ToolStripMenuItem AddMeetingToolStrip;
         private ToolStripMenuItem DeletedMeetingsToolStrip;
         private System.Windows.Forms.Timer timer1;
+        private ToolStripMenuItem PreviousMeetingsToolStrip;
     }
 }

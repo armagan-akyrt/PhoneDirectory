@@ -72,7 +72,7 @@
             // 
             // StartDatePicker
             // 
-            StartDatePicker.CustomFormat = "dd/MM/yy - hh.mm";
+            StartDatePicker.CustomFormat = "dd/MM/yy - HH.mm";
             StartDatePicker.Format = DateTimePickerFormat.Custom;
             StartDatePicker.Location = new Point(285, 122);
             StartDatePicker.Name = "StartDatePicker";
@@ -82,7 +82,7 @@
             // 
             // EndDatePicker
             // 
-            EndDatePicker.CustomFormat = "dd/MM/yy - hh.mm";
+            EndDatePicker.CustomFormat = "dd/MM/yy - HH.mm";
             EndDatePicker.Format = DateTimePickerFormat.Custom;
             EndDatePicker.Location = new Point(285, 203);
             EndDatePicker.Name = "EndDatePicker";

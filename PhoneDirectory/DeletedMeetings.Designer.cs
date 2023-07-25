@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeletedMeetings));
             groupBox2 = new GroupBox();
+            FlipStatusButton = new Button();
             MeetingsSearchBar = new TextBox();
             UpcomingMeetingsList = new ListBox();
             EndTimePicker = new DateTimePicker();
@@ -42,11 +43,15 @@
             label8 = new Label();
             fullNamePrompt = new TextBox();
             label10 = new Label();
+            IntervalCalendar = new MonthCalendar();
+            UpdateIntervalButton = new Button();
+            label2 = new Label();
             groupBox2.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(FlipStatusButton);
             groupBox2.Controls.Add(MeetingsSearchBar);
             groupBox2.Controls.Add(UpcomingMeetingsList);
             groupBox2.Location = new Point(12, 18);
@@ -54,7 +59,17 @@
             groupBox2.Size = new Size(295, 420);
             groupBox2.TabIndex = 17;
             groupBox2.TabStop = false;
-            groupBox2.Text = "Gelecek Toplantılar:";
+            groupBox2.Text = "Silinen Toplantılar:";
+            // 
+            // FlipStatusButton
+            // 
+            FlipStatusButton.Location = new Point(15, 51);
+            FlipStatusButton.Name = "FlipStatusButton";
+            FlipStatusButton.Size = new Size(160, 23);
+            FlipStatusButton.TabIndex = 2;
+            FlipStatusButton.Text = "Geçmiş Toplantılar";
+            FlipStatusButton.UseVisualStyleBackColor = true;
+            FlipStatusButton.Click += FlipStatusButton_Click;
             // 
             // MeetingsSearchBar
             // 
@@ -62,14 +77,15 @@
             MeetingsSearchBar.Name = "MeetingsSearchBar";
             MeetingsSearchBar.Size = new Size(262, 23);
             MeetingsSearchBar.TabIndex = 1;
+            MeetingsSearchBar.TextChanged += MeetingsSearchBar_TextChanged_1;
             // 
             // UpcomingMeetingsList
             // 
             UpcomingMeetingsList.FormattingEnabled = true;
             UpcomingMeetingsList.ItemHeight = 15;
-            UpcomingMeetingsList.Location = new Point(15, 52);
+            UpcomingMeetingsList.Location = new Point(15, 82);
             UpcomingMeetingsList.Name = "UpcomingMeetingsList";
-            UpcomingMeetingsList.Size = new Size(262, 349);
+            UpcomingMeetingsList.Size = new Size(262, 319);
             UpcomingMeetingsList.TabIndex = 0;
             UpcomingMeetingsList.SelectedIndexChanged += UpcomingMeetingsList_SelectedIndexChanged;
             // 
@@ -77,7 +93,7 @@
             // 
             EndTimePicker.CustomFormat = "dd/MM/yy - HH.mm";
             EndTimePicker.Format = DateTimePickerFormat.Custom;
-            EndTimePicker.Location = new Point(313, 164);
+            EndTimePicker.Location = new Point(313, 195);
             EndTimePicker.Name = "EndTimePicker";
             EndTimePicker.Size = new Size(239, 23);
             EndTimePicker.TabIndex = 43;
@@ -86,7 +102,7 @@
             // 
             StartTimePicker.CustomFormat = "dd/MM/yy - HH.mm";
             StartTimePicker.Format = DateTimePickerFormat.Custom;
-            StartTimePicker.Location = new Point(313, 108);
+            StartTimePicker.Location = new Point(313, 139);
             StartTimePicker.Name = "StartTimePicker";
             StartTimePicker.Size = new Size(239, 23);
             StartTimePicker.TabIndex = 42;
@@ -113,16 +129,16 @@
             // 
             // NotesPrompt
             // 
-            NotesPrompt.Location = new Point(313, 217);
+            NotesPrompt.Location = new Point(313, 245);
             NotesPrompt.Name = "NotesPrompt";
-            NotesPrompt.Size = new Size(239, 177);
+            NotesPrompt.Size = new Size(239, 149);
             NotesPrompt.TabIndex = 39;
             NotesPrompt.Text = "";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(313, 199);
+            label1.Location = new Point(313, 227);
             label1.Name = "label1";
             label1.Size = new Size(27, 15);
             label1.TabIndex = 38;
@@ -131,7 +147,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(313, 146);
+            label7.Location = new Point(313, 177);
             label7.Name = "label7";
             label7.Size = new Size(29, 15);
             label7.TabIndex = 37;
@@ -140,7 +156,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(313, 90);
+            label8.Location = new Point(313, 121);
             label8.Name = "label8";
             label8.Size = new Size(57, 15);
             label8.TabIndex = 36;
@@ -148,7 +164,7 @@
             // 
             // fullNamePrompt
             // 
-            fullNamePrompt.Location = new Point(313, 54);
+            fullNamePrompt.Location = new Point(313, 85);
             fullNamePrompt.Name = "fullNamePrompt";
             fullNamePrompt.Size = new Size(239, 23);
             fullNamePrompt.TabIndex = 35;
@@ -156,17 +172,46 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(313, 36);
+            label10.Location = new Point(313, 67);
             label10.Name = "label10";
             label10.Size = new Size(57, 15);
             label10.TabIndex = 34;
             label10.Text = "Ad Soyad";
             // 
+            // IntervalCalendar
+            // 
+            IntervalCalendar.CalendarDimensions = new Size(1, 2);
+            IntervalCalendar.Location = new Point(594, 85);
+            IntervalCalendar.Name = "IntervalCalendar";
+            IntervalCalendar.TabIndex = 44;
+            // 
+            // UpdateIntervalButton
+            // 
+            UpdateIntervalButton.Location = new Point(684, 407);
+            UpdateIntervalButton.Name = "UpdateIntervalButton";
+            UpdateIntervalButton.Size = new Size(137, 23);
+            UpdateIntervalButton.TabIndex = 45;
+            UpdateIntervalButton.Text = "Tarihleri Güncelle";
+            UpdateIntervalButton.UseVisualStyleBackColor = true;
+            UpdateIntervalButton.Click += UpdateIntervalButton_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(594, 67);
+            label2.Name = "label2";
+            label2.Size = new Size(72, 15);
+            label2.TabIndex = 46;
+            label2.Text = "Tarih Aralığı:";
+            // 
             // DeletedMeetings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(573, 450);
+            ClientSize = new Size(843, 450);
+            Controls.Add(label2);
+            Controls.Add(UpdateIntervalButton);
+            Controls.Add(IntervalCalendar);
             Controls.Add(EndTimePicker);
             Controls.Add(StartTimePicker);
             Controls.Add(DeleteMeetingButton);
@@ -203,5 +248,9 @@
         private Label label8;
         private TextBox fullNamePrompt;
         private Label label10;
+        private Button FlipStatusButton;
+        private MonthCalendar IntervalCalendar;
+        private Button UpdateIntervalButton;
+        private Label label2;
     }
 }

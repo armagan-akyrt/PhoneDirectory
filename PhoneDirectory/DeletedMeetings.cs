@@ -10,12 +10,16 @@ namespace PhoneDirectory
         private List<Meeting> meetings = new List<Meeting>();
         private Meeting selectedMeeting = new Meeting();
 
+        private bool isPreviousMeeting = true;
+
+        private string userSearchWord = "";
+
         public DeletedMeetings(User user)
         {
             InitializeComponent();
             this.user = user;
 
-            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user);
+            
 
 
         }
@@ -49,13 +53,15 @@ namespace PhoneDirectory
             selectedMeeting.UpdateMeeting();
             selectedMeeting.BringBackMeeting();
 
-            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user);
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user,
+                isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
         }
 
         private void DeleteMeetingButton_Click(object sender, EventArgs e)
         {
             selectedMeeting.RemoveMeeting();
-            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user);
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user,
+                isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -65,12 +71,49 @@ namespace PhoneDirectory
 
         private void MeetingsSearchBar_TextChanged(object sender, EventArgs e)
         {
+            userSearchWord = MeetingsSearchBar.Text;
+            userSearchWord = util.ConvertInputToAscii(userSearchWord);
+
+            meetings = util.PrintMeetingsList(userSearchWord, UpcomingMeetingsList, meetings, false, user,
+                               isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
 
         }
 
         private void DeletedMeetings_Load(object sender, EventArgs e)
         {
+            IntervalCalendar.MaxSelectionCount = 61;
+            IntervalCalendar.SelectionRange = new SelectionRange(DateTime.Now.AddDays(-60), DateTime.Now);
 
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, false, user,
+                isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
+        }
+
+        private void FlipStatusButton_Click(object sender, EventArgs e)
+        {
+            isPreviousMeeting = !isPreviousMeeting;
+
+            meetings = util.PrintMeetingsList(userSearchWord, UpcomingMeetingsList, meetings, false, user,
+                isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
+
+            if (isPreviousMeeting)
+            {
+                FlipStatusButton.Text = "Geçmiş Toplantıları Göster";
+            }
+            else
+            {
+                FlipStatusButton.Text = "Gelecek Toplantıları Göster";
+            }
+        }
+
+        private void UpdateIntervalButton_Click(object sender, EventArgs e)
+        {
+            meetings = util.PrintMeetingsList(userSearchWord, UpcomingMeetingsList, meetings, false, user,
+                isPreviousMeeting, IntervalCalendar.SelectionStart, IntervalCalendar.SelectionEnd);
+        }
+
+        private void MeetingsSearchBar_TextChanged_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }

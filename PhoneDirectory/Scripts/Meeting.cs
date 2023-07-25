@@ -138,7 +138,7 @@ namespace PhoneDirectory.Scripts
         /// </summary>
         /// <param name="activeState">whether or not soft deleted. 1=> active 0=> soft deleted</param>
         /// <returns>a list of meetings</returns>
-        public List<Meeting> GetMeetings(bool activeState)
+        public List<Meeting> GetMeetings(string searchword, bool activeState, DateTime startInterval, DateTime endInterval)
         {
             List<Meeting> meetings = new List<Meeting>();
 
@@ -153,6 +153,64 @@ namespace PhoneDirectory.Scripts
 
                 command.Parameters.AddWithValue("@userId", this._user.Id);
                 command.Parameters.AddWithValue("@activeState", activeState);
+                command.Parameters.AddWithValue("@startInterval", startInterval);
+                command.Parameters.AddWithValue("@endInterval", endInterval);
+                command.Parameters.AddWithValue("@usernameSearch", searchword);
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Meeting meeting = new Meeting();
+                    meeting._meetingId = Convert.ToInt32(reader["meetingId"]);
+                    meeting._meetingNotes = reader["notes"].ToString();
+                    meeting._meetingStartDate = Convert.ToDateTime(reader["startDate"]);
+                    meeting._meetingEndDate = Convert.ToDateTime(reader["endDate"]);
+
+                    Contact contact = new Contact();
+                    contact._phoneNumber = (reader["gsmNumber"]?.ToString() ?? string.Empty);
+                    contact._email = (reader["email"]?.ToString() ?? string.Empty);
+                    contact._address = (reader["address"]?.ToString() ?? string.Empty);
+                    contact._username = (reader["username"]?.ToString() ?? string.Empty);
+                    contact._name = (reader["firstName"]?.ToString() ?? string.Empty);
+                    contact._surname = (reader["lastName"]?.ToString() ?? string.Empty);
+                    contact._id = Convert.ToInt32(reader["contactId"]?.ToString() ?? string.Empty);
+
+                    meeting.Contact = contact;
+
+                    meetings.Add(meeting);
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return meetings;
+        }
+
+        public List<Meeting> GetPreviousMeetings(string searchword, bool activeState, DateTime startInterval, DateTime endInterval)
+        {
+            List<Meeting> meetings = new List<Meeting>();
+
+            SqlConnection conn = connection.GetConnection();
+
+            try
+            {
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("RetrievePreviousMeetings", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@userId", this._user.Id);
+                command.Parameters.AddWithValue("@activeState", activeState);
+                command.Parameters.AddWithValue("@startInterval", startInterval);
+                command.Parameters.AddWithValue("@endInterval", endInterval);
+                command.Parameters.AddWithValue("@usernameSearch", searchword);
 
                 SqlDataReader reader = command.ExecuteReader();
 

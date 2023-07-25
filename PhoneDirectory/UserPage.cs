@@ -38,7 +38,8 @@ namespace PhoneDirectory
             Meeting meeting = new Meeting();
             meeting.User = user;
 
-            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user);
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user, false,
+                DateTime.Now.AddYears(-100), DateTime.MaxValue);
             if (role.Equals("ADMIN"))
             {
                 AdminToolStrip.Visible = true;
@@ -216,7 +217,8 @@ namespace PhoneDirectory
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user);
+            meetings = util.PrintMeetingsList("", UpcomingMeetingsList, meetings, true, user, false,
+                DateTime.Now.AddYears(-100), DateTime.MaxValue);
         }
 
         private void UpdateMeetingButton_Click(object sender, EventArgs e)
@@ -242,7 +244,14 @@ namespace PhoneDirectory
             string input = MeetingsSearchBar.Text;
             input = util.ConvertInputToAscii(input);
 
-            meetings = util.PrintMeetingsList(input, UpcomingMeetingsList, meetings, true, user);
+            meetings = util.PrintMeetingsList(input, UpcomingMeetingsList, meetings, true, user, false,
+                DateTime.Now.AddYears(-100), DateTime.MaxValue);
+        }
+
+        private void PreviousMeetingsToolStrip_Click(object sender, EventArgs e)
+        {
+            Form PreviousMeetings = new PreviousMeetings(user);
+            PreviousMeetings.ShowDialog();
         }
     }
 }

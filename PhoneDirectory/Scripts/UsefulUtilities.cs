@@ -58,11 +58,15 @@ namespace PhoneDirectory.Scripts
         /// <param name="meetings"></param>
         /// <param name="activeState"></param>
         /// <returns></returns>
-        public List<Meeting> PrintMeetingsList(string search, ListBox listBox, List<Meeting> meetings, bool activeState, User user)
+        public List<Meeting> PrintMeetingsList(string search, ListBox listBox, List<Meeting> meetings,
+                                                bool activeState, User user, bool isPreviousMeeting,
+                                                DateTime startDate, DateTime endDate)
         {
             Meeting meeting = new Meeting();
             meeting.User = user;
-            meetings = meeting.GetMeetings(activeState);
+            meetings = (isPreviousMeeting) ? meeting.GetPreviousMeetings(search, activeState, startDate, endDate) :
+                meeting.GetMeetings(search, activeState, startDate, endDate);
+            
             listBox.Items.Clear();
 
 
@@ -76,6 +80,8 @@ namespace PhoneDirectory.Scripts
 
             return meetings;
         }
+
+        
 
         /// <summary>
         /// Prints guests list to listbox
