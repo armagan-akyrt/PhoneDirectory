@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhoneDirectory.Scripts
 {
-    internal class ConferenceRoom
+    public class ConferenceRoom
     {
         private int _roomId;
         private int _overseerId;

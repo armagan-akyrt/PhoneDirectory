@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PhoneDirectory.Scripts
 {
-    internal class Conference
+    public class Conference
     {
         private int _conferenceId;
         private int _requesterId;

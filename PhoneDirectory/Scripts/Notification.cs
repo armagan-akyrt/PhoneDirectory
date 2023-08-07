@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PhoneDirectory.Scripts
 {
-    internal class Notification
+    public class Notification
     {
         private int _id;
         private int _userId;

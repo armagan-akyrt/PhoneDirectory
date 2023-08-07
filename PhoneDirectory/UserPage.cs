@@ -253,5 +253,11 @@ namespace PhoneDirectory
             Form PreviousMeetings = new PreviousMeetings(user);
             PreviousMeetings.ShowDialog();
         }
+
+        private void NewMeetingToolstrip_Click(object sender, EventArgs e)
+        {
+            Form AddConference = new AddConference(user);
+            AddConference.ShowDialog();
+        }
     }
 }

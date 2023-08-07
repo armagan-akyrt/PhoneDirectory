@@ -53,6 +53,7 @@
             toplantılarToolStripMenuItem = new ToolStripMenuItem();
             AddMeetingToolStrip = new ToolStripMenuItem();
             DeletedMeetingsToolStrip = new ToolStripMenuItem();
+            PreviousMeetingsToolStrip = new ToolStripMenuItem();
             DeleteButton = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
@@ -69,7 +70,8 @@
             StartTimePicker = new DateTimePicker();
             EndTimePicker = new DateTimePicker();
             timer1 = new System.Windows.Forms.Timer(components);
-            PreviousMeetingsToolStrip = new ToolStripMenuItem();
+            toplantılarToolStripMenuItem1 = new ToolStripMenuItem();
+            NewMeetingToolstrip = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -186,7 +188,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip, ChangePasswordStripTool, toplantılarToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { PersonToolStrip, AdminToolStrip, ChangePasswordStripTool, toplantılarToolStripMenuItem, toplantılarToolStripMenuItem1 });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(1101, 24);
@@ -246,16 +248,23 @@
             // AddMeetingToolStrip
             // 
             AddMeetingToolStrip.Name = "AddMeetingToolStrip";
-            AddMeetingToolStrip.Size = new Size(180, 22);
+            AddMeetingToolStrip.Size = new Size(171, 22);
             AddMeetingToolStrip.Text = "Toplantı Ekle";
             AddMeetingToolStrip.Click += AddMeetingToolStrip_Click;
             // 
             // DeletedMeetingsToolStrip
             // 
             DeletedMeetingsToolStrip.Name = "DeletedMeetingsToolStrip";
-            DeletedMeetingsToolStrip.Size = new Size(180, 22);
+            DeletedMeetingsToolStrip.Size = new Size(171, 22);
             DeletedMeetingsToolStrip.Text = "Silinen Toplantılar";
             DeletedMeetingsToolStrip.Click += DeletedMeetingsToolStrip_Click;
+            // 
+            // PreviousMeetingsToolStrip
+            // 
+            PreviousMeetingsToolStrip.Name = "PreviousMeetingsToolStrip";
+            PreviousMeetingsToolStrip.Size = new Size(171, 22);
+            PreviousMeetingsToolStrip.Text = "Geçmiş Toplantılar";
+            PreviousMeetingsToolStrip.Click += PreviousMeetingsToolStrip_Click;
             // 
             // DeleteButton
             // 
@@ -404,12 +413,19 @@
             timer1.Interval = 6000;
             timer1.Tick += timer1_Tick;
             // 
-            // PreviousMeetingsToolStrip
+            // toplantılarToolStripMenuItem1
             // 
-            PreviousMeetingsToolStrip.Name = "PreviousMeetingsToolStrip";
-            PreviousMeetingsToolStrip.Size = new Size(180, 22);
-            PreviousMeetingsToolStrip.Text = "Geçmiş Toplantılar";
-            PreviousMeetingsToolStrip.Click += PreviousMeetingsToolStrip_Click;
+            toplantılarToolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { NewMeetingToolstrip });
+            toplantılarToolStripMenuItem1.Name = "toplantılarToolStripMenuItem1";
+            toplantılarToolStripMenuItem1.Size = new Size(74, 20);
+            toplantılarToolStripMenuItem1.Text = "Toplantılar";
+            // 
+            // NewMeetingToolstrip
+            // 
+            NewMeetingToolstrip.Name = "NewMeetingToolstrip";
+            NewMeetingToolstrip.Size = new Size(180, 22);
+            NewMeetingToolstrip.Text = "Yeni Toplantı";
+            NewMeetingToolstrip.Click += NewMeetingToolstrip_Click;
             // 
             // UserPage
             // 
@@ -498,5 +514,7 @@
         private ToolStripMenuItem DeletedMeetingsToolStrip;
         private System.Windows.Forms.Timer timer1;
         private ToolStripMenuItem PreviousMeetingsToolStrip;
+        private ToolStripMenuItem toplantılarToolStripMenuItem1;
+        private ToolStripMenuItem NewMeetingToolstrip;
     }
 }
