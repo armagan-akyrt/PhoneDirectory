@@ -119,7 +119,7 @@ namespace PhoneDirectory.Scripts
                 command.Parameters.Add(roomIdParam);
 
                 command.ExecuteNonQuery();
-
+                _roomId = (int)roomIdParam.Value;
             }
             catch (Exception)
             {
@@ -237,4 +237,4 @@ namespace PhoneDirectory.Scripts
 }
 
 
-}
+
