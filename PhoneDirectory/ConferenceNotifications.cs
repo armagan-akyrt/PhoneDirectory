@@ -17,6 +17,7 @@ namespace PhoneDirectory
 
         private List<Conference> overseerRequests = new List<Conference>();
         private List<Conference> participantRequests = new List<Conference>();
+        private List<Notification> notifications = new List<Notification>();    
 
         private int selectedOverseerRequestIndex = -1;
 
@@ -35,6 +36,7 @@ namespace PhoneDirectory
         {
             overseerRequests = ListConferences(OverseerRequestList, overseerRequests, true);
             participantRequests = ListConferences(ParticipationList, participantRequests, false);
+            notifications = ListNotifications(NotificationsList, notifications);
         }
 
         private List<Conference> ListConferences(ListBox lb, List<Conference> conferences, bool isOverseer)
@@ -54,5 +56,22 @@ namespace PhoneDirectory
 
             return conferences;
         }
+        
+        private List<Notification> ListNotifications(ListBox lb, List<Notification> notifications)
+        {
+            notifications = new Conference().ListNotifications(currentUser.Id);
+
+            lb.Items.Clear();
+            foreach (var notification in notifications)
+            {
+                string statusMessage = (notification.Status.Equals("rejected")) ? "iptal edildi" : "onaylandı";
+                string text = "'CON_TOPIC' konulu toplantınız CON_STATUS".Replace("CON_TOPIC", notification.Topic).Replace("CON_STATUS", statusMessage);
+                
+                lb.Items.Add(text);
+            }
+
+            return notifications;
+        }
+    
     }
 }
