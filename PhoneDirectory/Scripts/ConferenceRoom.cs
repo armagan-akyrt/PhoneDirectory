@@ -37,49 +37,49 @@ namespace PhoneDirectory.Scripts
             set { _overseerId = value; }
         }
 
-        private int ConferenceId
+        public int ConferenceId
         {
             get { return _conferenceId; }
             set { _conferenceId = value; }
         }
 
-        private int RoomCapacity
+        public int RoomCapacity
         {
             get { return _roomCapacity; }
             set { _roomCapacity = value; }
         }
 
-        private bool IsEmpty
+        public bool IsEmpty
         {
             get { return _isEmpty; }
             set { _isEmpty = value; }
         }
 
-        private string MeetingTopic
+        public string MeetingTopic
         {
             get { return _meetingTopic; }
             set { _meetingTopic = value; }
         }
 
-        private string MeetingDescription
+        public string MeetingDescription
         {
             get { return _meetingDescription; }
             set { _meetingDescription = value; }
         }
 
-        private DateTime StartDate
+        public DateTime StartDate
         {
             get { return _startDate; }
             set { _startDate = value; }
         }
 
-        private DateTime EndDate
+        public DateTime EndDate
         {
             get { return _endDate; }
             set { _endDate = value; }
         }
 
-        private List<String> ParticipantNames
+        public List<string> ParticipantNames
         {
             get { return _participantNames; }
             set { _participantNames = value; }

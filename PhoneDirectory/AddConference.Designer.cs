@@ -81,6 +81,7 @@
             UserSearchBar.Name = "UserSearchBar";
             UserSearchBar.Size = new Size(250, 23);
             UserSearchBar.TabIndex = 1;
+            UserSearchBar.TextChanged += UserSearchBar_TextChanged;
             // 
             // UsersListBox
             // 
@@ -185,6 +186,7 @@
             AddParticipant.TabIndex = 16;
             AddParticipant.Text = "Davet Et";
             AddParticipant.UseVisualStyleBackColor = true;
+            AddParticipant.Click += AddParticipant_Click;
             // 
             // UserAddressPrompt
             // 
@@ -252,6 +254,7 @@
             CreateRequestButton.TabIndex = 13;
             CreateRequestButton.Text = "İstek Oluştur";
             CreateRequestButton.UseVisualStyleBackColor = true;
+            CreateRequestButton.Click += CreateRequestButton_Click;
             // 
             // label12
             // 
