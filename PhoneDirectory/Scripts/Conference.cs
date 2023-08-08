@@ -107,7 +107,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceCreate");
+                SqlCommand command = new SqlCommand("ConferenceCreate", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
             
                 command.Parameters.AddWithValue("@roomId", _conferenceRoom.RoomId);
@@ -119,10 +119,10 @@ namespace PhoneDirectory.Scripts
 
                 SqlParameter conferenceIdParam = new SqlParameter("@conferenceId", System.Data.SqlDbType.Int);
                 conferenceIdParam.Direction = System.Data.ParameterDirection.Output;
-                command.Parameters.AddWithValue("@conferenceId", conferenceIdParam);
+                command.Parameters.Add(conferenceIdParam);
 
                 command.ExecuteNonQuery();
-                _conferenceId = (int)conferenceIdParam.Value;
+                this._conferenceId = (int)conferenceIdParam.Value;
             }
             catch (Exception)
             {
@@ -137,7 +137,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceNewRequest");
+                SqlCommand command = new SqlCommand("ConferenceNewRequest", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@conferenceId", _conferenceId);
@@ -145,7 +145,7 @@ namespace PhoneDirectory.Scripts
 
                 SqlParameter requestIdParam = new SqlParameter("@requestId", System.Data.SqlDbType.Int);
                 requestIdParam.Direction = System.Data.ParameterDirection.Output;
-                command.Parameters.AddWithValue("@requestId", requestIdParam);
+                command.Parameters.Add(requestIdParam);
 
                 command.ExecuteNonQuery();
                 _requestId = (int)requestIdParam.Value;
@@ -163,11 +163,14 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceAddParticipants");
+
 
                 foreach (int participantId in _participantIds)
                 {
-                    command.Parameters.AddWithValue("@conferenceId", _conferenceId);
+                    SqlCommand command = new SqlCommand("ConferenceAddParticipant", conn);
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    command.Parameters.AddWithValue("@requestId", _requestId);
                     command.Parameters.AddWithValue("@participantId", participantId);
                     command.ExecuteNonQuery();
                 }
