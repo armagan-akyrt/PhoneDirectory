@@ -64,6 +64,7 @@
             OverseerApproveRequest.TabIndex = 2;
             OverseerApproveRequest.Text = "Onayla";
             OverseerApproveRequest.UseVisualStyleBackColor = true;
+            OverseerApproveRequest.Click += OverseerApproveRequest_Click;
             // 
             // OverseerRejectRequest
             // 
@@ -73,6 +74,7 @@
             OverseerRejectRequest.TabIndex = 1;
             OverseerRejectRequest.Text = "Reddet";
             OverseerRejectRequest.UseVisualStyleBackColor = true;
+            OverseerRejectRequest.Click += OverseerRejectRequest_Click;
             // 
             // OverseerRequestList
             // 
@@ -104,6 +106,7 @@
             AcceptParticipationButton.TabIndex = 5;
             AcceptParticipationButton.Text = "Kabul Et";
             AcceptParticipationButton.UseVisualStyleBackColor = true;
+            AcceptParticipationButton.Click += AcceptParticipationButton_Click;
             // 
             // ParticipationList
             // 
@@ -113,6 +116,7 @@
             ParticipationList.Name = "ParticipationList";
             ParticipationList.Size = new Size(288, 454);
             ParticipationList.TabIndex = 3;
+            ParticipationList.SelectedIndexChanged += ParticipationList_SelectedIndexChanged;
             // 
             // RejectParticipationButton
             // 
@@ -122,6 +126,7 @@
             RejectParticipationButton.TabIndex = 4;
             RejectParticipationButton.Text = "Reddet";
             RejectParticipationButton.UseVisualStyleBackColor = true;
+            RejectParticipationButton.Click += RejectParticipationButton_Click;
             // 
             // groupBox3
             // 
@@ -151,6 +156,7 @@
             ClearNotificationsButton.TabIndex = 7;
             ClearNotificationsButton.Text = "Temizle";
             ClearNotificationsButton.UseVisualStyleBackColor = true;
+            ClearNotificationsButton.Click += ClearNotificationsButton_Click;
             // 
             // ConferenceNotifications
             // 
