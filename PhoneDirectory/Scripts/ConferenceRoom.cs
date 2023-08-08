@@ -176,15 +176,19 @@ namespace PhoneDirectory.Scripts
                 while (reader.Read())
                 {
                     ConferenceRoom conferenceRoom = new ConferenceRoom();
-                    conferenceRoom._roomId = reader.GetInt32(0);
-                    conferenceRoom._overseerId = reader.GetInt32(1);
-                    conferenceRoom._conferenceId = reader.GetInt32(2);
-                    conferenceRoom._roomCapacity = reader.GetInt32(3);
-                    conferenceRoom._isEmpty = reader.GetBoolean(4);
-                    conferenceRoom._meetingTopic = reader.GetString(5);
-                    conferenceRoom._meetingDescription = reader.GetString(6);
-                    conferenceRoom._startDate = reader.GetDateTime(7);
-                    conferenceRoom._endDate = reader.GetDateTime(8);
+                    conferenceRoom._roomId = Convert.ToInt32(reader["roomId"]);
+                    conferenceRoom._overseerId = Convert.ToInt32(reader["overseerId"]);
+                    conferenceRoom._roomCapacity = Convert.ToInt32(reader["capacity"]);
+                    conferenceRoom._isEmpty = reader["roomStatus"]?.ToString().Equals("In Use") ?? true;
+                    if (!IsEmpty)
+                    {
+                        conferenceRoom._conferenceId = Convert.ToInt32(reader["conferenceId"]);
+                        conferenceRoom._meetingTopic = reader["topic"].ToString();
+                        conferenceRoom._meetingDescription = reader["description"].ToString();
+                        conferenceRoom._startDate = (DateTime)reader["startDate"];
+                        conferenceRoom._endDate = (DateTime)reader["end"];
+                    }
+
                     conferenceRooms.Add(conferenceRoom);
                 }
             }
