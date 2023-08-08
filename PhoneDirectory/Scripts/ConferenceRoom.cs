@@ -112,7 +112,7 @@ namespace PhoneDirectory.Scripts
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@overseerId", this._overseerId);
-                command.Parameters.AddWithValue("@roomCapacity", this._roomCapacity);
+                command.Parameters.AddWithValue("@capacity", this._roomCapacity);
 
                 SqlParameter roomIdParam = new SqlParameter("@roomId", System.Data.SqlDbType.Int);
                 roomIdParam.Direction = System.Data.ParameterDirection.Output;
@@ -181,13 +181,14 @@ namespace PhoneDirectory.Scripts
                     conferenceRoom._roomCapacity = Convert.ToInt32(reader["capacity"]);
                     string roomStatus = reader["roomStatus"].ToString();
                     conferenceRoom._isEmpty = reader["roomStatus"]?.ToString().Equals("Not In") ?? true;
-                    if (!IsEmpty)
+                    if (!conferenceRoom._isEmpty)
                     {
                         conferenceRoom._conferenceId = Convert.ToInt32(reader["conferenceId"]);
                         conferenceRoom._meetingTopic = reader["topic"].ToString();
                         conferenceRoom._meetingDescription = reader["description"].ToString();
                         conferenceRoom._startDate = (DateTime)reader["startDate"];
-                        conferenceRoom._endDate = (DateTime)reader["end"];
+                        conferenceRoom._endDate = (DateTime)reader["endDate"];
+
                     }
 
                     conferenceRooms.Add(conferenceRoom);
@@ -204,6 +205,33 @@ namespace PhoneDirectory.Scripts
             }
 
             return conferenceRooms;
+        }
+
+        public string GetParticipants()
+        {
+            SqlConnection conn = connection.GetConnection();
+            string participants = "";
+
+            try
+            {
+                conn.Open();
+                SqlCommand command = new SqlCommand("ConferenceGetParticipantNames", conn);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@conferenceId", this._conferenceId);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    participants += reader.GetString(0) + ", ";
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return participants;
         }
 
         public List<string> ListParticipants()

@@ -292,7 +292,6 @@ namespace PhoneDirectory.Scripts
 
                     tempConference.StartDate = (DateTime)reader["startDate"];
                     tempConference.EndDate = (DateTime)reader["endDate"];
-                    tempConference.ConferenceRoom.RoomId = (int)reader["roomId"];
 
                     conferences.Add(tempConference);
                 }
