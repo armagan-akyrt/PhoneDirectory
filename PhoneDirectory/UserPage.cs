@@ -259,5 +259,11 @@ namespace PhoneDirectory
             Form AddConference = new AddConference(user);
             AddConference.ShowDialog();
         }
+
+        private void ConferenceNotificationsToolstripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form ConferenceNotifications = new ConferenceNotifications(user);
+            ConferenceNotifications.ShowDialog();
+        }
     }
 }

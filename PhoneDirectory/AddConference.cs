@@ -126,7 +126,15 @@ namespace PhoneDirectory
             conference.StartDate = StartDatePicker.Value;
             conference.EndDate = EndDatePicker.Value;
 
-            conference.CreateConference();
+            bool success = conference.CreateConference();
+
+            if (success)
+            {
+                MessageBox.Show("Toplantı Oluşturuldu.");
+                return;
+            }
+
+            MessageBox.Show("Toplantı Oluşturulamadı.");
         }
     }
 }

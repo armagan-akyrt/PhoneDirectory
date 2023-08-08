@@ -98,6 +98,7 @@ namespace PhoneDirectory.Scripts
             _topic = null;
             _description = null;
             _notes = null;
+            _conferenceRoom = new ConferenceRoom();
         }
 
         public bool CreateConference()
@@ -196,7 +197,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceListPendingParticipants");
+                SqlCommand command = new SqlCommand("ConferenceListPendingParticipants", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@participantId", currentUserId);
@@ -216,6 +217,8 @@ namespace PhoneDirectory.Scripts
 
                     tempConference.StartDate = (DateTime)reader["startDate"];
                     tempConference.EndDate = (DateTime)reader["endDate"];
+                    tempConference.ConferenceRoom.RoomId = (int)reader["roomId"];
+
                     conferences.Add(tempConference);
                 }
             }
@@ -239,7 +242,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand(sqlProcedure);
+                SqlCommand command = new SqlCommand(sqlProcedure, conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@participantId", participantId);
@@ -268,8 +271,10 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceListPendingApprovals");
+                SqlCommand command = new SqlCommand("ConferenceListPendingApprovals", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@overseerId", currentUserId);
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -287,6 +292,7 @@ namespace PhoneDirectory.Scripts
 
                     tempConference.StartDate = (DateTime)reader["startDate"];
                     tempConference.EndDate = (DateTime)reader["endDate"];
+                    tempConference.ConferenceRoom.RoomId = (int)reader["roomId"];
 
                     conferences.Add(tempConference);
                 }
@@ -312,7 +318,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand(sqlProcedure);
+                SqlCommand command = new SqlCommand(sqlProcedure, conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@overseerId", overseerId);
@@ -341,7 +347,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceUpdateData");
+                SqlCommand command = new SqlCommand("ConferenceUpdateData", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@conferenceId", _conferenceId);
@@ -375,7 +381,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceListNotifications");
+                SqlCommand command = new SqlCommand("ConferenceListNotifications", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@participantId", currentUserId);
@@ -411,7 +417,7 @@ namespace PhoneDirectory.Scripts
             try
             {
                 conn.Open();
-                SqlCommand command = new SqlCommand("ConferenceClearNotifications");
+                SqlCommand command = new SqlCommand("ConferenceClearNotifications", conn);
                 command.CommandType = System.Data.CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@userId", userId);
