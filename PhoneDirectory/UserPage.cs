@@ -265,5 +265,11 @@ namespace PhoneDirectory
             Form ConferenceNotifications = new ConferenceNotifications(user);
             ConferenceNotifications.ShowDialog();
         }
+
+        private void ConferencesDashBoardToolstrip_Click(object sender, EventArgs e)
+        {
+            Form Conferences = new Conferences();
+            Conferences.ShowDialog();
+        }
     }
 }

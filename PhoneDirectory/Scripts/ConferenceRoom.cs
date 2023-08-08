@@ -179,7 +179,8 @@ namespace PhoneDirectory.Scripts
                     conferenceRoom._roomId = Convert.ToInt32(reader["roomId"]);
                     conferenceRoom._overseerId = Convert.ToInt32(reader["overseerId"]);
                     conferenceRoom._roomCapacity = Convert.ToInt32(reader["capacity"]);
-                    conferenceRoom._isEmpty = reader["roomStatus"]?.ToString().Equals("In Use") ?? true;
+                    string roomStatus = reader["roomStatus"].ToString();
+                    conferenceRoom._isEmpty = reader["roomStatus"]?.ToString().Equals("Not In") ?? true;
                     if (!IsEmpty)
                     {
                         conferenceRoom._conferenceId = Convert.ToInt32(reader["conferenceId"]);

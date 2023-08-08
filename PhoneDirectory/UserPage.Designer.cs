@@ -73,6 +73,7 @@
             StartTimePicker = new DateTimePicker();
             EndTimePicker = new DateTimePicker();
             timer1 = new System.Windows.Forms.Timer(components);
+            ConferencesDashBoardToolstrip = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -269,7 +270,7 @@
             // 
             // ConferenceNotificationsToolstrip
             // 
-            ConferenceNotificationsToolstrip.DropDownItems.AddRange(new ToolStripItem[] { NewMeetingToolstrip, ConferenceNotificationsToolstripMenuItem });
+            ConferenceNotificationsToolstrip.DropDownItems.AddRange(new ToolStripItem[] { NewMeetingToolstrip, ConferenceNotificationsToolstripMenuItem, ConferencesDashBoardToolstrip });
             ConferenceNotificationsToolstrip.Name = "ConferenceNotificationsToolstrip";
             ConferenceNotificationsToolstrip.Size = new Size(74, 20);
             ConferenceNotificationsToolstrip.Text = "Toplantılar";
@@ -435,6 +436,13 @@
             timer1.Interval = 6000;
             timer1.Tick += timer1_Tick;
             // 
+            // ConferencesDashBoardToolstrip
+            // 
+            ConferencesDashBoardToolstrip.Name = "ConferencesDashBoardToolstrip";
+            ConferencesDashBoardToolstrip.Size = new Size(187, 22);
+            ConferencesDashBoardToolstrip.Text = "Konferanslar";
+            ConferencesDashBoardToolstrip.Click += ConferencesDashBoardToolstrip_Click;
+            // 
             // UserPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -525,5 +533,6 @@
         private ToolStripMenuItem ConferenceNotificationsToolstrip;
         private ToolStripMenuItem NewMeetingToolstrip;
         private ToolStripMenuItem ConferenceNotificationsToolstripMenuItem;
+        private ToolStripMenuItem ConferencesDashBoardToolstrip;
     }
 }

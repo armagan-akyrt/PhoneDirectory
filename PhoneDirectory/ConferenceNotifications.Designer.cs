@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConferenceNotifications));
             groupBox1 = new GroupBox();
             OverseerApproveRequest = new Button();
             OverseerRejectRequest = new Button();
@@ -166,8 +167,9 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ConferenceNotifications";
-            Text = "ConferenceNotifications";
+            Text = "Konferans Bildirimleri";
             Load += ConferenceNotifications_Load;
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
